@@ -709,10 +709,14 @@
   });
 
   // Optional: close menu when any link is clicked (for mobile)
-  document.querySelectorAll('.navbar-menu a').forEach(link => {
+  document.querySelectorAll('.navbar-menu > li > a:not(:only-child)').forEach(link => {
     link.addEventListener('click', function() {
       if(window.innerWidth <= 992) {
-        navbarMenu.classList.remove('active');
+        // Only close menu for parent links without dropdowns
+        const dropdown = this.parentElement.querySelector('.dropdown');
+        if (!dropdown) {
+          navbarMenu.classList.remove('active');
+        }
       }
     });
   });
