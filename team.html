@@ -1,0 +1,67 @@
+<!-- Modern Team Section with Scale & Background Blur Hover Effect -->
+<section id="team" style="background:#0f0f0f; color:#fff; padding:100px 20px; font-family:Poppins, sans-serif;">
+    <div style="max-width:1200px; margin:0 auto; text-align:center;">
+        <h2 style="font-size:2.8rem; margin-bottom:80px; color:#ff5f5f;">Meet Our Team 💀</h2>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:50px;">
+            
+            <!-- Team Member 1 -->
+            <div class="team-card" style="background: rgba(26,26,26,0.6); backdrop-filter: blur(5px); border-radius:20px; overflow:hidden; padding:0; text-align:center; transition: all 0.4s ease; opacity:0; transform: translateY(50px);">
+                <img src="https://i.pinimg.com/736x/a2/fb/7b/a2fb7b62be16611ca342320b6d1e3c0b.jpg" alt="Zotactyson" style="width:100%; height:300px; object-fit:cover; border-bottom:1px solid rgba(255,255,255,0.2);">
+                <div style="padding:20px;">
+                    <h3 style="color:#ff5f5f; margin-bottom:5px;">Zotactyson</h3>
+                    <p style="font-style:italic; margin-bottom:10px;">Founder & Social Media Expert</p>
+                    <p>Creator of 𝐙𝐎𝐓𝐀𝐂𝐓𝐘𝐒𝐎𝐍- सम्राज्य 🧃. Expert in Alight Motion XMLs, editing, and online safety guidance.</p>
+                </div>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div class="team-card" style="background: rgba(26,26,26,0.6); backdrop-filter: blur(5px); border-radius:20px; overflow:hidden; padding:0; text-align:center; transition: all 0.4s ease; opacity:0; transform: translateY(50px);">
+                <img src="https://i.pinimg.com/736x/78/55/48/7855487effaf08903510c37368a9fd93.jpg" alt="[Member Name]" style="width:100%; height:300px; object-fit:cover; border-bottom:1px solid rgba(255,255,255,0.2);">
+                <div style="padding:20px;">
+                    <h3 style="color:#ff5f5f; margin-bottom:5px;"> Yashu </h3>
+                    <p style="font-style:italic; margin-bottom:10px;">Group manager & Admin</p>
+                    <p>Admin of our Team 𝐙𝐎𝐓𝐀𝐂𝐓𝐘𝐒𝐎𝐍- सम्राज्य 🧃,𝗦𝗘𝗖𝗥𝗘𝗧 𝗕𝗔𝗦𝗘 </p>
+                </div>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div class="team-card" style="background: rgba(26,26,26,0.6); backdrop-filter: blur(5px); border-radius:20px; overflow:hidden; padding:0; text-align:center; transition: all 0.4s ease; opacity:0; transform: translateY(50px);">
+                <img src="https://i.pinimg.com/236x/56/fe/69/56fe699318cda78ab7c500aba81ea8f6.jpg" alt="[Member Name]" style="width:100%; height:300px; object-fit:cover; border-bottom:1px solid rgba(255,255,255,0.2);">
+                <div style="padding:20px;">
+                    <h3 style="color:#ff5f5f; margin-bottom:5px;">Ajey</h3>
+                    <p style="font-style:italic; margin-bottom:10px;">Co-admin</p>
+                    <p>Co-Admin of our Team 𝐙𝐎𝐓𝐀𝐂𝐓𝐘𝐒𝐎𝐍- सम्राज्य 🧃,𝗦𝗘𝗖𝗥𝗘𝗧 𝗕𝗔𝗦𝗘.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script>
+    // Scroll-based fade/slide animation
+    const cards = document.querySelectorAll('.team-card');
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, {threshold:0.3});
+
+    cards.forEach(card => { observer.observe(card); });
+
+    // Hover effect: scale up & glow
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'scale(1.05)';
+            card.style.boxShadow = '0 0 30px #ff5f5f, 0 0 50px #ff5f5f';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'scale(1)';
+            card.style.boxShadow = '0 0 10px rgba(0,0,0,0.2)';
+        });
+    });
+</script>

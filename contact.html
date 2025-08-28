@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      /* Remove static background */
+    }
+    .contact-container {
+      max-width: 500px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #333;
+    }
+    form label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 18px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1em;
+    }
+    form button {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1em;
+      width: 100%;
+    }
+    form button:hover {
+      background: #0056b3;
+    }
+    .contact-info {
+      margin-top: 24px;
+      text-align: center;
+      color: #666;
+    }
+  </style>
+  <script>
+    // Randomly select a light background color on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const lightColors = [
+        '#f7f7f7', '#e3f2fd', '#fffde7', '#e8f5e9', '#fce4ec',
+        '#f3e5f5', '#e0f7fa', '#fff8e1', '#f9fbe7', '#f1f8e9'
+      ];
+      const randomColor = lightColors[Math.floor(Math.random() * lightColors.length)];
+      document.body.style.background = randomColor;
+    });
+  </script>
+</head>
+<body>
+  <div class="contact-container">
+    <h2>Contact Us</h2>
+    <form>
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+    <div class="contact-info">
+      <p>Email: zotactyson@gmail.com</p>
+      <p>Phone: +91-9876543210</p>
+      <p>Address: 123 Main Street, New Delhi, India</p>
+    </div>
+  </div>
+</body>
+</html>

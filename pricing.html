@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>🤗𝐂𝐁 𝐌𝐄𝐓𝐇𝐎𝐃𝐒🤗 — Cyberbullying Awareness & Response</title>
+    <meta
+      name="description"
+      content="Cyberbullying awareness and response methods: recognize harmful behavior, protect yourself, report responsibly, and build safer online communities."
+    />
+    <style>
+      :root {
+        --bg: #0b0c10;
+        --card: #12141a;
+        --muted: #9aa3af;
+        --text: #e5e7eb;
+        --accent: #00e5ff;
+        --accent2: #7c3aed;
+        --good: #22c55e;
+        --warn: #f59e0b;
+        --bad: #ef4444;
+        --ring: rgba(124, 58, 237, 0.35);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter,
+          Helvetica, Arial, sans-serif;
+        color: var(--text);
+        background: radial-gradient(
+            1000px 600px at 20% -10%,
+            rgba(124, 58, 237, 0.2),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 500px at 100% 10%,
+            rgba(0, 229, 255, 0.18),
+            transparent 60%
+          ),
+          var(--bg);
+        line-height: 1.65;
+      }
+      .wrap {
+        max-width: 1000px;
+        margin: auto;
+        padding: 32px;
+      }
+      header {
+        text-align: center;
+        margin: 14vh 0 40px;
+      }
+      .title {
+        font-size: clamp(1.8rem, 3vw + 1rem, 3rem);
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+      .title .brand {
+        font-family: "Trebuchet MS", Verdana, Arial, sans-serif;
+        font-weight: 800;
+        color: var(--accent);
+        text-shadow: 0 0 18px rgba(0, 229, 255, 0.35);
+      }
+      .subtitle {
+        color: var(--muted);
+        max-width: 720px;
+        margin: 10px auto 0;
+        font-size: clamp(0.95rem, 0.5vw + 0.8rem, 1.1rem);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 28px;
+      }
+      @media (max-width: 980px) {
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 640px) {
+        .wrap {
+          padding: 18px;
+        }
+        header {
+          margin: 10vh 0 26px;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        padding: 18px 18px 16px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.2s ease, border-color 0.2s ease,
+          box-shadow 0.2s ease;
+        box-shadow: 0 2px 14px rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(6px);
+      }
+      .card:hover {
+        transform: translateY(-3px);
+        border-color: rgba(124, 58, 237, 0.35);
+        box-shadow: 0 8px 26px rgba(124, 58, 237, 0.2),
+          0 4px 14px rgba(0, 229, 255, 0.12);
+      }
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        border-radius: 18px;
+        padding: 2px;
+        background: linear-gradient(
+          120deg,
+          rgba(0, 229, 255, 0),
+          rgba(0, 229, 255, 0.25),
+          rgba(124, 58, 237, 0.25),
+          rgba(0, 229, 255, 0)
+        );
+        -webkit-mask: linear-gradient(#000 0 0) content-box,
+          linear-gradient(#000 0 0);
+        mask: linear-gradient(#000 0 0) content-box,
+          linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0.35;
+        pointer-events: none;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+        font-size: 0.85rem;
+        color: var(--accent);
+        background: rgba(0, 229, 255, 0.06);
+        border: 1px solid rgba(0, 229, 255, 0.25);
+        padding: 6px 10px;
+        border-radius: 999px;
+      }
+      .eyebrow.bad {
+        color: var(--bad);
+        border-color: rgba(239, 68, 68, 0.35);
+        background: rgba(239, 68, 68, 0.08);
+      }
+      .eyebrow.good {
+        color: var(--good);
+        border-color: rgba(34, 197, 94, 0.35);
+        background: rgba(34, 197, 94, 0.08);
+      }
+      .eyebrow.warn {
+        color: var(--warn);
+        border-color: rgba(245, 158, 11, 0.35);
+        background: rgba(245, 158, 11, 0.08);
+      }
+
+      h2 {
+        margin: 12px 0 8px;
+        font-size: 1.1rem;
+        letter-spacing: 0.3px;
+      }
+      p {
+        margin: 6px 0 4px;
+        color: #dbe1e8;
+      }
+
+      .callout {
+        margin-top: 26px;
+        padding: 14px 16px;
+        border-radius: 14px;
+        border: 1px dashed rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.03);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+      }
+      .callout strong {
+        color: #fff;
+      }
+
+      .footer-cta {
+        margin: 36px auto 80px;
+        text-align: center;
+      }
+      .btn {
+        display: inline-block;
+        padding: 12px 20px;
+        border-radius: 12px;
+        text-decoration: none;
+        color: #0b0c10;
+        font-weight: 800;
+        background: linear-gradient(90deg, #00e5ff, #7c3aed 60%, #00e5ff);
+        background-size: 200% 100%;
+        box-shadow: 0 10px 28px rgba(124, 58, 237, 0.35),
+          0 6px 16px rgba(0, 229, 255, 0.22);
+        transition: background-position 0.4s ease, transform 0.15s ease;
+      }
+      .btn:hover {
+        background-position: 100% 0;
+        transform: translateY(-2px);
+      }
+
+      /* Accessibility helpers */
+      a:focus-visible,
+      button:focus-visible,
+      .card:focus-within {
+        outline: 2px solid var(--accent2);
+        outline-offset: 2px;
+        box-shadow: 0 0 0 6px var(--ring);
+      }
+      .disclaimer {
+      margin-top: 30px;
+      padding: 15px;
+      border: 2px solid red;
+      border-radius: 10px;
+      background-color: #fff3f3;
+      font-family: Arial, sans-serif;
+      color: #333;
+      
+    }
+    .disclaimer h3 {
+      color: red;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .disclaimer p {
+      font-size: 16px;
+      line-height: 1.6;
+      text-align: justify;
+      color: black;
+    }
+    .disclaimer small {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      color: #555;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="title">🤗 <span class="brand">𝐂𝐁 𝐌𝐄𝐓𝐇𝐎𝐃𝐒</span> 🤗</div>
+        <p class="subtitle">
+          <strong>Cyberbullying Awareness & Reporting Methods</strong> — Learn
+          how to recognize harmful online behavior, protect yourself and others,
+          and report responsibly without causing harm.
+        </p>
+      </header>
+
+      <!-- 17 safe, constructive methods -->
+      <section class="grid" aria-label="Cyberbullying education cards">
+        <article class="card">
+          <span class="eyebrow bad">#𝟏 𝐂𝐁 𝐌𝐄𝐓𝐇𝐎𝐃</span>
+          <h2>What it looks like</h2>
+          <p>
+            𝟯𝙓 𝘽𝙐𝙇𝙇𝙔 (𝐒𝐈𝐊) 𝙊𝙉 𝙈𝙀𝙎𝙎𝘼𝙂𝙀 <br />
+
+            2𝙓 𝙑𝙄𝙊 𝙊𝙉 𝙋𝙍𝙊𝙁𝙄𝙇𝙀 (𝙊𝙋𝙏𝟰)
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="eyebrow warn">#2 𝐂𝐁 𝐌𝐄𝐓𝐇 𝐅𝐎𝐑 𝐆𝐂𝐒</span>
+          <h2>Collect proof safely</h2>
+          <p>𝟒𝐗 𝐕𝐈𝐎 <br> 𝟐𝐗 𝐒𝐏𝐀𝐌 <br> 𝟑𝐗 𝐇𝐀𝐓𝐄.</p>
+        </article>
+
+        <article class="card">
+          <span class="eyebrow good"> #3 𝐂𝐁 𝐌𝐄𝐓𝐇𝐎𝐃 </span>
+          <h2>Block • Mute • Limit</h2>
+          <p>
+           𝟓𝐱 𝐡𝐚𝐭𝐞
+𝟐𝐱𝐒𝐏𝟒𝐌 <br> 
+𝟐𝐱 𝐝𝐚𝐧𝐠𝐞𝐫𝐨𝐮𝐬 <br>𝟏𝟎𝟎% 𝐨𝐮𝐭 
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="eyebrow warn">#4 𝐂𝐁 𝐌𝐄𝐓𝐇𝐎𝐃</span>
+          <h2>Follow the guidelines</h2>
+          <p>
+           𝟐𝐱 𝐒𝐜𝐚𝐦 <br>
+𝟐𝐱 𝐡𝐚𝐭𝐞<br> 
+ 𝟑𝐱 𝐢𝐦𝐩 (@𝐦𝐞𝐭𝐚.𝐚𝐢)
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="eyebrow good">#5 𝐂𝐁 𝐌𝐄𝐓𝐇𝐎𝐃</span>
+          <h2>Be the bystander who acts</h2>
+          <p>
+            𝟐𝐱 𝐡𝐚𝐭𝐞 <br>
+𝟐𝐱 𝐯𝐢𝐨
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="eyebrow warn">#6 𝐂𝐁 𝐌𝐄𝐓𝐇𝐎𝐃</span>
+          <h2>Reduce attack surface</h2>
+          <p>𝟒𝐱 𝐡𝐚𝐭𝐞 <br>
+𝟒𝐱 𝐯𝐢𝐨<br>
+𝟐𝐱 𝐬𝐜𝐚𝐦
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="eyebrow good">#7 𝐂𝐁 𝐌𝐄𝐓𝐇𝐎𝐃 </span>
+          <h2>Clear rules & enforcement</h2>
+          <p>
+            𝟏𝐱 𝐡𝐚𝐭𝐞 <br>
+𝟐𝐱 𝐛𝐮𝐥𝐥𝐲 (𝐦𝐞)
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="eyebrow bad">#8 𝐂𝐁 𝐌𝐄𝐓𝐇𝐎𝐃</span>
+          <h2>Don’t mirror abuse</h2>
+          <p>
+            𝟐𝐱𝐒𝐜𝟒𝐦 <br>
+𝟑𝐱𝐡𝟒𝐭𝐞 <br>
+𝟑𝐱𝐕!𝟎
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="eyebrow warn">#9 𝐂𝐁 𝐌𝐄𝐓𝐇𝐎𝐃</span>
+          <h2>Serious threats = authorities</h2>
+          <p>
+            𝟔𝐱 𝐡𝐚𝐭𝐞 <br>
+
+𝟏𝐱 𝐢𝐦𝐩 𝐢𝐧𝐬𝐭𝐚 𝐨𝐧 𝐩𝐫𝐨𝐟𝐢𝐥𝐞 𝐢𝐟 𝐝𝐨𝐞𝐬𝐧'𝐭 𝐰𝐨𝐫𝐤
+
+𝟐𝐱 𝐬𝐞𝐥𝐟 <br>
+𝟏𝐱 𝐧𝐮𝐝𝟕<br>
+𝐭𝐡𝐞𝐧 𝐮𝐬𝐞 𝐢𝐭.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="eyebrow good">#10 𝐂𝐁 𝐌𝐄𝐓𝐇𝐎𝐃</span>
+          <h2>Care for yourself</h2>
+          <p>
+           𝟒𝐱𝐡𝐚𝐭𝐞 <br>
+𝟏𝐱𝐬𝐞𝐥𝐟<br>
+𝟑𝐱𝐯𝐢𝐨¹
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="eyebrow warn">#11 𝐂𝐁 𝐌𝐄𝐓𝐇𝐎𝐃</span>
+          <h2>Don’t amplify rumors</h2>
+          <p>
+           𝟐𝐗𝐇𝐀𝐓𝐄 <br>
+𝟐𝐗𝐒𝐄𝐋𝐅 <br>
+𝟏𝐁𝐔𝐋𝐋𝐘 (𝐌𝐄)
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="eyebrow good">#12 𝐂𝐁 𝐌𝐄𝐓𝐇𝐎𝐃</span>
+          <h2>Normalize respectful norms</h2>
+          <p>
+            𝟐×𝐡𝟖 <br>
+𝟐×𝐬𝐜𝐚𝐦<br>
+𝟏×𝐯𝐢𝐨⁴
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="eyebrow bad">#13 𝐂𝐁 𝐌𝐄𝐓𝐇𝐎𝐃</span>
+          <h2>Brigading is harm</h2>
+          <p>
+            𝟏𝐗 𝐇𝐀𝐓𝐄 <br>
+𝟐𝐗 𝐒𝐏𝐀𝐌<br>
+𝟏𝐗 𝐒𝐂𝐀𝐌 𝐎𝐑 𝐅𝐑𝐀𝐔𝐃<Br>
+𝟏𝐗 𝐕𝐈𝟎
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="eyebrow warn">#14 𝐂𝐁 𝐌𝐄𝐓𝐇𝐎𝐃 </span>
+          <h2>Special for sc@m3r</h2>
+          <p>
+           𝟏𝐱 𝐡𝐚𝐭𝐞<br>
+𝟐𝐱 𝐬𝐜𝐚𝐦 𝐨𝐫 𝐟𝐫𝐚𝐮𝐝 <br>
+𝟏𝐱 𝐬𝐩𝐚𝐦<br>
+𝐒𝟑𝐋𝐋𝐄𝐑𝐒 𝐊𝐈 𝐌𝐀𝐀 𝐗𝐇𝐔𝐃 𝐉𝐀𝐘𝐄𝐆𝐈🌚💦
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="eyebrow good">#15 𝐂𝐁 𝐌𝐄𝐓𝐇𝐎𝐃</span>
+          <h2>Debate ≠ abuse</h2>
+          <p>
+            <b>-𝐎𝐍 𝐏𝐑𝐎𝐅𝐈𝐋𝐄 </b><br>
+𝟏𝐗 𝐕𝐈𝟎 <br>
+-𝐎𝐍 𝐂𝐇𝐀𝐓 <br>
+𝟑𝐱 𝐇𝐀𝐓𝐄 <br>
+𝟐𝐱 𝐛𝐮𝐥𝐥𝐲 𝐬𝐢𝐤<br> 
+𝟏𝐱 𝐧𝐮𝐝𝟑¹
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="eyebrow warn">#16 𝐂𝐁 𝐌𝐄𝐓𝐇𝐎𝐃</span>
+          <h2>Prepare response playbooks</h2>
+          <p>
+            𝟑𝐗 𝐇𝐀𝐓𝐄<br>
+𝟐𝐗 𝐕𝐈𝟎⁴<br>
+𝟐𝐗 𝐁𝐔𝐋𝐋𝐘 𝐒𝐈𝐊<br>
+𝟏𝐗 𝐒𝐂𝐀𝐌
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="eyebrow good">#17 Restore & Move Forward</span>
+          <h2>All time working</h2>
+          <p>
+            𝐎𝐧 𝐜𝐡𝐚𝐭  👇<br>
+𝟐𝐱 𝐒𝐂𝟓𝐌 𝐎𝐑 𝐅𝐑𝟎𝐔𝐃 <br>
+𝟑𝐱 𝐁𝐔𝐋𝐋¥ 𝐌𝐄 <br>
+𝐎𝐍 𝐏𝐫𝐨𝐟𝐢𝐥𝐞 👇<br>
+𝟏𝐱 𝐢𝐦𝐩 @𝐦𝐞𝐭𝐚 <br>
+𝟐𝐱 𝐢𝐦𝐩 @𝐳𝐮𝐜𝐤 <br>
+𝐀𝐠𝐚𝐢𝐧 𝐨𝐧 𝐜𝐡𝐚𝐭 𝐡𝐚𝐭𝐞 𝐬𝐩𝐞𝐞𝐜𝐡
+          </p>
+        </article>
+      </section>
+
+      <!-- Disclaimer Section -->
+  <div class="disclaimer">
+    <h3>⚠️ Disclaimer ⚠️</h3>
+    <h4>
+      The information shared on this page is strictly for <b>educational and awareness purposes only</b>.  
+      We do not promote, encourage, or engage in any harmful activities, misuse, or violation of community standards on social media platforms.  
+      Our aim is to <b>educate people about online safety, cyberbullying, and misuse of reporting methods</b> so that users can stay informed and protected.  
+      Any attempt to use these methods for malicious intent is <b>entirely at the individual’s own risk</b>, and we <b>do not hold responsibility</b> for such misuse.
+    </h4>
+    <small>✅ Stay safe, act responsibly, and help make the internet a better place.</small>
+  </div>
+
+      <div class="footer-cta">
+        <a class="btn" href="#contact">Build a Safer Community</a>
+      </div>
+    </div>
+  </body>
+</html>

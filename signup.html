@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-y: auto;
+      position: relative;
+      background: transparent;
+    }
+
+    /* Blurry Image Background */
+    .image-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -2;
+      filter: blur(8px) brightness(60%);
+      background: url('hero-bg.jpg') no-repeat center center / cover;
+    }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: -1;
+    }
+
+    /* Signup Container with RGB border */
+    .signup-container {
+      background: rgba(255, 255, 255, 0.9);
+      width: 100%;
+      max-width: 380px;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0px 8px 20px rgba(0,0,0,0.3);
+      position: relative;
+      border: 3px solid transparent;
+      background-clip: padding-box;
+      margin: 40px 0;
+    }
+
+    .signup-container::before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 15px;
+      background: linear-gradient(270deg, #ff0080, #ff8c00, #40e0d0, #ff0080);
+      background-size: 600% 600%;
+      z-index: -1;
+      animation: neonBorder 8s linear infinite;
+    }
+
+    @keyframes neonBorder {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .signup-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .form-group input:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 8px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #667eea;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #5a67d8;
+    }
+
+    .social-login {
+      margin-top: 20px;
+    }
+
+    .social-btn {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #fff;
+      transition: 0.3s;
+    }
+
+    .social-btn img {
+      width: 22px;
+      height: 22px;
+    }
+
+    .social-btn:hover {
+      background: #f5f5f5;
+    }
+
+    .extra-links {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .extra-links a {
+      color: #667eea;
+      text-decoration: none;
+    }
+
+    .extra-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Blurry Image Background -->
+  <div class="image-bg"></div>
+  <div class="overlay"></div>
+
+  <div class="signup-container">
+    <h2>Create Account</h2>
+    <form>
+      <div class="form-group">
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" placeholder="Enter your full name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+      </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Choose a username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Create a password" required>
+      </div>
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+      </div>
+      <button type="submit" class="btn">Sign Up</button>
+    </form>
+
+    <!-- Social Signup -->
+    <div class="social-login">
+      <p style="text-align:center; margin-bottom:10px; color:#666;">Or Sign Up with</p>
+      
+      <button class="social-btn">
+        <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="Google Logo">
+        Sign Up with Google
+      </button>
+      
+      <button class="social-btn">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook Logo">
+        Sign Up with Facebook
+      </button>
+      
+      <button class="social-btn">
+        <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Logo">
+        Sign Up with GitHub
+      </button>
+    </div>
+
+   <div class="extra-links">
+  <p>Already have an account? <a href="login.html">Login</a></p>
+</div>
+
+</body>
+</html>

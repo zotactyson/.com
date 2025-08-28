@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coming Soon</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: #fff;
+      overflow: hidden;
+    }
+    .coming-container {
+      text-align: center;
+      padding: 40px 24px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 22px;
+      box-shadow: 0 8px 32px rgba(110,72,170,0.18);
+      position: relative;
+      animation: fadeIn 1.2s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .soon-text {
+      font-size: 2.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+      position: relative;
+      display: inline-block;
+      color: #fff;
+      text-shadow: 0 4px 24px #6e48aa80;
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { text-shadow: 0 4px 24px #6e48aa80; }
+      50% { text-shadow: 0 8px 32px #9d50bbcc; }
+    }
+    .loader {
+      margin: 30px auto 0 auto;
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .loader-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6e48aa 60%, #9d50bb 100%);
+      position: absolute;
+      animation: bounce 1.2s infinite;
+    }
+    .loader-dot:nth-child(1) { left: 0; animation-delay: 0s;}
+    .loader-dot:nth-child(2) { left: 27px; animation-delay: 0.2s;}
+    .loader-dot:nth-child(3) { left: 54px; animation-delay: 0.4s;}
+    @keyframes bounce {
+      0%,100% { transform: translateY(0);}
+      50% { transform: translateY(-22px);}
+    }
+    .coming-desc {
+      margin-top: 32px;
+      font-size: 1.15rem;
+      color: #f3eaff;
+      opacity: 0.85;
+      letter-spacing: 1px;
+    }
+    @media (max-width: 600px) {
+      .soon-text { font-size: 1.5rem; }
+      .coming-container { padding: 24px 6px; }
+      .coming-desc { font-size: 1rem; }
+      .loader { width: 50px; height: 50px; }
+      .loader-dot { width: 12px; height: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="coming-container">
+    <div class="soon-text">
+      <i class="fas fa-hourglass-half"></i> Coming Soon
+    </div>
+    <div class="loader">
+      <div class="loader-dot"></div>
+      <div class="loader-dot"></div>
+      <div class="loader-dot"></div>
+    </div>
+    <div class="coming-desc">
+      We're working hard to bring you something awesome.<br>
+      Stay tuned for updates!
+    </div>
+  </div>
+</body>
+</html>
