@@ -1,102 +1,642 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Coming Soon</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Montserrat', Arial, sans-serif;
-      color: #fff;
-      overflow: hidden;
-    }
-    .coming-container {
-      text-align: center;
-      padding: 40px 24px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 22px;
-      box-shadow: 0 8px 32px rgba(110,72,170,0.18);
-      position: relative;
-      animation: fadeIn 1.2s;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(40px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
-    .soon-text {
-      font-size: 2.7rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      margin-bottom: 18px;
-      position: relative;
-      display: inline-block;
-      color: #fff;
-      text-shadow: 0 4px 24px #6e48aa80;
-      animation: pulse 1.8s infinite;
-    }
-    @keyframes pulse {
-      0%,100% { text-shadow: 0 4px 24px #6e48aa80; }
-      50% { text-shadow: 0 8px 32px #9d50bbcc; }
-    }
-    .loader {
-      margin: 30px auto 0 auto;
-      width: 70px;
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    .loader-dot {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #6e48aa 60%, #9d50bb 100%);
-      position: absolute;
-      animation: bounce 1.2s infinite;
-    }
-    .loader-dot:nth-child(1) { left: 0; animation-delay: 0s;}
-    .loader-dot:nth-child(2) { left: 27px; animation-delay: 0.2s;}
-    .loader-dot:nth-child(3) { left: 54px; animation-delay: 0.4s;}
-    @keyframes bounce {
-      0%,100% { transform: translateY(0);}
-      50% { transform: translateY(-22px);}
-    }
-    .coming-desc {
-      margin-top: 32px;
-      font-size: 1.15rem;
-      color: #f3eaff;
-      opacity: 0.85;
-      letter-spacing: 1px;
-    }
-    @media (max-width: 600px) {
-      .soon-text { font-size: 1.5rem; }
-      .coming-container { padding: 24px 6px; }
-      .coming-desc { font-size: 1rem; }
-      .loader { width: 50px; height: 50px; }
-      .loader-dot { width: 12px; height: 12px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Account Browser</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f3f6fa 0%, #e9e4f0 100%);
+            font-family: 'Montserrat', Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 40px auto 0 auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(110,72,170,0.12), 0 1.5px 8px rgba(0,0,0,0.08);
+            padding: 2.5rem 1.5rem 2rem 1.5rem;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        header h1 {
+            font-size: 2.2rem;
+            color: #6e48aa;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        .description {
+            color: #444;
+            font-size: 1.1rem;
+        }
+        .search-box {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        #searchInput {
+            width: 90%;
+            max-width: 400px;
+            padding: 12px 18px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+        #searchInput:focus {
+            border-color: #6e48aa;
+        }
+        .user-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .user-card {
+            background: #f8f9fa;
+            border-radius: 14px;
+            box-shadow: 0 4px 16px rgba(110,72,170,0.08);
+            padding: 1.2rem 1rem 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 2px solid #ff5e5e18;
+            position: relative;
+        }
+        .user-card:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 8px 32px rgba(110,72,170,0.14);
+            border-color: #ff5e5e;
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .avatar {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, #6e48aa 60%, #9d50bb 100%);
+            color: #fff;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(110,72,170,0.12);
+        }
+        .username {
+            font-size: 1.08rem;
+            font-weight: 600;
+            color: #6e48aa;
+            word-break: break-all;
+        }
+        .profile-link {
+            color: #405de6;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+        }
+        .profile-link:hover {
+            color: #fd1d1d;
+            text-decoration: underline;
+        }
+        .profile-link i {
+            margin-left: 6px;
+            font-size: 1em;
+            vertical-align: middle;
+        }
+        .card-body {
+            width: 100%;
+        }
+        .credentials {
+            margin-top: 0.5rem;
+        }
+        .credential {
+            margin-bottom: 0.8rem;
+        }
+        .credential-label {
+            font-size: 0.98rem;
+            color: #9d50bb;
+            font-weight: 600;
+            margin-bottom: 2px;
+            display: block;
+        }
+        .credential-value {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .credential-text {
+            font-size: 1.05rem;
+            color: #333;
+            background: #e9e4f0;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        .copy-btn {
+            background: linear-gradient(90deg, #ff5e5e 60%, #ffb347 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            font-weight: 600;
+            padding: 7px 18px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 2px 8px rgba(255,94,94,0.10);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .copy-btn:hover {
+            background: linear-gradient(90deg, #ffb347 60%, #ff5e5e 100%);
+            transform: scale(1.07);
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .pagination button {
+            background: #6e48aa;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 10px 24px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .pagination button:disabled {
+            background: #ccc;
+            color: #888;
+            cursor: not-allowed;
+        }
+        .pagination button:hover:not(:disabled) {
+            background: #9d50bb;
+            transform: scale(1.07);
+        }
+        .footer {
+            text-align: center;
+            color: #6e48aa;
+            font-size: 1rem;
+            margin-top: 2rem;
+        }
+        .no-results {
+            text-align: center;
+            color: #ff5e5e;
+            font-size: 1.2rem;
+            padding: 2rem 0;
+        }
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #6e48aa;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 4px 16px rgba(110,72,170,0.12);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 9999;
+        }
+        .toast.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        /* Birthday Popup */
+        .birthday-popup {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(110,72,170,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
+        .birthday-popup.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .popup-content {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(110,72,170,0.18);
+            padding: 2.5rem 2rem 2rem 2rem;
+            text-align: center;
+            position: relative;
+            max-width: 350px;
+            animation: popupFadeIn 0.7s;
+        }
+        @keyframes popupFadeIn {
+            from { opacity: 0; transform: scale(0.8);}
+            to { opacity: 1; transform: scale(1);}
+        }
+        .close-popup {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            font-size: 1.5rem;
+            color: #ff5e5e;
+            cursor: pointer;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .close-popup:hover {
+            color: #9d50bb;
+        }
+        .cake-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        @media (max-width: 900px) {
+            .container { padding: 1.2rem 0.5rem; }
+            .user-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .container { padding: 0.5rem 0.2rem; }
+            header h1 { font-size: 1.3rem; }
+            .user-grid { grid-template-columns: 1fr; gap: 1rem;}
+            .popup-content { padding: 1.2rem 0.5rem 1.2rem 0.5rem; }
+        }
+    </style>
 </head>
 <body>
-  <div class="coming-container">
-    <div class="soon-text">
-      <i class="fas fa-hourglass-half"></i> Coming Soon
+    <div class="birthday-popup" id="birthdayPopup">
+        <div class="popup-content">
+            <span class="close-popup" id="closePopup">&times;</span>
+            <h2>🎉 Happy Birthday! 🎉</h2>
+            <div class="cake-emoji">🎂</div>
+            <p>Welcome to the Instagram Account Browser! Browse accounts with login credentials in a festive birthday theme!</p>
+            <button id="letsPartyBtn" class="copy-btn" style="padding: 10px 20px; margin-top: 15px;">Let's Party!</button>
+        </div>
     </div>
-    <div class="loader">
-      <div class="loader-dot"></div>
-      <div class="loader-dot"></div>
-      <div class="loader-dot"></div>
+
+    <div class="container">
+        <header>
+            <h1><i class="fab fa-instagram"></i> Instagram UNC 2k11 & 2k10 </h1>
+            <p class="description">Browse 100+ Instagram UNC Of 2k11 & 2k10 for free which is provided by Zotactyson ~ </p>
+        </header>
+        
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search accounts by username...">
+        </div>
+        
+        <div class="user-grid" id="userGrid">
+            <!-- Account cards will be generated here -->
+        </div>
+        
+        <div class="pagination">
+            <button id="prevBtn">Previous</button>
+            <button id="nextBtn">Next</button>
+        </div>
+        
+        <div class="footer">
+            <p>Provided by Zotactyson ❤️ | </p>
+        </div>
     </div>
-    <div class="coming-desc">
-      Stay tuned for something awesome!
-    </div>
-  </div>
+
+    <div class="toast" id="toast">Copied to clipboard!</div>
+
+    <script>
+        // Account data - passwords set to usernames
+        const accounts = [
+            {username: "2500d"}, {username: "beash"}, {username: "emaalessandro"}, {username: "ericmojo"},
+            {username: "mattyspector"}, {username: "justmagsby"}, {username: "rahman2011"}, {username: "cocho"},
+            {username: "spatsches"}, {username: "ni85"}, {username: "enigma_7"}, {username: "jbecca9"},
+            {username: "thekim.green"}, {username: "hanna1977"}, {username: "ggongchi"}, {username: "ladyzombieskin"},
+            {username: "mariapandoraa"}, {username: "alli_az"}, {username: "ljmiranda24"}, {username: "nuch_koysombut"},
+            {username: "kaske"}, {username: "shelbycb"}, {username: "ohshithimaya"}, {username: "maclii"},
+            {username: "keithojensenaz"}, {username: "pinkyswore"}, {username: "karatobin"}, {username: "_havelyvely"},
+            {username: "noogink_nattapat"}, {username: "shahahar"}, {username: "hysope"}, {username: "weiyiqb"},
+            {username: "arivers123"}, {username: "querenciastudio"}, {username: "vvyvy_"}, {username: "jaottinger"},
+            {username: "jack91a"}, {username: "hwp.k"}, {username: "willgordon"}, {username: "crosschefkc"},
+            {username: "elliefreem"}, {username: "stephlashes"}, {username: "yaqgaucho"}, {username: "lemonslimes"},
+            {username: "mariano86"}, {username: "stanleyh"}, {username: "phreshprince"}, {username: "pedrobaiocchi"},
+            {username: "aaprea33"}, {username: "rahkeamg"}, {username: "rowkers"}, {username: "bryndispals"},
+            {username: "gilsonmssw"}, {username: "rosesarahb"}, {username: "mimiana21"}, {username: "rainbowbits"},
+            {username: "zhouying86"}, {username: "bobby_efren_west"}, {username: "yotams"}, {username: "vago6117"},
+            {username: "tinakonzzzz"}, {username: "beackham"}, {username: "firestonetired"}, {username: "ayentita"},
+            {username: "fish0_05"}, {username: "kimi911"}, {username: "lustoverlove"}, {username: "tachimay"},
+            {username: "jackgodbery"}, {username: "edwin1114"}, {username: "luizcezar"}, {username: "frankie.campo"},
+            {username: "amateoleiva"}, {username: "foxymmcdee"}, {username: "samusamusamu"}, {username: "dimitrinin"},
+            {username: "mahyan1979"}, {username: "loravee"}, {username: "jlbrown215"}, {username: "roxbrunet"},
+            {username: "kaeke"}, {username: "felipesp"}, {username: "hkjersey777"}, {username: "den9311"},
+            {username: "sydney_rogue"}, {username: "priscillaattie"}, {username: "lowlanineone"}, {username: "caramel_frappetino"},
+            {username: "davy_inflight"}, {username: "yso312"}, {username: "stacycole"}, {username: "sam_osika"},
+            {username: "kripakreations"}, {username: "valentinsevend"}, {username: "lmprado"}, {username: "bubblesrule"},
+            {username: "mandee_robertson"}, {username: "lillian_1ove19s_lawrence"}, {username: "tomgol3"}, {username: "arlenr"},
+            {username: "nm1228"}, {username: "colin_lee_mightymouse"}, {username: "jycx2"}, {username: "enichols08"},
+            {username: "minwg08"}, {username: "lindsayywong"}, {username: "rusmin.ang"}, {username: "m.a._ludwig"},
+            {username: "k.p.franco"}, {username: "pictogio"}, {username: "gilbo920"}, {username: "dq1985"},
+            {username: "myneelia"}, {username: "ethanthomas_backup"}, {username: "bianca.dcruz"}, {username: "ana_sanchz"},
+            {username: "badgalzaee"}, {username: "junglexjules"}, {username: "ks_414"}, {username: "mipreter"},
+            {username: "amwalt87"}, {username: "cafebunny"}, {username: "deadbeforedeath_"}, {username: "lainealmond"},
+            {username: "alessimas"}, {username: "landinthessky520"}, {username: "lanereece1"}, {username: "nicolecatherinex3"},
+            {username: "taotown"}, {username: "lola.treadwell"}, {username: "thefakescenarios"}, {username: "onareese"},
+            {username: "tugceozboyaci"}, {username: "shotasugihara"}, {username: "dave_.jimenez"}, {username: "__s.prn"},
+            {username: "forestwow"}, {username: "tinarisbey01"}, {username: "dancouch"}, {username: "mirandaberger"},
+            {username: "lisaleelu_pilates_barre"}, {username: "onelastyeehaw"}, {username: "gaakun"}, {username: "tati_nikole"},
+            {username: "willding"}, {username: "nicolagoughphotography"}, {username: "mif_mif"}, {username: "peachannn"},
+            {username: "xiaohe1216"}, {username: "betty_offficial"}, {username: "edmondkoo"}, {username: "iowarrob"},
+            {username: "lucianaaidar"}, {username: "kacie_rn"}, {username: "aspacegirldream"}, {username: "flosteph1"},
+            {username: "nachtje"}, {username: "breakfastburrit0"}, {username: "masterpurasert"}, {username: "overdude"},
+            {username: "edelita"}, {username: "cpjetsetter"}, {username: "roonah10"}, {username: "katienellb"},
+            {username: "timon_l"}, {username: "milkglassme"}, {username: "glamsportsnmind"}, {username: "liviatsang"},
+            {username: "rafaelmonteyro"}, {username: "aiitana"}, {username: "jcurtis79"}, {username: "wai_gavin"},
+            {username: "shamandk"}, {username: "2233255"}, {username: "qrtsygirl135"}, {username: "mary_ellen35"},
+            {username: "yumiyumi1208"}, {username: "blandine_eln"}, {username: "foundinlights"}, {username: "kate_laporta_"},
+            {username: "anabarreiraoficial"}, {username: "pathild"}, {username: "muscleglasses10"}, {username: "hayley.b.porter"},
+            {username: "wrinka"}, {username: "sweeeeno"}, {username: "the3disneygals"}, {username: "acodsl"},
+            {username: "harshani"}, {username: "matildaann_evans"}, {username: "jhartfam"}, {username: "kathykxoxo"},
+            {username: "wsam_c"}, {username: "ashelyboss"}, {username: "priscilla420"}, {username: "brookeannm"},
+            {username: "thegordons"}, {username: "tatt2"}, {username: "klokgelui"}, {username: "christinemci"},
+            {username: "sii.done"}, {username: "alaanawoolley"}, {username: "sumeyamoha33"}, {username: "mnafarrate"},
+            {username: "professoryotv"}, {username: "cheechcan"}, {username: "honya345"}, {username: "jjarmonio"},
+            {username: "revcrum"}, {username: "yuuka_otsuka"}, {username: "f3nunes"}, {username: "yesmann1"},
+            {username: "aadit88"}, {username: "__jamestagram__"}, {username: "zacxv1"}, {username: "gchau25"},
+            {username: "randero"}, {username: "the.1.who.is.chilli.chill"}, {username: "nuna_quan"}, {username: "mumblycj"},
+            {username: "paddyboi1994"}, {username: "carrie_doran_"}, {username: "mike_skinner"}, {username: "russell_127"},
+            {username: "mattreese"}, {username: "andyms"}, {username: "max_imums"}, {username: "madisonxoxorocks"},
+            {username: "furuzonoasako"}, {username: "leannnen"}, {username: "lluviapoesia"}, {username: "gi_ru"},
+            {username: "svenssonhanna"}, {username: "kaven77735"}, {username: "florinaw_"}, {username: "bibirico"},
+            {username: "kaylamcbridee"}, {username: "queiroga1006_pombal"}, {username: "jstpri"}, {username: "celestinus"},
+            {username: "carloscorona"}, {username: "sapnarao"}, {username: "kit199049"}, {username: "asenglot"},
+            {username: "rung_rungu"}, {username: "bigcraig79"}, {username: "bianca.kissell"}, {username: "jamathwig"},
+            {username: "kthrn_87"}, {username: "to.in.to"}, {username: "rinrinpost"}, {username: "andrew_plaza"},
+            {username: "zanggert"}, {username: "hek_navaranda"}, {username: "gdf1982"}, {username: "sophiechatham"},
+            {username: "siwatcha_ss"}, {username: "jmyhks"}, {username: "yayolopez"}, {username: "audreydunlop"},
+            {username: "morgannmichaelis"}, {username: "mimipad"}, {username: "avasze"}, {username: "koyoko_joce"},
+            {username: "cv012"}, {username: "michel182"}, {username: "ayawkoseo"}, {username: "wenika27"},
+            {username: "riccardosighinolfi"}, {username: "husted"}, {username: "sylvia750815"}, {username: "lhernandezphotos"},
+            {username: "justatin"}, {username: "paisleytreepress"}, {username: "dekuleaf"}, {username: "luvpdx"},
+            {username: "jeddy11"}, {username: "mvanhalteren88"}, {username: "walkingbase"}, {username: "amkarram"},
+            {username: "ffvsnn"}, {username: "gixboss"}, {username: "chumei"}, {username: "sora15"},
+            {username: "greggyadams15"}, {username: "_trilladvised"}, {username: "moonheavy"}, {username: "ackwitt"},
+            {username: "l0vely_linda"}, {username: "loisevee"}, {username: "amparo_cg67"}, {username: "rosieaandrews"},
+            {username: "zahna92"}, {username: "stanconqueso"}, {username: "whoismigz"}, {username: "vanita"},
+            {username: "boomtue"}, {username: "davisreneemigdalas"}, {username: "aliciamcdavis"}, {username: "gonsukekun"},
+            {username: "raycurtis"}, {username: "drumhead37"}, {username: "fran09"}, {username: "kal8_868don"},
+            {username: "arnoldtwojabffad1736194"}, {username: "dan8arton"}, {username: "josierutherford22"}, {username: "zoemartin15"},
+            {username: "mcalifano"}, {username: "millpondpro"}, {username: "kenken0713"}, {username: "skaufmann"},
+            {username: "lizzyedwardss"}, {username: "bheatrizm"}, {username: "geeeeemmaa_"}, {username: "reganbennett13"},
+            {username: "hafiidzpawzni"}, {username: "bdems"}, {username: "unknown312222222222"}, {username: "sanfieldcooks"},
+            {username: "joebarkeratx"}, {username: "r0bertlew"}, {username: "21_simon"}, {username: "jennalmacdonald"},
+            {username: "twilly911"}, {username: "larsrossum"}, {username: "bmilligan1211"}, {username: "alihlal"},
+            {username: "kroekkeork"}, {username: "jackieccalderon"}, {username: "bambookyon"}, {username: "generosoandria"},
+            {username: "danny_rath"}, {username: "ayue6688"}, {username: "ash.ventura"}, {username: "jien.germawi"},
+            {username: "foongz"}, {username: "bernside85"}, {username: "emjaypee1973"}, {username: "1hikaru"},
+            {username: "ivyschneider"}, {username: "lindsayerinsutton"}, {username: "drtoad"}, {username: "innocuousnamechange"},
+            {username: "annapradasc"}, {username: "azusa_fj"}, {username: "karl_lau"}, {username: "noachim"},
+            {username: "marekjura"}, {username: "srbmerlin"}, {username: "monicasimoncini"}, {username: "alex_cimino111"},
+            {username: "leanne_elizabeth92"}, {username: "durongzhou"}, {username: "farasan"}, {username: "title_maneesri"},
+            {username: "lalitbe"}, {username: "stillalex"}, {username: "bennydinho"}, {username: "godgiven124943"},
+            {username: "sadirabdulhadi"}, {username: "meriland10"}, {username: "mpawelm"}, {username: "bipulse"},
+            {username: "katieweston"}, {username: "tifinyp"}, {username: "livelyem"}, {username: "alivit2011"},
+            {username: "marico_danjo"}, {username: "_little__v"}, {username: "ashwood902"}, {username: "kaitlyndinger"},
+            {username: "liis.pagil"}, {username: "dillon94"}, {username: "marielrc"}, {username: "eifring"},
+            {username: "danidelavega"}, {username: "hhcornant"}, {username: "sararisvaag"}, {username: "hackermonroy"},
+            {username: "tommydickfingers69"}, {username: "sparksfly139"}, {username: "symm_123"}, {username: "r3za.swndy"},
+            {username: "iakari"}, {username: "kudamayu"}, {username: "leeyc"}, {username: "achewb"},
+            {username: "v981"}, {username: "flaten"}, {username: "sameolebs"}, {username: "spiegl"},
+            {username: "agreat222"}, {username: "popchels6"}, {username: "alexadipaolo"}, {username: "stepiphone"},
+            {username: "robedope"}, {username: "thenamestthan_jonathan"}, {username: "annettajb64"}, {username: "hussein_65"},
+            {username: "encephalion"}, {username: "rinaleck"}, {username: "the_angel_of_the_waters"}, {username: "parisjaee_"},
+            {username: "camilopadilla"}, {username: "azizarehmatulla"}, {username: "sylviatinocopetri_2808_"}, {username: "humple_disco"},
+            {username: "madaghoshu"}, {username: "yoyotyp"}, {username: "hatopen"}, {username: "scrumpy09"},
+            {username: "sallyhatem_"}, {username: "mitchbraff"}, {username: "flaviajessicaa"}, {username: "mattpluntz"},
+            {username: "wolf_boy_eyes"}, {username: "hshajyba"}, {username: "giustofamily"}, {username: "lindsayfetters"},
+            {username: "monkeys.chak"}, {username: "hayley_braun_"}, {username: "brownsugar_2011"}, {username: "moomooxd"},
+            {username: "diana_ramos"}, {username: "jade_cook92"}, {username: "justinsuperfanfever"}, {username: "sierraolt"},
+            {username: "gelavallejo"}, {username: "lupeee55"}, {username: "slater86"}, {username: "catherines0912"},
+            {username: "lyndsay.rainey"}, {username: "snapitweirdo"}, {username: "mamakimberlee"}, {username: "iriririr"},
+            {username: "boobagraph"}, {username: "hilpex"}, {username: "semih.yildis"}, {username: "elle831"},
+            {username: "ericson_zzj"}, {username: "miyaaa1030"}, {username: "autonauta"}, {username: "skankoon"},
+            {username: "heptat"}, {username: "pauloherrera"}, {username: "mandiepantsmack"}, {username: "ronanharrington"},
+            {username: "karenradcliffe"}, {username: "hong_e727"}, {username: "wooitsyan"}, {username: "_nashalie_"},
+            {username: "louisebich"}, {username: "tonysasojr"}, {username: "kayjunkin"}, {username: "ailiantea"},
+            {username: "lyvk8pgo1i"}, {username: "marys821"}, {username: "bryan.kelley14"}, {username: "wjowfoqeucvpqeu"},
+            {username: "bridgetdesiree"}, {username: "moonhyosik"}, {username: "steph_lawrence98"}, {username: "sheenzulueta"},
+            {username: "wenyahappiness"}, {username: "alexm2303"}, {username: "pflores79"}, {username: "sbernt"},
+            {username: "noymyrealname"}, {username: "karlylouise"}, {username: "jonbreach10"}, {username: "camboy1"},
+            {username: "tikeyatanee"}, {username: "galina888z"}, {username: "kiwipankake"}, {username: "agbmarshall"},
+            {username: "2chuenl"}, {username: "oliviali"}, {username: "livwraymc"}, {username: "jaazmine_13"},
+            {username: "laleopalda"}, {username: "jbstar"}, {username: "roxanelascaridis"}, {username: "jordo.lindsay"},
+            {username: "kleinpenning"}, {username: "natoes"}, {username: "minyeen"}, {username: "d_knight"},
+            {username: "elainehabraken"}, {username: "thebriprint"}, {username: "ohra8"}, {username: "kev_lcmt"},
+            {username: "dgkdon"}, {username: "aleyhernandez"}, {username: "mandymosl"}, {username: "evan_flick"},
+            {username: "nizvarina"}, {username: "celynnleong"}, {username: "tiina_nuortimo"}, {username: "lolo0412"},
+            {username: "saunderssi"}, {username: "kicking_it321"}, {username: "stasdimos"}, {username: "shuttergrace"},
+            {username: "meganehasty"}, {username: "that.crazy.quarles.crew"}, {username: "maryelltt"}, {username: "marcia_helena"},
+            {username: "shannonjane2"}, {username: "lekamargo1"}, {username: "mmel_986"}, {username: "eriksengh"},
+            {username: "mona89"}, {username: "ale24ssia"}, {username: "m_v_rick"}, {username: "lajohiso"},
+            {username: "misspequena"}, {username: "fredomatic"}, {username: "maxymilian53_68"}, {username: "cassidydekreon"},
+            {username: "joeyaross"}, {username: "stevews"}, {username: "vanillatwilight4"}, {username: "brittanypaige"},
+            {username: "itsatoz"}, {username: "jayugar"}, {username: "akishan"}, {username: "brendasoto76"},
+            {username: "meganerikson"}, {username: "itsiyan"}, {username: "_latiatia"}, {username: "vanessahewlett"},
+            {username: "dakidd87"}, {username: "brittany_paige24"}, {username: "darao"}, {username: "brown11028"},
+            {username: "kaitlin_stott"}, {username: "o_lesya"}, {username: "_d_a_r_r_a_h_"}, {username: "kookkiikphilaiwan"},
+            {username: "fadingships"}, {username: "kalextay"}, {username: "bewareofsgoss"}, {username: "wadevdh"},
+            {username: "damianb"}, {username: "adminpokiri123"}, {username: "jackpendlebury"}, {username: "mjozefowicz"},
+            {username: "seon___0202"}, {username: "li_strekalovskaya"}, {username: "luke29b13"}, {username: "hannajet"},
+            {username: "meyer24"}, {username: "bowssukjamnong"}, {username: "mi_gi"}, {username: "filipwj"},
+            {username: "ilygrr"}, {username: "chris51"}, {username: "marthalegoh"}, {username: "fra90"},
+            {username: "claudio26"}, {username: "julian316xyoxox"}, {username: "tkaitman"}, {username: "papnt"},
+            {username: "blondie76"}, {username: "bramvanderschoot"}, {username: "kyung___ah"}, {username: "lerider17"},
+            {username: "maui_maui"}, {username: "niki_203"}, {username: "stevishd"}, {username: "kaxa"},
+            {username: "majakkk"}, {username: "tomasolandyny"}, {username: "ldyluck"}, {username: "afeer"},
+            {username: "sylvia0106"}, {username: "yahagin"}, {username: "nauticar"}, {username: "genevahacker"},
+            {username: "eryberry81"}, {username: "torovoa"}, {username: "balemos"}, {username: "gummy_venom"},
+            {username: "thedj"}, {username: "simplyrunningwild"}, {username: "derek_diamonds"}, {username: "jackylcs"},
+            {username: "aesimmss"}, {username: "mrsrosemarystewart"}, {username: "mollymanners"}, {username: "yuchal"},
+            {username: "mikkun"}, {username: "prettyslick"}, {username: "iritnegrin"}, {username: "totkeller"},
+            {username: "sevenizzenuf"}, {username: "sadieluckie"}, {username: "bennyballard"}, {username: "kaylie2126"},
+            {username: "les_in_a_chanel_purse"}, {username: "trustwillonlykillyou"}, {username: "bbkhary"}, {username: "teeamaxe"},
+            {username: "lamhong"}, {username: "azillizaaaah"}, {username: "_jonathangonzal"}, {username: "maz_quinn"},
+            {username: "coltonjones"}, {username: "aivan1996"}, {username: "ohhhhgabrielle"}, {username: "jamienbrown"},
+            {username: "federico_c"}, {username: "tazis116"}, {username: "pauline0129"}, {username: "hyeae"},
+            {username: "_gikaltara_"}, {username: "rick_james19"}, {username: "stayy_positiven"}, {username: "__heimat__"},
+            {username: "harleymere"}, {username: "fatimahalmuallem"}, {username: "josiegarrett___"}, {username: "estarha"},
+            {username: "sgzohar"}, {username: "meganvegax3"}, {username: "chris66"}, {username: "tawn14"},
+            {username: "arwa_bandar.f"}, {username: "prhofound"}, {username: "nimtolien"}, {username: "rashminiy"},
+            {username: "d4rkp4nda"}, {username: "eiid_l"}, {username: "kainee.c"}, {username: "leeroy16"},
+            {username: "yusukee89"}, {username: "lipatnikova"}, {username: "thisnerdd"}, {username: "whitney.sue.who"},
+            {username: "birdstheword"}, {username: "jdmloveme"}, {username: "nguyenalbert"}, {username: "elisecasimirix"},
+            {username: "chomotan_"}, {username: "ldabbott"}, {username: "denisfeir"}, {username: "wahyusetia"},
+            {username: "bethanycravalho"}, {username: "kabmcbain"}, {username: "haguirre"}, {username: "lpatao"},
+            {username: "kathydoodle"}, {username: "segolenecdb"}, {username: "amaamaaaaaa"}, {username: "zzwidowmaker99"},
+            {username: "mc0rrea"}, {username: "caitlin.robertson"}, {username: "djwakin"}, {username: "columclarke"},
+            {username: "novster78"}, {username: "yaseene"}, {username: "maoyanyan"}, {username: "la_simo15"},
+            {username: "momoispeachy"}, {username: "seda_gurbuz"}, {username: "tarsier4th"}, {username: "mitzir"},
+            {username: "jewelakajuju"}, {username: "rustic_design_photography"}, {username: "haleymox"}, {username: "yulianasarah"},
+            {username: "mah_tsutsui"}, {username: "bertakwok"}, {username: "jessicaschokkenkamp"}, {username: "chelsienicoles"},
+            {username: "genkaren_c"}, {username: "samcorni"}, {username: "eduque91"}, {username: "1millionp"},
+            {username: "enjotanya"}, {username: "futaba_prv"}, {username: "exhausteddimples"}, {username: "lalalalalove"},
+            {username: "denizderins"}, {username: "bariserozkan"}, {username: "krushin_med"}, {username: "joshuarbr"},
+            {username: "sarojinisapru"}, {username: "yeeaaho"}, {username: "yasofiya"}, {username: "tomorrow10yen"},
+            {username: "lauren.martin.taylor"}, {username: "verobehnchez"}, {username: "erinbeth724"}, {username: "bonky88"},
+            {username: "tphession"}, {username: "liziouzou"}, {username: "esrarengizz_duman"}, {username: "ninewnatcha_"},
+            {username: "gem83"}, {username: "rissinab"}, {username: "sherryjounior"}, {username: "sarzanindya"},
+            {username: "melon997"}, {username: "jesriddle"}, {username: "joc"}, {username: "siljet"},
+            {username: "jamesdrayton"}, {username: "mow_johansson"}, {username: "ramorim"}, {username: "chillxblvd"},
+            {username: "beliza_roperto"}, {username: "mo3036"}, {username: "vinotwit"}, {username: "sonax367"},
+            {username: "shinese19"}, {username: "sanni25"}, {username: "crisgl78"}, {username: "lbbarry21"},
+            {username: "whitneylittle"}, {username: "gerryinvermont"}, {username: "als269"}, {username: "sirgiggles"},
+            {username: "foolycooly"}, {username: "dian504"}, {username: "ezrafitch85"}, {username: "morganejouanin"},
+            {username: "moniquekonja"}, {username: "redfoxgloves"}, {username: "worldofchantal"}, {username: "hyeemer"},
+            {username: "kmekota"}, {username: "ninily"}, {username: "aylinarditti"}, {username: "kate945"},
+            {username: "elephante77"}, {username: "kazan_oyuta"}, {username: "white744"}, {username: "crashboulder"},
+            {username: "mejunediary"}, {username: "anaya_cel"}, {username: "stinamarie77"}, {username: "aligirl11"},
+            {username: "ankivonwalden"}, {username: "stephsure"}, {username: "c_c_m_ccherry"}, {username: "_jaetracy_"},
+            {username: "ericrose"}, {username: "ashgamb"}, {username: "marissa175"}, {username: "asami820"},
+            {username: "imks"}, {username: "prisi_f"}, {username: "wlgzcyr"}, {username: "annieh127"},
+            {username: "bua_s"}, {username: "lagunaloco"}, {username: "shae667"}, {username: "bakumatsu"},
+            {username: "cdudding"}, {username: "marchika_"}, {username: "tasha.kelly__"}, {username: "rayytchen"},
+            {username: "elinedb"}, {username: "mjcoombe68"}, {username: "marcossifu"}, {username: "cerieden"},
+            {username: "out.of.office.vibes"}, {username: "natusy"}, {username: "yograndmumma"}, {username: "megstevenson326"},
+            {username: "youmadbro16"}, {username: "ryanpetersen91"}, {username: "mitsue.ri_8"}
+            // ...add more usernames as needed
+        ].map(acc => ({username: acc.username, password: acc.username}));
+
+        // Pagination variables
+        const pageSize = 12;
+        let currentPage = 1;
+        let filteredAccounts = accounts;
+
+        // DOM elements
+        const userGrid = document.getElementById('userGrid');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const searchInput = document.getElementById('searchInput');
+        const toast = document.getElementById('toast');
+
+        // Display accounts
+        function displayAccounts() {
+            userGrid.innerHTML = '';
+            const start = (currentPage - 1) * pageSize;
+            const end = start + pageSize;
+            const pageAccounts = filteredAccounts.slice(start, end);
+
+            if (pageAccounts.length === 0) {
+                userGrid.innerHTML = `<div class="no-results">No accounts found.</div>`;
+                return;
+            }
+
+            pageAccounts.forEach(acc => {
+                const initials = acc.username.slice(0, 2).toUpperCase();
+                const card = document.createElement('div');
+                card.className = 'user-card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="user-info">
+                            <div class="avatar">${initials}</div>
+                            <div class="username">${acc.username}</div>
+                        </div>
+                        <a href="https://instagram.com/${acc.username}" target="_blank" class="profile-link" title="View Instagram Profile">
+                            <i class="fab fa-instagram"></i> Profile
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="credentials">
+                            <div class="credential">
+                                <span class="credential-label">Username:</span>
+                                <div class="credential-value">
+                                    <span class="credential-text">${acc.username}</span>
+                                    <button class="copy-btn" data-copy="${acc.username}"><i class="far fa-copy"></i> Copy</button>
+                                </div>
+                            </div>
+                            <div class="credential">
+                                <span class="credential-label">Password:</span>
+                                <div class="credential-value">
+                                    <span class="credential-text">${acc.password}</span>
+                                    <button class="copy-btn" data-copy="${acc.password}"><i class="far fa-copy"></i> Copy</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                userGrid.appendChild(card);
+            });
+
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = end >= filteredAccounts.length;
+        }
+
+        // Copy to clipboard
+        userGrid.addEventListener('click', function(e) {
+            if (e.target.classList.contains('copy-btn') || e.target.closest('.copy-btn')) {
+                const btn = e.target.closest('.copy-btn');
+                const text = btn.getAttribute('data-copy');
+                navigator.clipboard.writeText(text).then(() => {
+                    toast.textContent = 'Copied to clipboard!';
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 1200);
+                });
+            }
+        });
+
+        // Pagination
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                displayAccounts();
+            }
+        });
+        nextBtn.addEventListener('click', () => {
+            if ((currentPage * pageSize) < filteredAccounts.length) {
+                currentPage++;
+                displayAccounts();
+            }
+        });
+
+        // Search
+        searchInput.addEventListener('input', function() {
+            const val = this.value.trim().toLowerCase();
+            filteredAccounts = accounts.filter(acc => acc.username.toLowerCase().includes(val));
+            currentPage = 1;
+            displayAccounts();
+        });
+
+        // Birthday popup
+        const birthdayPopup = document.getElementById('birthdayPopup');
+        const closePopup = document.getElementById('closePopup');
+        const letsPartyBtn = document.getElementById('letsPartyBtn');
+        setTimeout(() => birthdayPopup.classList.add('show'), 600);
+        closePopup.onclick = () => birthdayPopup.classList.remove('show');
+        letsPartyBtn.onclick = () => birthdayPopup.classList.remove('show');
+
+        // Initial display
+        displayAccounts();
+    </script>
+</body>
+</html>
