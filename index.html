@@ -55,13 +55,35 @@
       display: block;
     }
     
+    .navbar-menu .has-dropdown > a {
+      position: relative;
+      padding-right: 24px;
+    }
+    .navbar-menu .has-dropdown > a::after {
+      content: "\f078";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.9em;
+      transition: transform 0.3s;
+    }
+    .navbar-menu .has-dropdown.open > a::after {
+      transform: translateY(-50%) rotate(-180deg);
+    }
     .dropdown {
+      transition: max-height 0.3s, opacity 0.3s;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      display: block;
       position: absolute;
       top: 100%;
       left: 0;
       background-color: #111;
       width: 200px;
-      display: none;
       z-index: 100;
       list-style: none;
       padding: 0.5rem 0;
@@ -73,7 +95,17 @@
     }
     
     .navbar-menu li:hover .dropdown {
+      max-height: 600px;
+      opacity: 1;
+    }
+    .navbar-menu > li.open > .dropdown {
+      max-height: 600px;
+      opacity: 1;
       display: block;
+      position: static;
+      box-shadow: none;
+      background: #222;
+      padding-left: 1rem;
     }
     
     /* Mobile Nav Toggle */
@@ -279,6 +311,39 @@
       transform: scale(1.07);
     }
     
+    /* Birthday Button Styles */
+    .birthday-popup-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #ff5e5e 60%, #ffb347 100%);
+      color: #fff;
+      font-size: 1.2rem;
+      padding: 16px 38px;
+      border-radius: 32px;
+      border: none;
+      outline: none;
+      font-weight: 700;
+      box-shadow: 0 6px 24px rgba(255,94,94,0.18), 0 1.5px 8px rgba(255,179,71,0.12);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      margin: 2rem auto;
+      animation: popBtn 1.2s infinite alternate;
+    }
+    .birthday-popup-btn i {
+      margin-right: 10px;
+      font-size: 1.3em;
+      vertical-align: middle;
+    }
+    .birthday-popup-btn:hover {
+      background: linear-gradient(90deg, #ffb347 60%, #ff5e5e 100%);
+      transform: scale(1.08) rotate(-2deg);
+      box-shadow: 0 12px 32px rgba(255,94,94,0.22);
+    }
+    @keyframes popBtn {
+      0% { transform: scale(1);}
+      60% { transform: scale(1.08);}
+      100% { transform: scale(1);}
+    }
+    
     /* Responsive Styles */
     @media (max-width: 992px) {
       .navbar-menu {
@@ -292,38 +357,65 @@
         padding: 2rem;
         transition: right 0.3s ease;
         z-index: 1000;
+        overflow-y: auto;
       }
-      
       .navbar-menu.active {
         right: 0;
       }
-      
       .navbar-menu > li {
         margin: 1rem 0;
+        width: 100%;
       }
-      
+      .navbar-menu > li > a {
+        width: 100%;
+      }
       .dropdown {
         position: static;
         width: 100%;
-        display: none;
-        margin-top: 0.5rem;
         box-shadow: none;
+        background: #222;
+        padding-left: 1rem;
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 0.3s, opacity 0.3s;
       }
-      
+      .navbar-menu > li.open > .dropdown {
+        max-height: 600px;
+        opacity: 1;
+        display: block;
+        margin-top: 0.5rem;
+      }
+      .dropdown li {
+        padding: 0.5rem 0.5rem;
+      }
       .nav-toggle {
         display: block;
         z-index: 1001;
       }
-      
-      .hero h1 {
-        font-size: 2rem;
-      }
-      
-      .hero p {
-        font-size: 1.1rem;
+      .navbar {
+        flex-wrap: wrap;
       }
     }
-    
+    @media (max-width: 768px) {
+      .cards-container,
+      .premium-cards-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .about-section h2,
+      .cards-section h2 {
+        font-size: 1.3rem;
+      }
+      .about-section p {
+        font-size: 1rem;
+      }
+    }
     @media (max-width: 576px) {
       .navbar {
         padding: 1rem;
@@ -334,11 +426,11 @@
       }
       
       .hero h1 {
-        font-size: 1.8rem;
+        font-size: 1.2rem;
       }
       
       .hero p {
-        font-size: 1rem;
+        font-size: 0.95rem;
       }
       
       .hero button {
@@ -347,15 +439,17 @@
       
       .about-section h2,
       .cards-section h2 {
-        font-size: 1.8rem;
+        font-size: 1.1rem;
       }
       
       .about-section p {
-        font-size: 1rem;
+        font-size: 0.95rem;
       }
       
-      .cards-container {
+      .cards-container,
+      .premium-cards-container {
         grid-template-columns: 1fr;
+        gap: 0.7rem;
       }
     }
     .zais-ai-section {
@@ -437,6 +531,54 @@
   }
 }
 
+.birthday-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+.birthday-popup-btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #ff5e5e 60%, #ffb347 100%);
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 16px 38px;
+  border-radius: 32px;
+  border: none;
+  outline: none;
+  font-weight: 700;
+  box-shadow: 0 6px 24px rgba(255,94,94,0.18), 0 1.5px 8px rgba(255,179,71,0.12);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  animation: popBtn 1.2s infinite alternate;
+  margin: 18px auto;
+}
+.birthday-popup-btn i {
+  margin-right: 10px;
+  font-size: 1.3em;
+  vertical-align: middle;
+}
+.birthday-popup-btn:hover {
+  background: linear-gradient(90deg, #ffb347 60%, #ff5e5e 100%);
+  transform: scale(1.08) rotate(-2deg);
+  box-shadow: 0 12px 32px rgba(255,94,94,0.22);
+}
+@keyframes popBtn {
+  0% { transform: scale(1);}
+  60% { transform: scale(1.08);}
+  100% { transform: scale(1);}
+}
+@media (max-width: 600px) {
+  .birthday-popup-btn {
+    font-size: 1rem;
+    padding: 12px 18px;
+  }
+  .birthday-btn-wrapper {
+    margin-top: 1.2rem;
+  }
+}
   </style>
 </head>
 
@@ -448,7 +590,7 @@
       <i class="fas fa-bars"></i>
     </button>
     <ul class="navbar-menu" id="navbarMenu">
-      <li><a href="#">XML 🤪</a>
+      <li class="has-dropdown"><a href="#">XML 🤪</a>
         <ul class="dropdown">
           <li><a href="xml1.html">XML's 1</a></li>
           <li><a href="xml2.html">XML's 2</a></li>
@@ -461,7 +603,7 @@
       
       <li><a href="projects.html">Banning</a>
       <li><a href="pricing.html">CB methods</a></li>
-      <li><a href="#">About Us </a>
+      <li class="has-dropdown"><a href="#">About Us </a>
         <ul class="dropdown">
           <li><a href="our-story.html">Our Story</a></li>
           <li><a href="team.html">Team</a></li>
@@ -480,31 +622,29 @@
   <section class="hero">
     <h1>Welcome to 𝐙𝐎𝐓𝐀𝐂𝐓𝐘𝐒𝐎𝐍- सम्राज्य 🧃</h1>
     <p>Welcome to our platform — a comprehensive hub for advanced digital tools and resources. Our offerings include Telegram automation bots, SMS verification and virtual number services,free follower growth solutions, SMM panels for streamlined social media management,ban prevention and account safety guides, and a library of Alight Motion XML files for creative editing. Designed for both personal and professional use, our platform empowers you to enhance, protect, and optimize your digital presence
-</p>
+    </p>
     <button onclick="document.querySelector('.cards-section').scrollIntoView({behavior: 'smooth'})">Explore More</button>
   </section>
 
-  <!-- About Preview Section
-  <section id="about" class="about-section">
-    <h2>About 𝐙𝐎𝐓𝐀𝐂𝐓𝐘𝐒𝐎𝐍</h2>
-    <p>
-      𝐙𝐎𝐓𝐀𝐂𝐓𝐘𝐒𝐎𝐍- सम्राज्य 🧃 is dedicated to helping creators shine with high-quality Alight Motion XMLs, expert video editing, and creative content services. We empower creators to bring their visions to life in style and ease.
-    </p>
-  </section> -->
-  
-  <!-- Add this section just below the navbar in index.html -->
-<div class="zais-ai-section">
-  <div class="zais-ai-content">
-    <h2>Meet ZAIS.ai</h2>
-    <p>
-      ZAIS.ai is your smart AI-powered assistant, ready to help you with creative tasks, editing tips, and instant answers. Experience the future of digital assistance with an ZAIS.ai Which is created by Zotactyson.
-    </p>
-    <a href="BOT.html" class="zais-ai-btn">
-      <i class="fas fa-robot"></i> Open ZAIS.ai 
-    </a>
+  <!-- Birthday Special Button centered and responsive, placed after hero and before ZAIS section -->
+  <div class="birthday-btn-wrapper">
+    <button class="birthday-popup-btn" onclick="window.location.href='gifts.html'">
+      <i class="fas fa-gift"></i> Birthday Special
+    </button>
   </div>
-</div>
 
+  <!-- ZAIS AI Section -->
+  <div class="zais-ai-section">
+    <div class="zais-ai-content">
+      <h2>Meet ZAIS.ai</h2>
+      <p>
+        ZAIS.ai is your smart AI-powered assistant, ready to help you with creative tasks, editing tips, and instant answers. Experience the future of digital assistance with an ZAIS.ai Which is created by Zotactyson.
+      </p>
+      <a href="BOT.html" class="zais-ai-btn">
+        <i class="fas fa-robot"></i> Open ZAIS.ai 
+      </a>
+    </div>
+  </div>
   
 
   <!-- Cards Section -->
@@ -595,6 +735,7 @@
       </div>
     </div>
   </section>
+
   <footer style="background-color: #f8f9fa; color: #333; padding: 40px 20px 20px; font-family: Arial, sans-serif;">
   <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between;">
       <div style="flex: 1; min-width: 250px; margin-bottom: 30px;">
@@ -672,6 +813,8 @@
       </p>
   </div>
 </footer>
+<!-- Fix for mobile dropdown: Prevent navbar from closing when opening XML dropdown -->
+
 <script>
   // Navbar menu toggle for mobile
   const navToggle = document.getElementById('navToggle');
@@ -680,17 +823,40 @@
     navbarMenu.classList.toggle('active');
   });
 
-  // Dropdown toggle for mobile (fixed)
-  document.querySelectorAll('.navbar-menu > li').forEach(li => {
-    const parentLink = li.querySelector('a');
-    const dropdown = li.querySelector('.dropdown');
-    if (dropdown && parentLink) {
-      parentLink.addEventListener('click', function(e) {
+  // Dropdown toggle for mobile (only one open at a time)
+  document.querySelectorAll('.navbar-menu > li.has-dropdown').forEach(li => {
+    li.addEventListener('click', function(e) {
+      if(window.innerWidth <= 992) {
+        // Only toggle dropdown, do NOT close navbar
+        e.preventDefault();
+        // Close other open dropdowns
+        document.querySelectorAll('.navbar-menu > li.has-dropdown.open').forEach(openLi => {
+          if(openLi !== this) openLi.classList.remove('open');
+        });
+        this.classList.toggle('open');
+        // Ensure navbar stays open
+        navbarMenu.classList.add('active');
+      }
+    });
+    // Prevent dropdown links from closing menu
+    li.querySelectorAll('.dropdown a').forEach(a => {
+      a.addEventListener('click', function(ev) {
         if(window.innerWidth <= 992) {
-          e.preventDefault(); // Only prevent default for parent link
-          dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+          ev.stopPropagation();
         }
       });
+    });
+  });
+
+  // Close menu when clicking outside (mobile)
+  document.addEventListener('click', function(e) {
+    if(window.innerWidth <= 992) {
+      if (!navbarMenu.contains(e.target) && !navToggle.contains(e.target)) {
+        navbarMenu.classList.remove('active');
+        document.querySelectorAll('.navbar-menu > li.has-dropdown.open').forEach(openLi => {
+          openLi.classList.remove('open');
+        });
+      }
     }
   });
 </script>
