@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Instagram Account Recovery — Steps</title>
+  <style>
+    :root {
+      --bg: #0f1724;
+      --card: #0b1220;
+      --accent: #2563eb;
+      --muted: #98a2b3;
+      --glass: rgba(255, 255, 255, 0.03);
+      --success: #10b981;
+    }
+    
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+    
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #071021 0%, #0b1220 100%);
+      color: #e6eef8;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      line-height: 1.6;
+    }
+    
+    .card {
+      width: 100%;
+      max-width: 800px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      border-radius: 14px;
+      padding: 32px;
+      box-shadow: 0 8px 30px rgba(2, 6, 23, 0.7);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    h1 {
+      font-size: 2rem;
+      margin: 0 0 12px;
+      background: linear-gradient(to right, #4f46e5, #2563eb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+    
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+    
+    ol.steps {
+      padding-left: 0;
+      margin: 0;
+      counter-reset: step-counter;
+    }
+    
+    li.step {
+      margin: 24px 0;
+      padding: 20px;
+      border-radius: 12px;
+      background: var(--glass);
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border-left: 3px solid var(--accent);
+    }
+    
+    li.step:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    li.step::before {
+      counter-increment: step-counter;
+      content: counter(step-counter);
+      position: absolute;
+      left: -12px;
+      top: -12px;
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+    
+    .emoji {
+      font-size: 1.8rem;
+      line-height: 1;
+      flex: 0 0 40px;
+      text-align: center;
+    }
+    
+    .content h3 {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+      color: #e6eef8;
+    }
+    
+    .content p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    
+    .tools {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    button {
+      background: var(--accent);
+      border: none;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+    
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    button.ghost {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #e6eef8;
+    }
+    
+    button.ghost:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    
+    .footer {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    @media (max-width: 600px) {
+      .card {
+        padding: 20px;
+      }
+      
+      h1 {
+        font-size: 1.7rem;
+      }
+      
+      .lead {
+        font-size: 1rem;
+      }
+      
+      li.step {
+        flex-direction: column;
+        gap: 12px;
+        padding: 18px;
+      }
+      
+      .emoji {
+        font-size: 1.6rem;
+      }
+      
+      .tools {
+        flex-direction: column;
+      }
+      
+      button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="header">
+      <h1>🔐 Instagram Account Recovery</h1>
+      <p class="lead">Follow these official steps to recover your Instagram account securely</p>
+    </div>
+
+    <ol class="steps">
+      <li class="step">
+        <div class="emoji">✅</div>
+        <div class="content">
+          <h3>Create the Gmail</h3>
+          <p>Create the email address shown in the account belongs to you before attempting claim.</p>
+        </div>
+      </li>
+
+      <li class="step">
+        <div class="emoji">🔐</div>
+        <div class="content">
+          <h3>Open "Forgot password?"</h3>
+          <p>On the Instagram login screen tap <strong>Forgot password?</strong> or <strong>Trouble logging in?</strong> to start the reset process.</p>
+        </div>
+      </li>
+
+      <li class="step">
+        <div class="emoji">✉️</div>
+        <div class="content">
+          <h3>Choose a reset method</h3>
+          <p>Enter your username, email or phone number. Instagram will send a reset link or code to the contact you choose — check your inbox and spam folder.</p>
+        </div>
+      </li>
+
+      <li class="step">
+        <div class="emoji">📬</div>
+        <div class="content">
+          <h3>Open the reset message</h3>
+          <p>Tap the link in the email or enter the code from SMS. Links may expire — use the most recent message from Instagram.</p>
+        </div>
+      </li>
+
+      <li class="step">
+        <div class="emoji">🗝️</div>
+        <div class="content">
+          <h3>Set a strong new password</h3>
+          <p>Create a password with at least 12 characters (mix letters, numbers, symbols). Avoid reusing old passwords.</p>
+        </div>
+      </li>
+
+      <li class="step">
+        <div class="emoji">📨</div>
+        <div class="content">
+          <h3>Acoount </h3>
+          <p>After setting a new password you will log-in to the Acoount which you want to recover or claim </p>
+        </div>
+      </li>
+
+      <li class="step">
+        <div class="emoji">🧹</div>
+        <div class="content">
+          <h3>Log out of unknown sessions</h3>
+          <p>Settings → Security → Login Activity. End any sessions you don't recognize to prevent further access.</p>
+        </div>
+      </li>
+
+      
+    </ol>
+
+    <div class="tools">
+      <button id="copyBtn">
+        <span>📋</span> Copy Steps
+      </button>
+      <button id="printBtn" class="ghost">
+        <span>🖨️</span> Print
+      </button>
+    </div>
+
+    <p class="footer">Keep your account secure by regularly updating your password and contact information</p>
+  </main>
+
+  <script>
+    const copyBtn = document.getElementById('copyBtn');
+    const printBtn = document.getElementById('printBtn');
+
+    function getPlainText() {
+      const items = Array.from(document.querySelectorAll('.steps .step'));
+      return items.map((li, i) => {
+        const title = li.querySelector('.content h3').textContent.trim();
+        const desc = li.querySelector('.content p').textContent.trim();
+        return `${i+1}) ${title}\n   ${desc}`;
+      }).join('\n\n');
+    }
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(getPlainText());
+        const originalText = copyBtn.innerHTML;
+        copyBtn.innerHTML = '<span>✅</span> Copied to Clipboard!';
+        
+        setTimeout(() => {
+          copyBtn.innerHTML = originalText;
+        }, 2000);
+      } catch(e) {
+        alert('Copy failed — your browser may block clipboard access.');
+      }
+    });
+
+    printBtn.addEventListener('click', () => {
+      window.print();
+    });
+  </script>
+</body>
+</html>

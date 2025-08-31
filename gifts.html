@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram UNC Birthday Special</title>
+    <title>Instagram UNC Daily</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,7 +14,7 @@
         }
         
         body {
-            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+            background: linear-gradient(135deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
             color: #333;
             padding: 20px;
             min-height: 100vh;
@@ -40,7 +40,6 @@
             font-size: 2.5rem;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            animation: colorChange 5s infinite;
         }
         
         .description {
@@ -87,20 +86,26 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
         
-        .birthday-badge {
+        .meta-badge {
             position: absolute;
             top: -10px;
-            right: -10px;
-            background: #ff4d94;
+            left: -10px;
+            background: #e1306c;
             color: white;
             font-weight: bold;
             padding: 8px 12px;
             border-radius: 20px;
             font-size: 0.8rem;
             z-index: 5;
-            transform: rotate(5deg);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            animation: bounce 2s infinite;
+        }
+        
+        .meta-true {
+            background: #4caf50;
+        }
+        
+        .meta-false {
+            background: #f44336;
         }
         
         .card-header {
@@ -320,128 +325,18 @@
             color: white;
         }
         
-        /* Birthday Effects */
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background-color: #f0f;
-            opacity: 0.8;
-            animation: fall linear forwards;
-            z-index: 1;
-        }
-        
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(720deg);
-                opacity: 0;
-            }
-        }
-        
-        .birthday-sticker {
-            position: fixed;
-            font-size: 2rem;
-            opacity: 0.8;
-            z-index: 2;
-            animation: float 15s infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            25% {
-                transform: translateY(-20px) rotate(5deg);
-            }
-            50% {
-                transform: translateY(0) rotate(0deg);
-            }
-            75% {
-                transform: translateY(20px) rotate(-5deg);
-            }
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0) rotate(5deg);
-            }
-            40% {
-                transform: translateY(-10px) rotate(5deg);
-            }
-            60% {
-                transform: translateY(-5px) rotate(5deg);
-            }
-        }
-        
-        @keyframes colorChange {
-            0% { color: #ff9a9e; }
-            25% { color: #fad0c4; }
-            50% { color: #a1c4fd; }
-            75% { color: #c2e9fb; }
-            100% { color: #ff9a9e; }
-        }
-        
-        .birthday-popup {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s, visibility 0.5s;
-        }
-        
-        .birthday-popup.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .popup-content {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-            animation: popIn 0.5s forwards;
-        }
-        
-        @keyframes popIn {
-            0% { transform: scale(0.5); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        
-        .close-popup {
+        .date-badge {
             position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #888;
-        }
-        
-        .popup-content h2 {
-            color: #e91e63;
-            margin-bottom: 15px;
-            font-size: 2rem;
-        }
-        
-        .popup-content p {
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        
-        .cake-emoji {
-            font-size: 3rem;
-            margin: 15px 0;
-            animation: bounce 2s infinite;
+            top: -10px;
+            right: -10px;
+            background: #e1306c;
+            color: white;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 5;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         
         /* Responsive styles */
@@ -494,14 +389,6 @@
             .stat {
                 flex: 0 0 33.33%;
                 margin-bottom: 10px;
-            }
-            
-            .birthday-popup .popup-content {
-                padding: 20px;
-            }
-            
-            .popup-content h2 {
-                font-size: 1.5rem;
             }
         }
         
@@ -565,19 +452,9 @@
     </style>
 </head>
 <body>
-    <div class="birthday-popup" id="birthdayPopup">
-        <div class="popup-content">
-            <span class="close-popup" id="closePopup">&times;</span>
-            <h2>🎉 Happy Birthday! 🎉</h2>
-            <div class="cake-emoji">🎂</div>
-            <p>Welcome to the Instagram UNC Birthday Special! Enjoy browsing user profiles with a festive twist!</p>
-            <button id="letsPartyBtn" class="copy-btn" style="padding: 10px 20px; margin-top: 15px;">Let's Party!</button>
-        </div>
-    </div>
-
     <div class="container">
         <header>
-            <h1><i class="fab fa-instagram"></i> INSTAGRAM UNC (Birthday Special)</h1>
+            <h1><i class="fab fa-instagram"></i> DAILY UNC</h1>
             <p class="description">Browse the collection of Instagram user profiles with detailed information including followers, following, posts, and bio.</p>
         </header>
         
@@ -595,254 +472,98 @@
         </div>
         
         <div class="footer">
-            <p>Provided by Zotactyson ❤️ | Instagram UNC</p>
+            <p>Provided by Zotactyson ❤️</p>
         </div>
     </div>
 
     <div class="toast" id="toast">Email copied to clipboard!</div>
 
     <script>
-        // User data
+        // User data with updated information
         const users = [
             {
-                user: "fahmiera98",
-                email: "fahmiera98@gmail.com",
-                followers: 39,
-                following: 49,
-                posts: 8,
-                date: "?",
-                bio: "- I AM MOHD FAHMI BIN ISHAK \n- 16 YEARS OLD\n- I AM TAKEN WITH NAMM\n- ID WECHAT : fahmie7853",
-                rest: "f*******8@gmail.com"
-            },
-            {
-                user: "eshatha33381",
-                email: "eshatha33381@gmail.com",
-                followers: 24,
-                following: 116,
-                posts: 0,
-                date: "?",
+                user: "jxjcjdjdbd",
+                email: "jxjcjdjdbd@gmail.com",
+                followers: 50,
+                following: 65,
+                posts: 18,
+                date: "2014-16",
                 bio: "",
-                rest: "e*******1@gmail.com"
+                rest: "s**************4@gmail.com",
+                name: "jxjcjdjdbd",
+                meta: false
             },
             {
-                user: "fuhgffffds",
-                email: "fuhgffffds@gmail.com",
-                followers: 32,
-                following: 115,
-                posts: 16,
-                date: "?",
-                bio: "~ ﺎستغفر ﺎلله العظيم ۉﺎتوب ﺎليهہٌ ♡",
-                rest: "f*******s@gmail.com"
-            },
-            {
-                user: "lillyianjeri",
-                email: "lillyianjeri@gmail.com",
-                followers: 9,
-                following: 22,
-                posts: 15,
-                date: "?",
-                bio: "",
-                rest: "l*******i@gmail.com"
-            },
-            {
-                user: "abcccccccde",
-                email: "abcccccccde@gmail.com",
-                followers: 22,
-                following: 0,
-                posts: 0,
-                date: "?",
-                bio: "",
-                rest: "e*******s@hotmail.com"
-            },
-            {
-                user: "oceanodite",
-                email: "oceanodite@gmail.com",
-                followers: 31,
-                following: 23,
+                user: "kacharu.8855",
+                email: "kacharu.8855@gmail.com",
+                followers: 152,
+                following: 2753,
                 posts: 5,
-                date: "?",
-                bio: "我们是两",
-                rest: "l******e@v*****.it"
-            },
-            {
-                user: "basooomh0",
-                email: "basooomh0@gmail.com",
-                followers: 17,
-                following: 12,
-                posts: 42,
-                date: "?",
-                bio: "خٌلَگ گتُوُمِـ وُآُخٌفُيـﮯ هِہ‌‏مِـگ بّضـحگهِہ‌‏ آُلَلَهِہ‌‏ عَطٌـآُ ،وُآُلَلَهِہ‌‏ آُخٌذٌ ،وُآُلَلَهِہ‌‏ گريـﮯمِـ•",
-                rest: "b*******0@gmail.com"
-            },
-            {
-                user: "fcjonhbraga",
-                email: "fcjonhbraga@gmail.com",
-                followers: 77,
-                following: 220,
-                posts: 0,
-                date: "?",
-                bio: "01/04/14\nSuper simpático,amigavel,humilde e muito carinhoso.",
-                rest: "f*******a@gmail.com"
-            },
-            {
-                user: "catrinamendall",
-                email: "catrinamendall@gmail.com",
-                followers: 121,
-                following: 4,
-                posts: 0,
-                date: "?",
+                date: "2014-16",
                 bio: "",
-                rest: "Reset None"
+                rest: "k**************5@gmail.com",
+                name: "kavita.",
+                meta: true
             },
             {
-                user: "fred00332211",
-                email: "fred00332211@gmail.com",
-                followers: 28,
-                following: 47,
-                posts: 59,
-                date: "?",
-                bio: "",
-                rest: "f*******1@gmail.com",
-                hit: 3
-            },
-            {
-                user: "naylafadhilaah",
-                email: "naylafadhilaah@gmail.com",
-                followers: 10,
-                following: 19,
-                posts: 2,
-                date: "?",
-                bio: "",
-                rest: "n*******h@gmail.com",
-                hit: 4
-            },
-            {
-                user: "lafar99c28f",
-                email: "lafar99c28f@gmail.com",
-                followers: 0,
+                user: "cantikacacan224",
+                email: "cantikacacan224@gmail.com",
+                followers: 40,
                 following: 0,
-                posts: 1,
-                date: "?",
-                bio: "Italiano 🇮🇹 | Jamef Transportes 🚛📦 | SnapChat giovannij031 📲 | Face Giovanni Jardim 💻 | Unipac",
-                rest: "l*******f@gmail.com",
-                hit: 8
-            },
-            {
-                user: "dxbalghufili",
-                email: "dxbalghufili@gmail.com",
-                followers: 8,
-                following: 46,
-                posts: 10,
-                date: "?",
+                posts: 2,
+                date: "2014-16",
                 bio: "",
-                rest: "d*******i@gmail.com",
-                hit: 8
+                rest: "c**************4@gmail.com",
+                name: "cantikacacan",
+                meta: false
             },
             {
-                user: "tingmarlisone",
-                email: "tingmarlisone@gmail.com",
-                followers: 49,
-                following: 157,
-                posts: 7,
-                date: "?",
-                bio: "",
-                rest: "t*******e@gmail.com",
-                hit: 5
-            },
-            {
-                user: "omaraideed746985",
-                email: "omaraideed746985@gmail.com",
-                followers: 2,
-                following: 5,
-                posts: 0,
-                date: "?",
-                bio: "",
-                rest: "o*******5@gmail.com"
-            },
-            {
-                user: "ksenia.dorofeeva20",
-                email: "ksenia.dorofeeva20@gmail.com",
+                user: "mandana.sharif.2010",
+                email: "mandana.sharif.2010@gmail.com",
                 followers: 74,
-                following: 59,
-                posts: 88,
-                date: "?",
-                bio: "",
-                rest: "k*******0@gmail.com",
-                hit: 7
-            },
-            {
-                user: "yunusgul2101",
-                email: "yunusgul2101@gmail.com",
-                followers: 14,
-                following: 147,
+                following: 28,
                 posts: 0,
-                date: "?",
+                date: "2014-16",
                 bio: "",
-                rest: "y*******1@gmail.com",
-                hit: 10
+                rest: "m**************0@gmail.com",
+                name: "mandana",
+                meta: true
             },
             {
-                user: "tannmcman1",
-                email: "tannmcman1@gmail.com",
-                followers: 45,
-                following: 216,
-                posts: 4,
-                date: "?",
-                bio: "ѕρσиѕσяє∂ ѕкαтєя<3\nℓιfтιиg<3\nh̰̃ã̰c̰̃k̰̃ẽd̰̃ ã̰t̰̃ 42k̰̃ p̰̃l̰̃ẽas̰̃ẽ f̰̃õ̰l̰̃l̰̃õ̰w̰̃(:",
-                rest: "t*******1@gmail.com",
-                hit: 3
-            },
-            {
-                user: "abct314436",
-                email: "abct314436@gmail.com",
-                followers: 18,
-                following: 31,
-                posts: 0,
-                date: "?",
-                bio: "",
-                rest: "a*******6@gmail.com"
-            },
-            {
-                user: "btskillsmeh",
-                email: "btskillsmeh@gmail.com",
-                followers: 54,
-                following: 34,
-                posts: 3,
-                date: "?",
-                bio: "18 |  bts kills me | v",
-                rest: "",
-                hit: 6
-            },
-            {
-                user: "babyleamitch",
-                email: "babyleamitch@gmail.com",
-                followers: 4,
+                user: "policonfissoes",
+                email: "policonfissoes@gmail.com",
+                followers: 87,
                 following: 54,
                 posts: 0,
-                date: "?",
+                date: "2014-16",
                 bio: "",
-                rest: "b*******h@gmail.com",
-                hit: 9
+                rest: "m**************o@gmail.com",
+                name: "kaah|confissões",
+                meta: true
             },
             {
-                user: "ahmad12345basher98",
-                email: "ahmad12345basher98@gmail.com",
-                followers: 8,
-                following: 13,
+                user: "aprilmarker123",
+                email: "aprilmarker123@gmail.com",
+                followers: 40,
+                following: 45,
                 posts: 0,
-                date: "?",
+                date: "2014-16",
                 bio: "",
-                rest: "a*******8@gmail.com"
+                rest: "a*******3@gmail.com",
+                name: "April Marker",
+                meta: false
             },
             {
-                user: "datduderoney",
-                email: "datduderoney@gmail.com",
-                followers: 171,
-                following: 320,
-                posts: 11,
-                date: "?",
-                bio: "",
-                rest: "d*******y@gmail.com"
+                user: "famousgrame",
+                email: "famousgrame@gmail.com",
+                followers: 48,
+                following: 212,
+                posts: 1,
+                date: "2014-16",
+                bio: "contest for everyone★",
+                rest: "f**************k@gmail.com",
+                name: "contest for everyone★",
+                meta: false
             },
             {
                 user: "ionellandreea",
@@ -853,7 +574,20 @@
                 date: "2014-16",
                 bio: "",
                 rest: "o**************l@yahoo.com",
-                name: "Ionella.Andreea"
+                name: "Ionella.Andreea",
+                meta: true
+            },
+            {
+                user: "joeinalim1291",
+                email: "joeinalim1291@gmail.com",
+                followers: 207,
+                following: 560,
+                posts: 1,
+                date: "2014-16",
+                bio: "",
+                rest: "j**************1@gmail.com",
+                name: "Joeinalim",
+                meta: true
             },
             {
                 user: "gavrielsamson502",
@@ -864,147 +598,52 @@
                 date: "2014-16",
                 bio: "",
                 rest: "g**************2@gmail.com",
-                name: "Gabriel Samson"
+                name: "Gabriel Samson",
+                meta: true
             },
             {
-                user: "badgalteen210",
-                email: "badgalteen210@gmail.com",
-                followers: 131,
-                following: 577,
+                user: "melitaperrvj",
+                email: "melitaperrvj@gmail.com",
+                followers: 0,
+                following: 0,
                 posts: 0,
-                date: "2014-16",
+                date: "?",
                 bio: "",
-                rest: "b**************0@gmail.com"
+                rest: "m*******j@gmail.com",
+                name: "",
+                meta: false
             },
             {
-                user: "meem126544",
-                email: "meem126544@gmail.com",
-                followers: 16,
-                following: 55,
-                posts: 11,
-                date: "2014-16",
-                bio: "",
-                rest: "m*******4@gmail.com",
-                name: "Um Hussan"
-            },
-            {
-                user: "jakky.soares",
-                email: "jakky.soares@gmail.com",
-                followers: 47,
-                following: 74,
-                posts: 9,
-                date: "2014-16",
-                bio: "",
-                rest: "j******s@gmail.com",
-                name: "jackelyne"
-            },
-            {
-                user: "dsfxfyyuuuui",
-                email: "dsfxfyyuuuui@gmail.com",
-                followers: 20,
-                following: 79,
-                posts: 4,
-                date: "2014-16",
-                bio: "",
-                rest: "d*******i@gmail.com",
-                name: "Aafghhhnjmkhncbn"
-            },
-            {
-                user: "emilprivee",
-                email: "emilprivee@gmail.com",
-                followers: 4,
-                following: 24,
+                user: "",
+                email: "kandychiakj3q9@aol.com",
+                followers: 0,
+                following: 0,
                 posts: 0,
-                date: "2014-16",
+                date: "2012",
                 bio: "",
-                rest: "f*******f@gmail.com",
-                name: "Privat🍑🍑🍔🍕"
+                rest: "k*******9@a**.com",
+                name: "",
+                hit: 1,
+                meta: false
+            },
+            {
+                user: "",
+                email: "nevasheltonbi@aol.com",
+                followers: 0,
+                following: 0,
+                posts: 0,
+                date: "2012",
+                bio: "Zombie trailblazer. Introvert. Typical pop cultureaholic. Amateur creator. Infuriatingly humble communicator. Food fanatic.",
+                rest: "n*******i@a**.com",
+                name: "",
+                hit: 1,
+                meta: false
             }
         ];
 
         // Variables for pagination
         let currentPage = 1;
         const usersPerPage = 9;
-        
-        // Birthday effects
-        function createConfetti() {
-            const colors = ['#ff4d94', '#ffeb3b', '#4caf50', '#2196f3', '#9c27b0', '#ff9800'];
-            const container = document.body;
-            
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                confetti.style.width = (Math.random() * 10 + 5) + 'px';
-                confetti.style.height = (Math.random() * 10 + 5) + 'px';
-                
-                container.appendChild(confetti);
-                
-                // Remove confetti after animation completes
-                setTimeout(() => {
-                    confetti.remove();
-                }, 5000);
-            }
-        }
-        
-        function createBirthdayStickers() {
-            const stickers = ['🎂', '🎉', '🎁', '🎈', '🥳', '✨'];
-            const container = document.body;
-            
-            stickers.forEach((sticker, index) => {
-                const element = document.createElement('div');
-                element.className = 'birthday-sticker';
-                element.textContent = sticker;
-                element.style.left = (Math.random() * 80 + 10) + 'vw';
-                element.style.top = (Math.random() * 50 + 10) + 'vh';
-                element.style.animationDelay = (index * 0.5) + 's';
-                element.style.fontSize = (Math.random() * 20 + 30) + 'px';
-                
-                container.appendChild(element);
-            });
-        }
-        
-        function showBirthdayPopup() {
-            const popup = document.getElementById('birthdayPopup');
-            popup.classList.add('show');
-            
-            // Create initial confetti
-            createConfetti();
-        }
-        
-        function startParty() {
-            // Create more confetti
-            createConfetti();
-            
-            // Create stickers
-            createBirthdayStickers();
-            
-            // Add birthday badges to some random user cards
-            addBirthdayBadges();
-            
-            // Close the popup
-            document.getElementById('birthdayPopup').classList.remove('show');
-            
-            // Continue creating confetti periodically
-            setInterval(createConfetti, 3000);
-        }
-        
-        function addBirthdayBadges() {
-            // Add birthday badges to some random cards
-            const cards = document.querySelectorAll('.user-card');
-            const badgeCount = Math.min(5, cards.length);
-            
-            for (let i = 0; i < badgeCount; i++) {
-                const randomIndex = Math.floor(Math.random() * cards.length);
-                const badge = document.createElement('div');
-                badge.className = 'birthday-badge';
-                badge.textContent = 'Birthday!';
-                
-                cards[randomIndex].appendChild(badge);
-            }
-        }
         
         // Display users based on current page
         function displayUsers(usersArray) {
@@ -1025,20 +664,22 @@
                 userCard.className = 'user-card';
                 
                 // Get initials for avatar
-                const initials = user.user.substring(0, 2).toUpperCase();
+                const initials = user.user ? user.user.substring(0, 2).toUpperCase() : "IG";
                 
                 // Create Instagram profile URL
-                const profileUrl = `https://instagram.com/${user.user}`;
+                const profileUrl = user.user ? `https://instagram.com/${user.user}` : "#";
                 
                 userCard.innerHTML = `
+                    ${user.meta !== undefined ? `<div class="meta-badge ${user.meta ? 'meta-true' : 'meta-false'}">META: ${user.meta ? 'TRUE ✅' : 'NO ✖️'}</div>` : ''}
+                    ${user.date !== "?" ? `<div class="date-badge">${user.date}</div>` : ''}
                     <div class="card-header">
                         <div class="user-info">
                             <div class="avatar">${initials}</div>
-                            <div class="username">${user.user}</div>
+                            <div class="username">${user.user || 'No Username'}</div>
                         </div>
-                        <a href="${profileUrl}" target="_blank" class="profile-link">
+                        ${user.user ? `<a href="${profileUrl}" target="_blank" class="profile-link">
                             <i class="fab fa-instagram"></i> View Profile
-                        </a>
+                        </a>` : ''}
                     </div>
                     <div class="card-body">
                         <div class="stats">
@@ -1131,10 +772,11 @@
                 }
                 
                 const filteredUsers = users.filter(user => 
-                    user.user.toLowerCase().includes(searchTerm) ||
-                    user.email.toLowerCase().includes(searchTerm) ||
+                    (user.user && user.user.toLowerCase().includes(searchTerm)) ||
+                    (user.email && user.email.toLowerCase().includes(searchTerm)) ||
                     (user.bio && user.bio.toLowerCase().includes(searchTerm)) ||
-                    (user.name && user.name.toLowerCase().includes(searchTerm))
+                    (user.name && user.name.toLowerCase().includes(searchTerm)) ||
+                    (user.rest && user.rest.toLowerCase().includes(searchTerm))
                 );
                 
                 currentPage = 1;
@@ -1146,9 +788,6 @@
         function init() {
             displayUsers(users);
             setupSearch();
-            
-            // Show birthday popup on page load
-            setTimeout(showBirthdayPopup, 500);
             
             // Pagination event listeners
             document.getElementById('prevBtn').addEventListener('click', () => {
@@ -1163,15 +802,6 @@
                     currentPage++;
                     displayUsers(users);
                 }
-            });
-            
-            // Birthday party button
-            document.getElementById('letsPartyBtn').addEventListener('click', startParty);
-            
-            // Close popup button
-            document.getElementById('closePopup').addEventListener('click', () => {
-                document.getElementById('birthdayPopup').classList.remove('show');
-                startParty();
             });
         }
         
