@@ -173,6 +173,46 @@
       border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
     
+    /* Video section styles */
+    .video-section {
+      margin: 32px 0;
+      text-align: center;
+    }
+    
+    .video-title {
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+      color: #e6eef8;
+      font-weight: 600;
+    }
+    
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    .video-note {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+    
     @media (max-width: 600px) {
       .card {
         padding: 20px;
@@ -203,6 +243,10 @@
       button {
         width: 100%;
         justify-content: center;
+      }
+      
+      .video-title {
+        font-size: 1.2rem;
       }
     }
   </style>
@@ -246,6 +290,15 @@
           <p>Tap the link in the email or enter the code from SMS. Links may expire — use the most recent message from Instagram.</p>
         </div>
       </li>
+      
+      <!-- Video section placed after step 4 -->
+      <div class="video-section">
+        <div class="video-title">📺 Video Guide</div>
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/ttC7keBl3gU" title="Instagram Account Recovery Video Guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="video-note">Watch this video for a visual guide on recovering your Instagram account</p>
+      </div>
 
       <li class="step">
         <div class="emoji">🗝️</div>
@@ -258,8 +311,8 @@
       <li class="step">
         <div class="emoji">📨</div>
         <div class="content">
-          <h3>Acoount </h3>
-          <p>After setting a new password you will log-in to the Acoount which you want to recover or claim </p>
+          <h3>Account</h3>
+          <p>After setting a new password you will log-in to the Account which you want to recover or claim</p>
         </div>
       </li>
 
@@ -270,8 +323,6 @@
           <p>Settings → Security → Login Activity. End any sessions you don't recognize to prevent further access.</p>
         </div>
       </li>
-
-      
     </ol>
 
     <div class="tools">
