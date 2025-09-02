@@ -137,7 +137,7 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: url('hero-bg.jpg') no-repeat center center/cover;
+      background: linear-gradient(135deg, #1a1f2b 0%, #0d1018 100%);
       filter: blur(8px) brightness(0.6);
       z-index: -1;
     }
@@ -609,244 +609,495 @@
     margin-top: 1.2rem;
   }
 }
+
+/* Telegram Popup Styles */
+.telegram-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.telegram-popup-content {
+  background: linear-gradient(145deg, #2a2f3d, #1f2330);
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 450px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+  position: relative;
+  border: 1px solid #3a3f4d;
+  animation: popup-appear 0.5s ease-out;
+}
+
+.telegram-logo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0088cc, #005f8a);
+  border-radius: 50%;
+  font-size: 40px;
+}
+
+.telegram-popup-title {
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-size: 28px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.telegram-popup-description {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: #b1b1b1;
+}
+
+.telegram-instructions {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 10px;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.telegram-instructions ol {
+  padding-left: 20px;
+}
+
+.telegram-instructions li {
+  margin-bottom: 8px;
+  color: #c1c1c1;
+}
+
+.telegram-join-btn {
+  display: inline-block;
+  background: linear-gradient(to right, #0088cc, #006da3);
+  color: white;
+  padding: 14px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 15px 0;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3);
+}
+
+.telegram-join-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 136, 204, 0.5);
+}
+
+.telegram-verify-btn {
+  display: inline-block;
+  background: linear-gradient(to right, #ff5e5e, #ff3030);
+  color: white;
+  padding: 14px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 15px 0;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 94, 94, 0.3);
+}
+
+.telegram-verify-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 94, 94, 0.5);
+}
+
+.telegram-status-message {
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+.telegram-success {
+  background-color: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+  border: 1px solid #2ecc71;
+}
+
+.telegram-error {
+  background-color: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+}
+
+.telegram-loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  border-top-color: #0088cc;
+  animation: spin 1s ease-in-out infinite;
+}
+
+.telegram-countdown {
+  font-size: 16px;
+  color: #b1b1b1;
+  margin: 15px 0;
+}
+
+.telegram-countdown-number {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: #0088cc;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  margin: 0 5px;
+}
+
+.telegram-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-color: #0088cc;
+  border-radius: 50%;
+  color: white;
+  text-align: center;
+  line-height: 24px;
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.telegram-popup-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 22px;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.telegram-popup-close:hover {
+  color: #fff;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Blur effect for main content when popup is visible */
+body.popup-visible .container,
+body.popup-visible .hero,
+body.popup-visible .cards-section,
+body.popup-visible .premium-section,
+body.popup-visible .zais-ai-section,
+body.popup-visible footer {
+  filter: blur(8px);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Disable all website content until Telegram is joined */
+.website-content {
+  display: none;
+}
+
+.website-content.accessible {
+  display: block;
+}
+
+/* Disable navbar links until Telegram is joined */
+.navbar-menu a {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.telegram-joined .navbar-menu a {
+  pointer-events: auto;
+  opacity: 1;
+}
   </style>
 </head>
 
 <body>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="navbar-brand">𝐙𝐎𝐓𝐀𝐂𝐓𝐘𝐒𝐎𝐍- सम्राज्य 🧃</div>
-    <button class="nav-toggle" id="navToggle">
-      <i class="fas fa-bars"></i>
-    </button>
-    <ul class="navbar-menu" id="navbarMenu">
-      <li class="has-dropdown"><a href="#">XML 🤪</a>
-        <ul class="dropdown">
-          <li><a href="xml1.html">XML's 1</a></li>
-          <li><a href="xml2.html">XML's 2</a></li>
-          <li><a href="xml3.html">XML's 3</a></li>
-          <li><a href="xml4.html">XML's 4</a></li>
-          <li><a href="xml5.html">XML's 5</a></li>
-          <li><a href="xml6.html">XML's 6</a></li>
-        </ul>
-      </li>
+  <!-- Telegram Popup Overlay -->
+  <div class="telegram-popup-overlay" id="telegramPopup">
+    <div class="telegram-popup-content">
+      <div class="telegram-logo">
+        <i class="fab fa-telegram-plane"></i>
+      </div>
+      <h2 class="telegram-popup-title">Join Our Telegram Channel</h2>
+      <p class="telegram-popup-description">You must join our Telegram channel to access this website.</p>
       
-      <li><a href="projects.html">Banning</a>
-      <li><a href="pricing.html">CB methods</a></li>
-      <li class="has-dropdown"><a href="#">About Us </a>
-        <ul class="dropdown">
-          <li><a href="our-story.html">Our Story</a></li>
-          <li><a href="team.html">Team</a></li>
-          <li><a href="mission.html">Mission & Vision</a></li>
-        </ul>
-      </li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="login.html">Login</a></li>
-      <li><a href="signup.html">Sign-up</a></li>
-    </ul>
-  </nav>
-  
-
-  <!-- Welcome Hero Section -->
-  <section class="hero">
-    <h1>Welcome to 𝐙𝐎𝐓𝐀𝐂𝐓𝐘𝐒𝐎𝐍 - सम्राज्य 🧃</h1>
-    <p>Welcome to our platform — a comprehensive hub for advanced digital tools and resources. Our offerings include Telegram automation bots, SMS verification and virtual number services,free follower growth solutions, SMM panels for streamlined social media management,ban prevention and account safety guides, and a library of Alight Motion XML files for creative editing. Designed for both personal and professional use, our platform empowers you to enhance, protect, and optimize your digital presence
-    </p>
-    <button onclick="document.querySelector('.cards-section').scrollIntoView({behavior: 'smooth'})">Explore More</button>
-  </section>
-
-  <!-- Birthday Special Button centered and responsive, placed after hero and before ZAIS section -->
-  <div class="birthday-btn-wrapper">
-    <button class="birthday-popup-btn daily-unc-btn" onclick="window.location.href='gifts.html'">
-      <i class="fas fa-gift"></i> DAILY UNC GIVEAWAY
-    </button>
-    <button class="birthday-popup-btn" onclick="window.location.href='how-to-claim.html'">
-      <i class="fas fa-question-circle"></i> HOW TO CLAIM IT ?
-    </button>
-  </div>
-
-  <!-- ZAIS AI Section -->
-  <div class="zais-ai-section">
-    <div class="zais-ai-content">
-      <h2>Meet ZAIS.ai</h2>
-      <p>
-        ZAIS.ai is your smart AI-powered assistant, ready to help you with creative tasks, editing tips, and instant answers. Experience the future of digital assistance with ZAIS.ai, created by Zotactyson.
-      </p>
-      
-      <!-- Maintenance Notice -->
-      <div class="maintenance-notice">
-        <i class="fas fa-exclamation-triangle"></i>
-        <strong>Notice:</strong> This bot is not working at this time due to technical errors.
+      <div class="telegram-instructions">
+        <ol>
+          <li>Click the "Join Telegram Channel" button below</li>
+          <li>Join our channel on Telegram</li>
+          <li>Return to this page and click "Verify Membership"</li>
+        </ol>
       </div>
       
-      <a href="BOT.html" class="zais-ai-btn">
-        <i class="fas fa-robot"></i> Open ZAIS.ai 
+      <a href="https://t.me/zotactysonnn" target="_blank" class="telegram-join-btn">
+        <span class="telegram-icon"><i class="fab fa-telegram"></i></span> Join Telegram Channel
       </a>
+      
+      <div>
+        <button class="telegram-verify-btn" id="verifyTelegramBtn">Verify Membership</button>
+      </div>
+      
+      <div id="telegramVerificationResult"></div>
     </div>
   </div>
-  
 
-  <!-- Cards Section -->
-  <section class="cards-section">
-    <h2>Our Services & Features</h2>
-    <div class="cards-container">
-      <div class="card">
-        <h3>SMM Panels</h3>
-        <p>Access some trusted SMM panels </p>
-        <a href="page1.html"><button>Explore</button></a>
-      </div>
-      <div class="card">
-        <h3>Free Followers</h3>
-        <p>Zotactyson provide you 59 site to add free follower on instagram </p>
-        <a href="page2.html"><button>Open</button></a>
-      </div>
-      <div class="card">
-        <h3>Get Virtual Number</h3>
-        <p>You can get a free virtual number from the following sites</p>
-        <a href="page3.html"><button>Open</button></a>
-      </div>
-      <div class="card">
-        <h3>SMS Verification</h3>
-        <p>Free phone numbers for SMS verification provided by Zotactyson~</p>
-        <a href="page4.html"><button>Open</button></a>
-      </div>
-      <div class="card">
-        <h3>Telegrams Bot</h3>
-        <p>Some Usefull telegram bots are provided by Zotactyson.</p>
-        <a href="page5.html"><button>Open</button></a>
-      </div>
-      <div class="card">
-        <h3>Bombing</h3>
-        <p>Here is some sites for call bomber and SMS bomber for fun with friends </p>
-        <a href="page6.html"><button>Open</button></a>
-      </div>
-      <div class="card">
-        <h3>Unc</h3>
-        <p>Here is some UNC of 2k10-2k11 by zotactyson</p>
-        <a href="page7.html"><button>Open</button></a>
-      </div>
-      <!-- <div class="card">
-        <h3>Unc</h3>
-        <p>Here is some UNC of 2k14-2k19 by zotactyson</p>
-        <a href="page8.html"><button>Open</button></a>
-      </div> -->
-      <div class="card">
-        <h3>Unlimited Gmail</h3>
-        <p>How to Create Unlimited Gmail Accounts Without Phone Number</p>
-        <a href="page9.html"><button>Open</button></a>
-      </div>
-      <div class="card">
-        <h3>Forms</h3>
-        <p>Some Instagram Reporting Forms by zotactyson</p>
-        <a href="page10.html"><button>Open</button></a>
-      </div>
-      <div class="card">
-        <h3>CB PATCH METHOD</h3>
-        <p>CB Patch method by zotactyson & Piyush</p>
-        <a href="page11.html"><button>Open</button></a>
-      </div>
-    </div>
-  </section>
-  <!-- Premium User Features Section -->
-  <section class="premium-section">
-    <h2 style="color:#6e48aa; font-size:2.1rem; margin-bottom:2rem; text-align:center;">
-      <i class="fas fa-crown" style="color:#ff5e5e; margin-right:10px;"></i>Premium User Features
-    </h2>
-    <div class="premium-cards-container">
-      <div class="premium-card">
-        <i class="fas fa-star" style="color:#ff5e5e; font-size:2rem; margin-bottom:10px;"></i>
-        <h3>Exclusive XML Packs</h3>
-        <p>Unlock advanced Alight Motion XMLs and editing resources only for premium members.</p>
-        <a href="page8.html"><button class="premium-btn">Access</button></a>
-      </div>
-      <div class="premium-card">
-        <i class="fas fa-robot" style="color:#6e48aa; font-size:2rem; margin-bottom:10px;"></i>
-        <h3>Premium Telegram Bots</h3>
-        <p>Get access to paid Telegram bots for automation, analytics, and more.</p>
-        <a href="premium-bots.html"><button class="premium-btn">Explore</button></a>
-      </div>
-      <div class="premium-card">
-        <i class="fas fa-shield-alt" style="color:#ff5e5e; font-size:2rem; margin-bottom:10px;"></i>
-        <h3>Account Protection Tools</h3>
-        <p>Advanced security guides and tools for keeping your accounts safe.</p>
-        <a href="premium-security.html"><button class="premium-btn">View</button></a>
-      </div>
-      <div class="premium-card">
-        <i class="fas fa-gem" style="color:#6e48aa; font-size:2rem; margin-bottom:10px;"></i>
-        <h3>Priority Support</h3>
-        <p>Get priority customer support and direct help from our experts.</p>
-        <a href="premium-support.html"><button class="premium-btn">Contact</button></a>
-      </div>
-    </div>
-  </section>
-
-  <footer style="background-color: #f8f9fa; color: #333; padding: 40px 20px 20px; font-family: Arial, sans-serif;">
-  <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between;">
-      <div style="flex: 1; min-width: 250px; margin-bottom: 30px;">
-          <h3 style="color: #2c3e50;">
-            <i class="fas fa-rocket" style="color:#ff5e5e; margin-right:8px;"></i>Zotactyson
-          </h3>
-          <p style="line-height: 1.6; max-width: 300px;">
-            <i class="fas fa-lightbulb" style="color:#ff5e5e; margin-right:6px;"></i>
-            Delivering innovative solutions and expert services to drive your success forward. Let's build the future together.
-          </p>
-      </div>
-      <div style="flex: 1; min-width: 150px; margin-bottom: 30px;">
-          <h4 style="color: #2c3e50;">
-            <i class="fas fa-link" style="color:#ff5e5e; margin-right:6px;"></i>Quick Links
-          </h4>
-          <ul style="list-style: none; padding: 0; line-height: 2;">
-              <li><a href="/about.html" style="color: #333; text-decoration: none;">
-                <i class="fas fa-users" style="color:#ff5e5e; margin-right:5px;"></i>About Us</a></li>
-              <li><a href="/contact.html" style="color: #333; text-decoration: none;">
-                <i class="fas fa-envelope" style="color:#ff5e5e; margin-right:5px;"></i>Contact Us</a></li>
-              <li><a href="/login.html" style="color: #333; text-decoration: none;">
-                <i class="fas fa-sign-in-alt" style="color:#ff5e5e; margin-right:5px;"></i>Login</a></li>
-              <li><a href="/signup.html" style="color: #333; text-decoration: none;">
-                <i class="fas fa-user-plus" style="color:#ff5e5e; margin-right:5px;"></i>Sign Up</a></li>
+  <!-- Website Content (hidden until Telegram is joined) -->
+  <div class="website-content" id="mainContent">
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="navbar-brand">𝐙𝐎𝐓𝐀𝐂𝐓𝐘𝐒𝐎𝐍- सम्राज्य 🧃</div>
+      <button class="nav-toggle" id="navToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="navbar-menu" id="navbarMenu">
+        <li class="has-dropdown"><a href="#">XML 🤪</a>
+          <ul class="dropdown">
+            <li><a href="xml1.html">XML's 1</a></li>
+            <li><a href="xml2.html">XML's 2</a></li>
+            <li><a href="xml3.html">XML's 3</a></li>
+            <li><a href="xml4.html">XML's 4</a></li>
+            <li><a href="xml5.html">XML's 5</a></li>
+            <li><a href="xml6.html">XML's 6</a></li>
           </ul>
-      </div>
-      <div style="flex: 1; min-width: 200px; margin-bottom: 30px;">
-          <h4 style="color: #2c3e50;">
-            <i class="fas fa-address-book" style="color:#ff5e5e; margin-right:6px;"></i>Get In Touch
-          </h4>
-          <p style="line-height: 1.8;">
-              <strong><i class="fas fa-envelope" style="color:#ff5e5e; margin-right:5px;"></i>Email:</strong><br>
-              <a href="mailto:zotactyson@gmail.com" style="color: #333; text-decoration: none;">zotactyson@gmail.com</a>
-          </p>
-          <p style="line-height: 1.8;">
-              <strong><i class="fas fa-phone" style="color:#ff5e5e; margin-right:5px;"></i>Phone:</strong><br>
-              +1 (555) 123-4567
-          </p>
-      </div>
-      <div style="flex: 1; min-width: 250px; margin-bottom: 30px;">
-          <h4 style="color: #2c3e50;">
-            <i class="fas fa-share-alt" style="color:#ff5e5e; margin-right:6px;"></i>Follow Us
-          </h4>
-          <p style="margin-top: 20px;"><strong><i class="fas fa-bell" style="color:#ff5e5e; margin-right:5px;"></i>Stay Updated:</strong></p>
-          <form>
-              <input type="email" placeholder="Your Email Address" style="padding: 10px; width: 70%; border: 1px solid #ccc; border-radius: 4px;">
-              <button type="submit" style="padding: 10px; background-color: #2c3e50; color: white; border: none; border-radius: 4px; margin-top: 10px; cursor: pointer;">
-                <i class="fas fa-paper-plane" style="margin-right:5px;"></i>Subscribe
-              </button>
-          </form>
-      </div>
-  </div>
-  <div style="max-width: 1200px; margin: 30px auto 0; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; font-size: 0.9em;">
-      <p>
-        <i class="far fa-copyright" style="color:#ff5e5e; margin-right:5px;"></i>
-        2025 Zotactyson. All rights reserved.
+        </li>
+        
+        <li><a href="projects.html">Banning</a>
+        <li><a href="pricing.html">CB methods</a></li>
+        <li class="has-dropdown"><a href="#">About Us </a>
+          <ul class="dropdown">
+            <li><a href="our-story.html">Our Story</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="mission.html">Mission & Vision</a></li>
+          </ul>
+        </li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="signup.html">Sign-up</a></li>
+      </ul>
+    </nav>
+    
+
+    <!-- Welcome Hero Section -->
+    <section class="hero">
+      <h1>Welcome to 𝐙𝐎𝐓𝐀𝐂𝐓𝐘𝐒𝐎𝐍 - सम्राज्य 🧃</h1>
+      <p>Welcome to our platform — a comprehensive hub for advanced digital tools and resources. Our offerings include Telegram automation bots, SMS verification and virtual number services,free follower growth solutions, SMM panels for streamlined social media management,ban prevention and account safety guides, and a library of Alight Motion XML files for creative editing. Designed for both personal and professional use, our platform empowers you to enhance, protect, and optimize your digital presence
       </p>
-      <p style="font-size: 0.85em;">
-          <a href="/privacy-policy" style="color: #666; text-decoration: none; margin: 0 10px;">
-            <i class="fas fa-user-secret" style="color:#ff5e5e; margin-right:5px;"></i>Privacy Policy</a> |
-          <a href="/terms-of-service" style="color: #666; text-decoration: none; margin: 0 10px;">
-            <i class="fas fa-file-contract" style="color:#ff5e5e; margin-right:5px;"></i>Terms of Service</a>
-      </p>
+      <button onclick="document.querySelector('.cards-section').scrollIntoView({behavior: 'smooth'})">Explore More</button>
+    </section>
+
+    <!-- Birthday Special Button centered and responsive, placed after hero and before ZAIS section -->
+    <div class="birthday-btn-wrapper">
+      <button class="birthday-popup-btn daily-unc-btn" onclick="window.location.href='gifts.html'">
+        <i class="fas fa-gift"></i> DAILY UNC GIVEAWAY
+      </button>
+      <button class="birthday-popup-btn" onclick="window.location.href='how-to-claim.html'">
+        <i class="fas fa-question-circle"></i> HOW TO CLAIM IT ?
+      </button>
+    </div>
+
+    <!-- ZAIS AI Section -->
+    <div class="zais-ai-section">
+      <div class="zais-ai-content">
+        <h2>Meet ZAIS.ai</h2>
+        <p>
+          ZAIS.ai is your smart AI-powered assistant, ready to help you with creative tasks, editing tips, and instant answers. Experience the future of digital assistance with ZAIS.ai, created by Zotactyson.
+        </p>
+        
+        <!-- Maintenance Notice -->
+        <div class="maintenance-notice">
+          <i class="fas fa-exclamation-triangle"></i>
+          <strong>Notice:</strong> This bot is not working at this time due to technical errors.
+        </div>
+        
+        <a href="BOT.html" class="zais-ai-btn">
+          <i class="fas fa-robot"></i> Open ZAIS.ai 
+        </a>
+      </div>
+    </div>
+    
+
+    <!-- Cards Section -->
+    <section class="cards-section">
+      <h2>Our Services & Features</h2>
+      <div class="cards-container">
+        <div class="card">
+          <h3>SMM Panels</h3>
+          <p>Access some trusted SMM panels </p>
+          <a href="page1.html"><button>Explore</button></a>
+        </div>
+        <div class="card">
+          <h3>Free Followers</h3>
+          <p>Zotactyson provide you 59 site to add free follower on instagram </p>
+          <a href="page2.html"><button>Open</button></a>
+        </div>
+        <div class="card">
+          <h3>Get Virtual Number</h3>
+          <p>You can get a free virtual number from the following sites</p>
+          <a href="page3.html"><button>Open</button></a>
+        </div>
+        <div class="card">
+          <h3>SMS Verification</h3>
+          <p>Free phone numbers for SMS verification provided by Zotactyson~</p>
+          <a href="page4.html"><button>Open</button></a>
+        </div>
+        <div class="card">
+          <h3>Telegrams Bot</h3>
+          <p>Some Usefull telegram bots are provided by Zotactyson.</p>
+          <a href="page5.html"><button>Open</button></a>
+        </div>
+        <div class="card">
+          <h3>Bombing</h3>
+          <p>Here is some sites for call bomber and SMS bomber for fun with friends </p>
+          <a href="page6.html"><button>Open</button></a>
+        </div>
+        <div class="card">
+          <h3>Unc</h3>
+          <p>Here is some UNC of 2k10-2k11 by zotactyson</p>
+          <a href="page7.html"><button>Open</button></a>
+        </div>
+        <!-- <div class="card">
+          <h3>Unc</h3>
+          <p>Here is some UNC of 2k14-2k19 by zotactyson</p>
+          <a href="page8.html"><button>Open</button></a>
+        </div> -->
+        <div class="card">
+          <h3>Unlimited Gmail</h3>
+          <p>How to Create Unlimited Gmail Accounts Without Phone Number</p>
+          <a href="page9.html"><button>Open</button></a>
+        </div>
+        <div class="card">
+          <h3>Forms</h3>
+          <p>Some Instagram Reporting Forms by zotactyson</p>
+          <a href="page10.html"><button>Open</button></a>
+        </div>
+        <div class="card">
+          <h3>CB PATCH METHOD</h3>
+          <p>CB Patch method by zotactyson & Piyush</p>
+          <a href="page11.html"><button>Open</button></a>
+        </div>
+      </div>
+    </section>
+    <!-- Premium User Features Section -->
+    <section class="premium-section">
+      <h2 style="color:#6e48aa; font-size:2.1rem; margin-bottom:2rem; text-align:center;">
+        <i class="fas fa-crown" style="color:#ff5e5e; margin-right:10px;"></i>Premium User Features
+      </h2>
+      <div class="premium-cards-container">
+        <div class="premium-card">
+          <i class="fas fa-star" style="color:#ff5e5e; font-size:2rem; margin-bottom:10px;"></i>
+          <h3>Exclusive XML Packs</h3>
+          <p>Unlock advanced Alight Motion XMLs and editing resources only for premium members.</p>
+          <a href="page8.html"><button class="premium-btn">Access</button></a>
+        </div>
+        <div class="premium-card">
+          <i class="fas fa-robot" style="color:#6e48aa; font-size:2rem; margin-bottom:10px;"></i>
+          <h3>Premium Telegram Bots</h3>
+          <p>Get access to paid Telegram bots for automation, analytics, and more.</p>
+          <a href="premium-bots.html"><button class="premium-btn">Explore</button></a>
+        </div>
+        <div class="premium-card">
+          <i class="fas fa-shield-alt" style="color:#ff5e5e; font-size:2rem; margin-bottom:10px;"></i>
+          <h3>Account Protection Tools</h3>
+          <p>Advanced security guides and tools for keeping your accounts safe.</p>
+          <a href="premium-security.html"><button class="premium-btn">View</button></a>
+        </div>
+        <div class="premium-card">
+          <i class="fas fa-gem" style="color:#6e48aa; font-size:2rem; margin-bottom:10px;"></i>
+          <h3>Priority Support</h3>
+          <p>Get priority customer support and direct help from our experts.</p>
+          <a href="premium-support.html"><button class="premium-btn">Contact</button></a>
+        </div>
+      </div>
+    </section>
+
+    <footer style="background-color: #f8f9fa; color: #333; padding: 40px 20px 20px; font-family: Arial, sans-serif;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between;">
+        <div style="flex: 1; min-width: 250px; margin-bottom: 30px;">
+            <h3 style="color: #2c3e50;">
+              <i class="fas fa-rocket" style="color:#ff5e5e; margin-right:8px;"></i>Zotactyson
+            </h3>
+            <p style="line-height: 1.6; max-width: 300px;">
+              <i class="fas fa-lightbulb" style="color:#ff5e5e; margin-right:6px;"></i>
+              Delivering innovative solutions and expert services to drive your success forward. Let's build the future together.
+            </p>
+        </div>
+        <div style="flex: 1; min-width: 150px; margin-bottom: 30px;">
+            <h4 style="color: #2c3e50;">
+              <i class="fas fa-link" style="color:#ff5e5e; margin-right:6px;"></i>Quick Links
+            </h4>
+            <ul style="list-style: none; padding: 0; line-height: 2;">
+                <li><a href="/about.html" style="color: #333; text-decoration: none;">
+                  <i class="fas fa-users" style="color:#ff5e5e; margin-right:5px;"></i>About Us</a></li>
+                <li><a href="/contact.html" style="color: #333; text-decoration: none;">
+                  <i class="fas fa-envelope" style="color:#ff5e5e; margin-right:5px;"></i>Contact Us</a></li>
+                <li><a href="/login.html" style="color: #333; text-decoration: none;">
+                  <i class="fas fa-sign-in-alt" style="color:#ff5e5e; margin-right:5px;"></i>Login</a></li>
+                <li><a href="/signup.html" style="color: #333; text-decoration: none;">
+                  <i class="fas fa-user-plus" style="color:#ff5e5e; margin-right:5px;"></i>Sign Up</a></li>
+            </ul>
+        </div>
+        <div style="flex: 1; min-width: 200px; margin-bottom: 30px;">
+            <h4 style="color: #2c3e50;">
+              <i class="fas fa-address-book" style="color:#ff5e5e; margin-right:6px;"></i>Get In Touch
+            </h4>
+            <p style="line-height: 1.8;">
+                <strong><i class="fas fa-envelope" style="color:#ff5e5e; margin-right:5px;"></i>Email:</strong><br>
+                <a href="mailto:zotactyson@gmail.com" style="color: #333; text-decoration: none;">zotactyson@gmail.com</a>
+            </p>
+            <p style="line-height: 1.8;">
+                <strong><i class="fas fa-phone" style="color:#ff5e5e; margin-right:5px;"></i>Phone:</strong><br>
+                +1 (555) 123-4567
+            </p>
+        </div>
+        <div style="flex: 1; min-width: 250px; margin-bottom: 30px;">
+            <h4 style="color: #2c3e50;">
+              <i class="fas fa-share-alt" style="color:#ff5e5e; margin-right:6px;"></i>Follow Us
+            </h4>
+            <p style="margin-top: 20px;"><strong><i class="fas fa-bell" style="color:#ff5e5e; margin-right:5px;"></i>Stay Updated:</strong></p>
+            <form>
+                <input type="email" placeholder="Your Email Address" style="padding: 10px; width: 70%; border: 1px solid #ccc; border-radius: 4px;">
+                <button type="submit" style="padding: 10px; background-color: #2c3e50; color: white; border: none; border-radius: 4px; margin-top: 10px; cursor: pointer;">
+                  <i class="fas fa-paper-plane" style="margin-right:5px;"></i>Subscribe
+                </button>
+            </form>
+        </div>
+    </div>
+    <div style="max-width: 1200px; margin: 30px auto 0; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; font-size: 0.9em;">
+        <p>
+          <i class="far fa-copyright" style="color:#ff5e5e; margin-right:5px;"></i>
+          2025 Zotactyson. All rights reserved.
+        </p>
+        <p style="font-size: 0.85em;">
+            <a href="/privacy-policy" style="color: #666; text-decoration: none; margin: 0 10px;">
+              <i class="fas fa-user-secret" style="color:#ff5e5e; margin-right:5px;"></i>Privacy Policy</a> |
+            <a href="/terms-of-service" style="color: #666; text-decoration: none; margin: 0 10px;">
+              <i class="fas fa-file-contract" style="color:#ff5e5e; margin-right:5px;"></i>Terms of Service</a>
+        </p>
+    </div>
+  </footer>
   </div>
-</footer>
-<!-- Fix for mobile dropdown: Prevent navbar from closing when opening XML dropdown -->
 
 <script>
   // Navbar menu toggle for mobile
@@ -892,7 +1143,89 @@
       }
     }
   });
+
+  // Telegram Popup Functionality
+  const telegramPopup = document.getElementById('telegramPopup');
+  const verifyTelegramBtn = document.getElementById('verifyTelegramBtn');
+  const telegramVerificationResult = document.getElementById('telegramVerificationResult');
+  const mainContent = document.getElementById('mainContent');
+  
+  // Check if user has already joined
+  const hasJoinedTelegram = localStorage.getItem('telegramJoined');
+  
+  if (!hasJoinedTelegram) {
+    // Show popup for new users
+    telegramPopup.classList.remove('hidden');
+    document.body.classList.add('popup-visible');
+    mainContent.classList.remove('accessible');
+  } else {
+    // User has already joined, show content
+    telegramPopup.classList.add('hidden');
+    document.body.classList.remove('popup-visible');
+    mainContent.classList.add('accessible');
+    document.body.classList.add('telegram-joined');
+  }
+  
+  // Handle verify button click
+  verifyTelegramBtn.addEventListener('click', function() {
+    // Show loading state
+    telegramVerificationResult.innerHTML = '<div class="telegram-status-message"><span class="telegram-loading"></span> Checking membership status with Telegram...</div>';
+    
+    // Simulate verification process
+    setTimeout(function() {
+      verifyTelegramMembership();
+    }, 2000);
+  });
+  
+  function verifyTelegramMembership() {
+    // In a real implementation, this would verify with Telegram API
+    // For demo purposes, we'll assume the user has joined after clicking verify
+    const isMember = true;
+    
+    if (isMember) {
+      telegramVerificationResult.innerHTML = `
+        <div class="telegram-status-message telegram-success">
+          <i class="fas fa-check-circle"></i> Success! Welcome to our community.
+        </div>
+      `;
+      
+      // Grant access to the website
+      setTimeout(function() {
+        localStorage.setItem('telegramJoined', 'true');
+        telegramPopup.classList.add('hidden');
+        document.body.classList.remove('popup-visible');
+        mainContent.classList.add('accessible');
+        document.body.classList.add('telegram-joined');
+      }, 1500);
+    } else {
+      telegramVerificationResult.innerHTML = `
+        <div class="telegram-status-message telegram-error">
+          <i class="fas fa-exclamation-circle"></i> We couldn't verify that you've joined our channel yet.
+        </div>
+        <p>Please make sure you've joined and try again.</p>
+        <a href="https://t.me/zotactysonnn" target="_blank" class="telegram-join-btn">
+          <span class="telegram-icon"><i class="fab fa-telegram"></i></span> Join Telegram Channel
+        </a>
+      `;
+    }
+  }
+  
+  // Prevent right-click and other potential bypass methods
+  document.addEventListener('contextmenu', function(e) {
+    if (!localStorage.getItem('telegramJoined')) {
+      e.preventDefault();
+      return false;
+    }
+  });
+  
+  // Prevent keyboard shortcuts that might bypass the popup
+  document.addEventListener('keydown', function(e) {
+    if (!localStorage.getItem('telegramJoined') && 
+        (e.ctrlKey || e.metaKey) && 
+        (e.key === 'r' || e.key === 'R' || e.key === 'F5')) {
+      e.preventDefault();
+    }
+  });
 </script>
 </body>
-
 </html>
