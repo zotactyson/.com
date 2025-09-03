@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Business - Home</title>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  
+  <style>
+    /* Global Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    /* Navbar Styles */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #111;
+      color: white;
+      position: relative;
+    }
+    
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    .navbar-menu {
+      display: flex;
+      list-style: none;
+    }
+    
+    .navbar-menu > li {
+      position: relative;
+      margin-left: 1.5rem;
+    }
+    
+    .navbar-menu a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem;
+      display: block;
+    }
+    
+    .navbar-menu .has-dropdown > a {
+      position: relative;
+      padding-right: 24px;
+    }
+    .navbar-menu .has-dropdown > a::after {
+      content: "\f078";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.9em;
+      transition: transform 0.3s;
+    }
+    .navbar-menu .has-dropdown.open > a::after {
+      transform: translateY(-50%) rotate(-180deg);
+    }
+    .dropdown {
+      transition: max-height 0.3s, opacity 0.3s;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #111;
+      width: 200px;
+      z-index: 100;
+      list-style: none;
+      padding: 0.5rem 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    
+    .dropdown li {
+      padding: 0.5rem 1rem;
+    }
+    
+    .navbar-menu li:hover .dropdown {
+      max-height: 600px;
+      opacity: 1;
+    }
+    .navbar-menu > li.open > .dropdown {
+      max-height: 600px;
+      opacity: 1;
+      display: block;
+      position: static;
+      box-shadow: none;
+      background: #222;
+      padding-left: 1rem;
+    }
+    
+    /* Mobile Nav Toggle */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      padding: 0 1rem;
+      position: relative;
+      background: transparent;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url('hero-bg.jpg') no-repeat center center/cover;
+      filter: blur(8px) brightness(0.6);
+      z-index: -1;
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 800px;
+    }
+    
+    .hero button {
+      padding: 15px 35px;
+      border: none;
+      background: #ff5e5e;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      border-radius: 6px;
+    }
+    
+    .hero button:hover {
+      background: #ff3030;
+    }
+    
+    /* About Section */
+    .about-section {
+      padding: 5rem 1rem;
+      background: #0f0f0f;
+      color: #fff;
+      text-align: center;
+    }
+    
+    .about-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 2.5rem;
+      color: #ff5f5f;
+    }
+    
+    .about-section p {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+      font-size: 1.2rem;
+    }
+    
+    /* Card Section */
+    .cards-section {
+      padding: 5rem 1rem;
+      background: #f9f9f9;
+      text-align: center;
+    }
+    
+    .cards-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 2.5rem;
+      color: #ff5f5f;
+    }
+    
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-8px);
+    }
+    
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #111;
+    }
+    
+    .card p {
+      font-size: 1rem;
+      color: #444;
+      flex-grow: 1;
+      margin-bottom: 1rem;
+    }
+    
+    .card button {
+      margin-top: 1rem;
+      padding: 12px;
+      border: none;
+      background: #ff5f5f;
+      color: #fff;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    
+    .card button:hover {
+      background: #ff3030;
+      transform: scale(1.05);
+    }
+    
+    /* Premium Section */
+    .premium-section {
+      background: linear-gradient(90deg, #f3f6fa 60%, #e9e4f0 100%);
+      padding: 5rem 1rem;
+      text-align: center;
+    }
+    .premium-cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .premium-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(110,72,170,0.10);
+      padding: 2rem 1.2rem 2.2rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s;
+      border: 2px solid #ff5e5e18;
+    }
+    .premium-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      border-color: #ff5e5e;
+    }
+    .premium-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.7rem;
+      color: #6e48aa;
+      font-weight: 700;
+    }
+    .premium-card p {
+      font-size: 1rem;
+      color: #444;
+      margin-bottom: 1.2rem;
+    }
+    .premium-btn {
+      padding: 12px 28px;
+      background: #ff5e5e;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 4px 12px rgba(110,72,170,0.10);
+    }
+    .premium-btn:hover {
+      background: #6e48aa;
+      transform: scale(1.07);
+    }
+    
+    /* Birthday Button Styles */
+    .birthday-popup-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #ff5e5e 60%, #ffb347 100%);
+      color: #fff;
+      font-size: 1.2rem;
+      padding: 16px 38px;
+      border-radius: 32px;
+      border: none;
+      outline: none;
+      font-weight: 700;
+      box-shadow: 0 6px 24px rgba(255,94,94,0.18), 0 1.5px 8px rgba(255,179,71,0.12);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      margin: 2rem auto;
+      animation: popBtn 1.2s infinite alternate;
+    }
+    .birthday-popup-btn i {
+      margin-right: 10px;
+      font-size: 1.3em;
+      vertical-align: middle;
+    }
+    .birthday-popup-btn:hover {
+      background: linear-gradient(90deg, #ffb347 60%, #ff5e5e 100%);
+      transform: scale(1.08) rotate(-2deg);
+      box-shadow: 0 12px 32px rgba(255,94,94,0.22);
+    }
+    @keyframes popBtn {
+      0% { transform: scale(1);}
+      60% { transform: scale(1.08);}
+      100% { transform: scale(1);}
+    }
+    .daily-unc-btn {
+      background: linear-gradient(90deg, #6e48aa 60%, #ff5e5e 100%) !important;
+      color: #fff !important;
+      box-shadow: 0 8px 32px rgba(110,72,170,0.18), 0 2px 12px rgba(255,94,94,0.15);
+      border: 2px solid #6e48aa;
+    }
+    .daily-unc-btn:hover {
+      background: linear-gradient(90deg, #ff5e5e 60%, #6e48aa 100%) !important;
+      color: #fff !important;
+      border-color: #ff5e5e;
+      transform: scale(1.10) rotate(-2deg);
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .navbar-menu {
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: -300px;
+        width: 300px;
+        height: 100vh;
+        background: #111;
+        padding: 2rem;
+        transition: right 0.3s ease;
+        z-index: 1000;
+        overflow-y: auto;
+      }
+      .navbar-menu.active {
+        right: 0;
+      }
+      .navbar-menu > li {
+        margin: 1rem 0;
+        width: 100%;
+      }
+      .navbar-menu > li > a {
+        width: 100%;
+      }
+      .dropdown {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        background: #222;
+        padding-left: 1rem;
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 0.3s, opacity 0.3s;
+      }
+      .navbar-menu > li.open > .dropdown {
+        max-height: 600px;
+        opacity: 1;
+        display: block;
+        margin-top: 0.5rem;
+      }
+      .dropdown li {
+        padding: 0.5rem 0.5rem;
+      }
+      .nav-toggle {
+        display: block;
+        z-index: 1001;
+      }
+      .navbar {
+        flex-wrap: wrap;
+      }
+    }
+    @media (max-width: 768px) {
+      .cards-container,
+      .premium-cards-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .about-section h2,
+      .cards-section h2 {
+        font-size: 1.3rem;
+      }
+      .about-section p {
+        font-size: 1rem;
+      }
+    }
+    @media (max-width: 576px) {
+      .navbar {
+        padding: 1rem;
+      }
+      
+      .navbar-brand {
+        font-size: 1.2rem;
+      }
+      
+      .hero h1 {
+        font-size: 1.2rem;
+      }
+      
+      .hero p {
+        font-size: 0.95rem;
+      }
+      
+      .hero button {
+        padding: 12px 25px;
+      }
+      
+      .about-section h2,
+      .cards-section h2 {
+        font-size: 1.1rem;
+      }
+      
+      .about-section p {
+        font-size: 0.95rem;
+      }
+      
+      .cards-container,
+      .premium-cards-container {
+        grid-template-columns: 1fr;
+        gap: 0.7rem;
+      }
+    }
+    .zais-ai-section {
+    background: linear-gradient(90deg, #f3f6fa 60%, #e9e4f0 100%);
+    padding: 2.5rem 1rem 2rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeInZais 1s;
+  }
+  @keyframes fadeInZais {
+    from { opacity: 0; transform: translateY(-30px);}
+    to { opacity: 1; transform: translateY(0);}
+  }
+  .zais-ai-content {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .zais-ai-robot {
+    margin-bottom: 1.2rem;
+    animation: floatRobot 2s infinite ease-in-out;
+  }
+  @keyframes floatRobot {
+    0%,100% { transform: translateY(0);}
+    50% { transform: translateY(-12px);}
+  }
+  .zais-ai-content h2 {
+    color: #6e48aa;
+    font-size: 2rem;
+    margin-bottom: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .zais-ai-content p {
+    color: #333;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+  .zais-ai-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, #6e48aa 60%, #9d50bb 100%);
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 14px 32px;
+    border-radius: 32px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(110,72,170,0.12);
+    transition: background 0.2s, transform 0.2s;
+    border: none;
+    outline: none;
+  }
+  .zais-ai-btn:hover {
+    background: linear-gradient(90deg, #9d50bb 60%, #6e48aa 100%);
+    transform: scale(1.05);
+  }
+  .zais-ai-btn i {
+    margin-right: 8px;
+    font-size: 1.2em;
+    vertical-align: middle;
+  }
+  .maintenance-notice {
+    background: #fff3cd;
+    color: #856404;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 4px solid #ffc107;
+    font-size: 0.95rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .maintenance-notice i {
+    margin-right: 8px;
+    color: #ffc107;
+  }
+  @media (max-width: 600px) {
+    .zais-ai-content h2 { font-size: 1.3rem; }
+    .zais-ai-content p { font-size: 1rem; }
+    .zais-ai-btn { font-size: 1rem; padding: 12px 18px; }
+    .zais-ai-robot svg { width: 60px; height: 60px; }
+    .maintenance-notice { font-size: 0.85rem; padding: 10px; }
+  }
+  @media (max-width: 700px) {
+  footer > div {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  footer > div > div {
+    min-width: 100% !important;
+    margin-bottom: 20px !important;
+  }
+}
+
+.birthday-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 0;
+  flex-wrap: wrap;
+}
+.birthday-popup-btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #ff5e5e 60%, #ffb347 100%);
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 16px 38px;
+  border-radius: 32px;
+  border: none;
+  outline: none;
+  font-weight: 700;
+  box-shadow: 0 6px 24px rgba(255,94,94,0.18), 0 1.5px 8px rgba(255,179,71,0.12);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  animation: popBtn 1.2s infinite alternate;
+  margin: 10px;
+}
+.birthday-popup-btn i {
+  margin-right: 10px;
+  font-size: 1.3em;
+  vertical-align: middle;
+}
+.birthday-popup-btn:hover {
+  background: linear-gradient(90deg, #ffb347 60%, #ff5e5e 100%);
+  transform: scale(1.08) rotate(-2deg);
+  box-shadow: 0 12px 32px rgba(255,94,94,0.22);
+}
+@keyframes popBtn {
+  0% { transform: scale(1);}
+  60% { transform: scale(1.08);}
+  100% { transform: scale(1);}
+}
+@media (max-width: 600px) {
+  .birthday-popup-btn {
+    font-size: 1rem;
+    padding: 12px 18px;
+    margin: 8px;
+  }
+  .birthday-btn-wrapper {
+    margin-top: 1.2rem;
+  }
+}
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-brand">𝐙𝐎𝐓𝐀𝐂𝐓𝐘𝐒𝐎𝐍- सम्राज्य 🧃</div>
+    <button class="nav-toggle" id="navToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+    <ul class="navbar-menu" id="navbarMenu">
+      <li class="has-dropdown"><a href="#">XML 🤪</a>
+        <ul class="dropdown">
+          <li><a href="xml1.html">XML's 1</a></li>
+          <li><a href="xml2.html">XML's 2</a></li>
+          <li><a href="xml3.html">XML's 3</a></li>
+          <li><a href="xml4.html">XML's 4</a></li>
+          <li><a href="xml5.html">XML's 5</a></li>
+          <li><a href="xml6.html">XML's 6</a></li>
+        </ul>
+      </li>
+      
+      <li><a href="projects.html">Banning</a>
+      <li><a href="pricing.html">CB methods</a></li>
+      <li class="has-dropdown"><a href="#">About Us </a>
+        <ul class="dropdown">
+          <li><a href="our-story.html">Our Story</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="mission.html">Mission & Vision</a></li>
+        </ul>
+      </li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="signup.html">Sign-up</a></li>
+    </ul>
+  </nav>
+  
+
+  <!-- Welcome Hero Section -->
+  <section class="hero">
+    <h1>Welcome to 𝐙𝐎𝐓𝐀𝐂𝐓𝐘𝐒𝐎𝐍 - सम्राज्य 🧃</h1>
+    <p>Welcome to our platform — a comprehensive hub for advanced digital tools and resources. Our offerings include Telegram automation bots, SMS verification and virtual number services,free follower growth solutions, SMM panels for streamlined social media management,ban prevention and account safety guides, and a library of Alight Motion XML files for creative editing. Designed for both personal and professional use, our platform empowers you to enhance, protect, and optimize your digital presence
+    </p>
+    <button onclick="document.querySelector('.cards-section').scrollIntoView({behavior: 'smooth'})">Explore More</button>
+  </section>
+
+  <!-- Birthday Special Button centered and responsive, placed after hero and before ZAIS section -->
+  <div class="birthday-btn-wrapper">
+    <button class="birthday-popup-btn daily-unc-btn" onclick="window.location.href='gifts.html'">
+      <i class="fas fa-gift"></i> DAILY UNC GIVEAWAY
+    </button>
+    <button class="birthday-popup-btn" onclick="window.location.href='how-to-claim.html'">
+      <i class="fas fa-question-circle"></i> HOW TO CLAIM IT ?
+    </button>
+  </div>
+
+  <!-- ZAIS AI Section -->
+  <div class="zais-ai-section">
+    <div class="zais-ai-content">
+      <h2>Meet ZAIS.ai</h2>
+      <p>
+        ZAIS.ai is your smart AI-powered assistant, ready to help you with creative tasks, editing tips, and instant answers. Experience the future of digital assistance with ZAIS.ai, created by Zotactyson.
+      </p>
+      
+      <!-- Maintenance Notice -->
+      <div class="maintenance-notice">
+        <i class="fas fa-exclamation-triangle"></i>
+        <strong>Notice:</strong> This bot is not working at this time due to technical errors.
+      </div>
+      
+      <a href="BOT.html" class="zais-ai-btn">
+        <i class="fas fa-robot"></i> Open ZAIS.ai 
+      </a>
+    </div>
+  </div>
+  
+
+  <!-- Cards Section -->
+  <section class="cards-section">
+    <h2>Our Services & Features</h2>
+    <div class="cards-container">
+      <div class="card">
+        <h3>SMM Panels</h3>
+        <p>Access some trusted SMM panels </p>
+        <a href="page1.html"><button>Explore</button></a>
+      </div>
+      <div class="card">
+        <h3>Free Followers</h3>
+        <p>Zotactyson provide you 59 site to add free follower on instagram </p>
+        <a href="page2.html"><button>Open</button></a>
+      </div>
+      <div class="card">
+        <h3>Get Virtual Number</h3>
+        <p>You can get a free virtual number from the following sites</p>
+        <a href="page3.html"><button>Open</button></a>
+      </div>
+      <div class="card">
+        <h3>SMS Verification</h3>
+        <p>Free phone numbers for SMS verification provided by Zotactyson~</p>
+        <a href="page4.html"><button>Open</button></a>
+      </div>
+      <div class="card">
+        <h3>Telegrams Bot</h3>
+        <p>Some Usefull telegram bots are provided by Zotactyson.</p>
+        <a href="page5.html"><button>Open</button></a>
+      </div>
+      <div class="card">
+        <h3>Bombing</h3>
+        <p>Here is some sites for call bomber and SMS bomber for fun with friends </p>
+        <a href="page6.html"><button>Open</button></a>
+      </div>
+      <div class="card">
+        <h3>Unc</h3>
+        <p>Here is some UNC of 2k10-2k11 by zotactyson</p>
+        <a href="page7.html"><button>Open</button></a>
+      </div>
+      <!-- <div class="card">
+        <h3>Unc</h3>
+        <p>Here is some UNC of 2k14-2k19 by zotactyson</p>
+        <a href="page8.html"><button>Open</button></a>
+      </div> -->
+      <div class="card">
+        <h3>Unlimited Gmail</h3>
+        <p>How to Create Unlimited Gmail Accounts Without Phone Number</p>
+        <a href="page9.html"><button>Open</button></a>
+      </div>
+      <div class="card">
+        <h3>Forms</h3>
+        <p>Some Instagram Reporting Forms by zotactyson</p>
+        <a href="page10.html"><button>Open</button></a>
+      </div>
+      <div class="card">
+        <h3>CB PATCH METHOD</h3>
+        <p>CB Patch method by zotactyson & Piyush</p>
+        <a href="page11.html"><button>Open</button></a>
+      </div>
+    </div>
+  </section>
+  <!-- Premium User Features Section -->
+  <section class="premium-section">
+    <h2 style="color:#6e48aa; font-size:2.1rem; margin-bottom:2rem; text-align:center;">
+      <i class="fas fa-crown" style="color:#ff5e5e; margin-right:10px;"></i>Premium User Features
+    </h2>
+    <div class="premium-cards-container">
+      <div class="premium-card">
+        <i class="fas fa-star" style="color:#ff5e5e; font-size:2rem; margin-bottom:10px;"></i>
+        <h3>Exclusive XML Packs</h3>
+        <p>Unlock advanced Alight Motion XMLs and editing resources only for premium members.</p>
+        <a href="page8.html"><button class="premium-btn">Access</button></a>
+      </div>
+      <div class="premium-card">
+        <i class="fas fa-robot" style="color:#6e48aa; font-size:2rem; margin-bottom:10px;"></i>
+        <h3>Premium Telegram Bots</h3>
+        <p>Get access to paid Telegram bots for automation, analytics, and more.</p>
+        <a href="premium-bots.html"><button class="premium-btn">Explore</button></a>
+      </div>
+      <div class="premium-card">
+        <i class="fas fa-shield-alt" style="color:#ff5e5e; font-size:2rem; margin-bottom:10px;"></i>
+        <h3>Account Protection Tools</h3>
+        <p>Advanced security guides and tools for keeping your accounts safe.</p>
+        <a href="premium-security.html"><button class="premium-btn">View</button></a>
+      </div>
+      <div class="premium-card">
+        <i class="fas fa-gem" style="color:#6e48aa; font-size:2rem; margin-bottom:10px;"></i>
+        <h3>Priority Support</h3>
+        <p>Get priority customer support and direct help from our experts.</p>
+        <a href="premium-support.html"><button class="premium-btn">Contact</button></a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background-color: #f8f9fa; color: #333; padding: 40px 20px 20px; font-family: Arial, sans-serif;">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between;">
+      <div style="flex: 1; min-width: 250px; margin-bottom: 30px;">
+          <h3 style="color: #2c3e50;">
+            <i class="fas fa-rocket" style="color:#ff5e5e; margin-right:8px;"></i>Zotactyson
+          </h3>
+          <p style="line-height: 1.6; max-width: 300px;">
+            <i class="fas fa-lightbulb" style="color:#ff5e5e; margin-right:6px;"></i>
+            Delivering innovative solutions and expert services to drive your success forward. Let's build the future together.
+          </p>
+      </div>
+      <div style="flex: 1; min-width: 150px; margin-bottom: 30px;">
+          <h4 style="color: #2c3e50;">
+            <i class="fas fa-link" style="color:#ff5e5e; margin-right:6px;"></i>Quick Links
+          </h4>
+          <ul style="list-style: none; padding: 0; line-height: 2;">
+              <li><a href="/about.html" style="color: #333; text-decoration: none;">
+                <i class="fas fa-users" style="color:#ff5e5e; margin-right:5px;"></i>About Us</a></li>
+              <li><a href="/contact.html" style="color: #333; text-decoration: none;">
+                <i class="fas fa-envelope" style="color:#ff5e5e; margin-right:5px;"></i>Contact Us</a></li>
+              <li><a href="/login.html" style="color: #333; text-decoration: none;">
+                <i class="fas fa-sign-in-alt" style="color:#ff5e5e; margin-right:5px;"></i>Login</a></li>
+              <li><a href="/signup.html" style="color: #333; text-decoration: none;">
+                <i class="fas fa-user-plus" style="color:#ff5e5e; margin-right:5px;"></i>Sign Up</a></li>
+          </ul>
+      </div>
+      <div style="flex: 1; min-width: 200px; margin-bottom: 30px;">
+          <h4 style="color: #2c3e50;">
+            <i class="fas fa-address-book" style="color:#ff5e5e; margin-right:6px;"></i>Get In Touch
+          </h4>
+          <p style="line-height: 1.8;">
+              <strong><i class="fas fa-envelope" style="color:#ff5e5e; margin-right:5px;"></i>Email:</strong><br>
+              <a href="mailto:zotactyson@gmail.com" style="color: #333; text-decoration: none;">zotactyson@gmail.com</a>
+          </p>
+          <p style="line-height: 1.8;">
+              <strong><i class="fas fa-phone" style="color:#ff5e5e; margin-right:5px;"></i>Phone:</strong><br>
+              +1 (555) 123-4567
+          </p>
+      </div>
+      <div style="flex: 1; min-width: 250px; margin-bottom: 30px;">
+          <h4 style="color: #2c3e50;">
+            <i class="fas fa-share-alt" style="color:#ff5e5e; margin-right:6px;"></i>Follow Us
+          </h4>
+          <p style="margin-top: 20px;"><strong><i class="fas fa-bell" style="color:#ff5e5e; margin-right:5px;"></i>Stay Updated:</strong></p>
+          <form>
+              <input type="email" placeholder="Your Email Address" style="padding: 10px; width: 70%; border: 1px solid #ccc; border-radius: 4px;">
+              <button type="submit" style="padding: 10px; background-color: #2c3e50; color: white; border: none; border-radius: 4px; margin-top: 10px; cursor: pointer;">
+                <i class="fas fa-paper-plane" style="margin-right:5px;"></i>Subscribe
+              </button>
+          </form>
+      </div>
+  </div>
+  <div style="max-width: 1200px; margin: 30px auto 0; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; font-size: 0.9em;">
+      <p>
+        <i class="far fa-copyright" style="color:#ff5e5e; margin-right:5px;"></i>
+        2025 Zotactyson. All rights reserved.
+      </p>
+      <p style="font-size: 0.85em;">
+          <a href="/privacy-policy" style="color: #666; text-decoration: none; margin: 0 10px;">
+            <i class="fas fa-user-secret" style="color:#ff5e5e; margin-right:5px;"></i>Privacy Policy</a> |
+          <a href="/terms-of-service" style="color: #666; text-decoration: none; margin: 0 10px;">
+            <i class="fas fa-file-contract" style="color:#ff5e5e; margin-right:5px;"></i>Terms of Service</a>
+      </p>
+  </div>
+</footer>
+<!-- Fix for mobile dropdown: Prevent navbar from closing when opening XML dropdown -->
+
+<script>
+  // Navbar menu toggle for mobile
+  const navToggle = document.getElementById('navToggle');
+  const navbarMenu = document.getElementById('navbarMenu');
+  navToggle.addEventListener('click', () => {
+    navbarMenu.classList.toggle('active');
+  });
+
+  // Dropdown toggle for mobile (only one open at a time)
+  document.querySelectorAll('.navbar-menu > li.has-dropdown').forEach(li => {
+    li.addEventListener('click', function(e) {
+      if(window.innerWidth <= 992) {
+        // Only toggle dropdown, do NOT close navbar
+        e.preventDefault();
+        // Close other open dropdowns
+        document.querySelectorAll('.navbar-menu > li.has-dropdown.open').forEach(openLi => {
+          if(openLi !== this) openLi.classList.remove('open');
+        });
+        this.classList.toggle('open');
+        // Ensure navbar stays open
+        navbarMenu.classList.add('active');
+      }
+    });
+    // Prevent dropdown links from closing menu
+    li.querySelectorAll('.dropdown a').forEach(a => {
+      a.addEventListener('click', function(ev) {
+        if(window.innerWidth <= 992) {
+          ev.stopPropagation();
+        }
+      });
+    });
+  });
+
+  // Close menu when clicking outside (mobile)
+  document.addEventListener('click', function(e) {
+    if(window.innerWidth <= 992) {
+      if (!navbarMenu.contains(e.target) && !navToggle.contains(e.target)) {
+        navbarMenu.classList.remove('active');
+        document.querySelectorAll('.navbar-menu > li.has-dropdown.open').forEach(openLi => {
+          openLi.classList.remove('open');
+        });
+      }
+    }
+  });
+</script>
+</body>
+
+</html>  
