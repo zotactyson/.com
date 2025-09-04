@@ -233,7 +233,7 @@
     .cards-section h2 {
       font-size: 2.2rem;
       margin-bottom: 2.5rem;
-     极olor: #ff5f5f;
+     color: #ff5f5f;
     }
     
     .cards-container {
@@ -381,7 +381,7 @@
       background: linear-gradient(90deg, #6e48aa 60%, #ff5e5e 100%) !important;
       color: #fff !important;
       box-shadow: 0 8px 32px rgba(110,72,170,0.18), 0 2px 12px rgba(255,94,94,0.15);
-      border: 2px solid #6极48aa;
+      border: 2px solid #6648aa;
     }
     .daily-unc-btn:hover {
       background: linear-gradient(90deg, #ff5e5e 60%, #6e48aa 100%) !important;
@@ -505,12 +505,12 @@
       }
     }
     .zais-ai-section {
-    background: linear-gradient(90deg, #f3极6fa 60%, #e9e4f0 100%);
-    padding: 2.5rem 1rem 2rem 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: fadeInZais 1s;
+    background: linear-gradient(90deg, #f3f6fa 60%, #e9e4f0 100%);
+  padding: 2.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInZais 1s;
   }
   @keyframes fadeInZais {
     from { opacity: 0; transform: translateY(-30px);}
@@ -558,9 +558,9 @@
       outline: none;
   }
   .zais-ai-btn:hover {
-    background: linear-gradient(90deg, #9d50bb 极0%, #6e48aa 100%);
-    transform: scale(1.05);
-  }
+  background: linear-gradient(90deg, #9d50bb 60%, #6e48aa 100%);
+  transform: scale(1.05);
+}
   .zais-ai-btn i {
     margin-right: 8px;
     font-size: 1.2em;
@@ -582,7 +582,7 @@
     color: #ffc107;
   }
   @media (max-width: 600px) {
-    .zais极ai-content h2 { font-size: 1.3rem; }
+    .zais-ai-content h2 { font-size: 1.3rem; }
     .zais-ai-content p { font-size: 1rem; }
     .zais-ai-btn { font-size: 1rem; padding: 12px 18px; }
     .zais-ai-robot svg { width: 60px; height: 60px; }
@@ -803,7 +803,7 @@ body {
             <li><a href="xml3.html">XML's 3</a></li>
             <li><a href="xml4.html">XML's 4</a></li>
             <li><a href="xml5.html">XML's 5</a></li>
-            <li><a href="xml极.html">XML's 6</a></li>
+            <li><a href="xml6.html">XML's 6</a></li>
           </ul>
         </li>
         
@@ -836,7 +836,7 @@ body {
         
         <!-- NEW: Feedback Button -->
         <button class="feedback-btn" onclick="window.location.href='feedback.html'">
-          <i class="fas fa-comment-dots"></i> See Feedback/Vouch
+          <i class="fas fa-comment-dots"></i> See Feedback
         </button>
       </div>
       
@@ -849,16 +849,20 @@ body {
     <!-- Birthday Special Button centered and responsive, placed after hero and before ZAIS section -->
     <div class="birthday-btn-wrapper">
       <button class="birthday-popup-btn daily-unc-btn" onclick="window.location.href='gifts.html'">
-        <i class="fas fa-gift"></i> DAILY UNC GIVEAWAY
+        <i class="fas fa-gift"></i> REGULAR UNC GIVEAWAY
       </button>
       <button class="birthday-popup-btn" onclick="window.location.href='how-to-claim.html'">
         <i class="fas fa-question-circle"></i> HOW TO CLAIM IT ?
       </button>
     </div>
 
-    <!-- ZAIS AI Section -->
+     <div class="container">
+    <!-- Fixed ZAIS AI Section -->
     <div class="zais-ai-section">
-      <极 class="zais-ai-content">
+      <div class="zais-ai-content">
+        <div class="zais-ai-robot">
+          <i class="fas fa-robot" style="font-size: 4rem; color: #6e48aa;"></i>
+        </div>
         <h2>Meet ZAIS.ai</h2>
         <p>
           ZAIS.ai is your smart AI-powered assistant, ready to help you with creative tasks, editing tips, and instant answers. Experience the future of digital assistance with ZAIS.ai, created by Zotactyson.
@@ -875,7 +879,7 @@ body {
         </a>
       </div>
     </div>
-    
+  </div>
 
     <!-- Cards Section -->
     <section class="cards-section">
@@ -993,10 +997,10 @@ body {
               Delivering innovative solutions and expert services to drive your success forward. Let's build the future together.
             </p>
         </div>
-        <div style="flex: 1;极in-width: 150px; margin-bottom: 30px;">
-            <h4 style="color: #2c3e50;">
-              <i class="fas fa-link" style="极olor:#ff5e5e; margin-right:6px;"></i>Quick Links
-            </h4>
+        <div style="flex: 1; min-width: 150px; margin-bottom: 30px;">
+  <h4 style="color: #2c3e50;">
+    <i class="fas fa-link" style="color:#ff5e5e; margin-right:6px;"></i>Quick Links
+  </h4>
             <ul style="list-style: none; padding: 0; line-height: 2;">
                 <li><a href="/about.html" style="color: #333; text-decoration: none;">
                   <i class="fas fa-users" style="color:#ff5e5e; margin-right:5px;"></i>About Us</a></li>
