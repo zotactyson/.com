@@ -311,6 +311,7 @@
             z-index: 1000;
             opacity: 0;
             transition: opacity 0.3s;
+            text-align: center;
         }
         
         .toast.show {
@@ -339,6 +340,37 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active {
+            background: #405de6;
+            color: white;
+        }
+        
+        .filter-btn:hover {
+            background: #f0f0f0;
+        }
+        
+        .filter-btn.active:hover {
+            background: #304ac1;
+        }
+        
         /* Responsive styles */
         @media (max-width: 768px) {
             .user-grid {
@@ -358,6 +390,11 @@
             
             h1 {
                 font-size: 2rem;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+                align-items: center;
             }
         }
         
@@ -462,6 +499,14 @@
             <input type="text" id="searchInput" placeholder="Search users by username, email, or bio...">
         </div>
         
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All Users</button>
+            <button class="filter-btn" data-filter="meta-true">Meta TRUE</button>
+            <button class="filter-btn" data-filter="meta-false">Meta FALSE</button>
+            <button class="filter-btn" data-filter="active">Active Users</button>
+            <button class="filter-btn" data-filter="inactive">Inactive Users</button>
+        </div>
+        
         <div class="user-grid" id="userGrid">
             <!-- User cards will be generated here -->
         </div>
@@ -479,171 +524,66 @@
     <div class="toast" id="toast">Email copied to clipboard!</div>
 
     <script>
-        // User data with updated information
+        // Updated user data with new information
         const users = [
             {
-                user: "jxjcjdjdbd",
-                email: "jxjcjdjdbd@gmail.com",
-                followers: 50,
-                following: 65,
-                posts: 18,
-                date: "2014-16",
-                bio: "",
-                rest: "s**************4@gmail.com",
-                name: "jxjcjdjdbd",
-                meta: false
-            },
-            {
-                user: "kacharu.8855",
-                email: "kacharu.8855@gmail.com",
-                followers: 152,
-                following: 2753,
-                posts: 5,
-                date: "2014-16",
-                bio: "",
-                rest: "k**************5@gmail.com",
-                name: "kavita.",
-                meta: true
-            },
-            {
-                user: "cantikacacan224",
-                email: "cantikacacan224@gmail.com",
-                followers: 40,
-                following: 0,
-                posts: 2,
-                date: "2014-16",
-                bio: "",
-                rest: "c**************4@gmail.com",
-                name: "cantikacacan",
-                meta: false
-            },
-            {
-                user: "mandana.sharif.2010",
-                email: "mandana.sharif.2010@gmail.com",
-                followers: 74,
-                following: 28,
-                posts: 0,
-                date: "2014-16",
-                bio: "",
-                rest: "m**************0@gmail.com",
-                name: "mandana",
-                meta: true
-            },
-            {
-                user: "policonfissoes",
-                email: "policonfissoes@gmail.com",
-                followers: 87,
-                following: 54,
-                posts: 0,
-                date: "2014-16",
-                bio: "",
-                rest: "m**************o@gmail.com",
-                name: "kaah|confissões",
-                meta: true
-            },
-            {
-                user: "aprilmarker123",
-                email: "aprilmarker123@gmail.com",
-                followers: 40,
-                following: 45,
-                posts: 0,
-                date: "2014-16",
-                bio: "",
-                rest: "a*******3@gmail.com",
-                name: "April Marker",
-                meta: false
-            },
-            {
-                user: "famousgrame",
-                email: "famousgrame@gmail.com",
-                followers: 48,
-                following: 212,
-                posts: 1,
-                date: "2014-16",
-                bio: "contest for everyone★",
-                rest: "f**************k@gmail.com",
-                name: "contest for everyone★",
-                meta: false
-            },
-            {
-                user: "ionellandreea",
-                email: "ionellandreea@gmail.com",
-                followers: 105,
-                following: 138,
-                posts: 50,
-                date: "2014-16",
-                bio: "",
-                rest: "o**************l@yahoo.com",
-                name: "Ionella.Andreea",
-                meta: true
-            },
-            {
-                user: "joeinalim1291",
-                email: "joeinalim1291@gmail.com",
-                followers: 207,
-                following: 560,
-                posts: 1,
-                date: "2014-16",
-                bio: "",
-                rest: "j**************1@gmail.com",
-                name: "Joeinalim",
-                meta: true
-            },
-            {
-                user: "gavrielsamson502",
-                email: "gavrielsamson502@gmail.com",
-                followers: 41,
-                following: 169,
-                posts: 12,
-                date: "2014-16",
-                bio: "",
-                rest: "g**************2@gmail.com",
-                name: "Gabriel Samson",
-                meta: true
-            },
-            {
-                user: "melitaperrvj",
-                email: "melitaperrvj@gmail.com",
+                user: "kamdrauch",
+                email: "kamdrauch@gmail.com",
                 followers: 0,
                 following: 0,
                 posts: 0,
-                date: "?",
+                date: "2014-16",
                 bio: "",
-                rest: "m*******j@gmail.com",
+                rest: "k*******h@gmail.com",
+                name: "Kam Drauch",
+                meta: false
+            },
+            {
+                user: "kinghustlah777",
+                email: "kinghustlah777@gmail.com",
+                followers: 5,
+                following: 64,
+                posts: 0,
+                date: "2014-16",
+                bio: "",
+                rest: "Reset None",
                 name: "",
                 meta: false
             },
             {
-                user: "",
-                email: "kandychiakj3q9@aol.com",
+                user: "iabsgsgai",
+                email: "iabsgsgai@gmail.com",
                 followers: 0,
                 following: 0,
                 posts: 0,
-                date: "2012",
+                date: "2014-16",
                 bio: "",
-                rest: "k*******9@a**.com",
+                rest: "i*******i@gmail.com",
                 name: "",
-                hit: 1,
                 meta: false
             },
             {
-                user: "",
-                email: "nevasheltonbi@aol.com",
-                followers: 0,
+                user: "shawndafilby",
+                email: "shawndafilby@gmail.com",
+                followers: 2,
                 following: 0,
                 posts: 0,
-                date: "2012",
-                bio: "Zombie trailblazer. Introvert. Typical pop cultureaholic. Amateur creator. Infuriatingly humble communicator. Food fanatic.",
-                rest: "n*******i@a**.com",
-                name: "",
-                hit: 1,
+                date: "2014-16",
+                bio: "",
+                rest: "s*******y@gmail.com",
+                name: "Shawnda Filby",
                 meta: false
-            }
+            },
+        
+        
+        
+            
         ];
 
         // Variables for pagination
         let currentPage = 1;
         const usersPerPage = 9;
+        let filteredUsers = [...users];
         
         // Display users based on current page
         function displayUsers(usersArray) {
@@ -767,11 +707,12 @@
                 const searchTerm = searchInput.value.toLowerCase();
                 
                 if (searchTerm.trim() === '') {
-                    displayUsers(users);
+                    filteredUsers = [...users];
+                    applyActiveFilter();
                     return;
                 }
                 
-                const filteredUsers = users.filter(user => 
+                filteredUsers = users.filter(user => 
                     (user.user && user.user.toLowerCase().includes(searchTerm)) ||
                     (user.email && user.email.toLowerCase().includes(searchTerm)) ||
                     (user.bio && user.bio.toLowerCase().includes(searchTerm)) ||
@@ -784,23 +725,73 @@
             });
         }
         
+        // Filter functionality
+        function setupFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    applyFilter(filter);
+                });
+            });
+        }
+        
+        // Apply the selected filter
+        function applyFilter(filter) {
+            switch(filter) {
+                case 'all':
+                    filteredUsers = [...users];
+                    break;
+                case 'meta-true':
+                    filteredUsers = users.filter(user => user.meta === true);
+                    break;
+                case 'meta-false':
+                    filteredUsers = users.filter(user => user.meta === false);
+                    break;
+                case 'active':
+                    filteredUsers = users.filter(user => user.followers > 0 || user.posts > 0);
+                    break;
+                case 'inactive':
+                    filteredUsers = users.filter(user => user.followers === 0 && user.posts === 0);
+                    break;
+                default:
+                    filteredUsers = [...users];
+            }
+            
+            currentPage = 1;
+            displayUsers(filteredUsers);
+        }
+        
+        // Apply the active filter
+        function applyActiveFilter() {
+            const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+            applyFilter(activeFilter);
+        }
+        
         // Initialize the page
         function init() {
             displayUsers(users);
             setupSearch();
+            setupFilters();
             
             // Pagination event listeners
             document.getElementById('prevBtn').addEventListener('click', () => {
                 if (currentPage > 1) {
                     currentPage--;
-                    displayUsers(users);
+                    displayUsers(filteredUsers);
                 }
             });
             
             document.getElementById('nextBtn').addEventListener('click', () => {
-                if (currentPage < Math.ceil(users.length / usersPerPage)) {
+                if (currentPage < Math.ceil(filteredUsers.length / usersPerPage)) {
                     currentPage++;
-                    displayUsers(users);
+                    displayUsers(filteredUsers);
                 }
             });
         }
