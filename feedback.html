@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Feedback Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .filter-btn {
+            background: white;
+            border: 2px solid #6e8efb;
+            color: #6e8efb;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: #6e8efb;
+            color: white;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .feedback-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feedback-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feedback-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+        
+        .feedback-content {
+            padding: 1.5rem;
+        }
+        
+        .feedback-user {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+            border: 2px solid #6e8efb;
+        }
+        
+        .user-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        .user-info span {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .feedback-text {
+            color: #555;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        .feedback-date {
+            color: #888;
+            font-size: 0.85rem;
+        }
+        
+        .rating {
+            color: #ffc107;
+            margin-top: 0.5rem;
+        }
+        
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 80%;
+            margin: 0 auto;
+        }
+        
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 5px;
+        }
+        
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-lightbox:hover {
+            color: #6e8efb;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+        }
+        
+        .cta-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #6e8efb;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>User Feedback Gallery</h1>
+        <p class="subtitle">See what our users are saying about our products and services through their feedback and reviews.</p>
+    </header>
+    
+    <div class="container">
+        <div class="controls">
+            <button class="filter-btn active" data-filter="all">All Feedback</button>
+            <button class="filter-btn" data-filter="positive">Positive</button>
+            <button class="filter-btn" data-filter="critical">Critical</button>
+            <button class="filter-btn" data-filter="suggestions">Suggestions</button>
+        </div>
+        
+        <div class="gallery">
+            <!-- Feedback Card 1 -->
+            <div class="feedback-card" data-category="positive">
+                <img src="/feedback (1).jpg" alt="Feedback screenshot" class="feedback-img">
+                <div class="feedback-content">
+                    <div class="feedback-user">
+                        <img src="pfp (1).jpg" alt="User avatar" class="user-avatar">
+                        <div class="user-info">
+                            <h3>Rishav Gupta</h3>
+                            <span>Premium User</span>
+                        </div>
+                    </div>
+                    <p class="feedback-text">"This service has completely transformed how I manage my projects. The interface is intuitive and the features are incredibly powerful!"</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="feedback-date">Posted on: May 15, 2023</p>
+                </div>
+            </div>
+            
+            <!-- Feedback Card 2 -->
+            <div class="feedback-card" data-category="suggestions">
+                <img src="feedback (2).jpg" alt="Feedback screenshot" class="feedback-img">
+                <div class="feedback-content">
+                    <div class="feedback-user">
+                        <img src="pfp (2).jpg" alt="User avatar" class="user-avatar">
+                        <div class="user-info">
+                            <h3>Zypher</h3>
+                            <span>Business User</span>
+                        </div>
+                    </div>
+                    <p class="feedback-text">"Overall a great product, but I think the reporting feature could be improved with more customization options. Would love to see this in future updates."</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p class="feedback-date">Posted on: June 3, 2023</p>
+                </div>
+            </div>
+            
+            <!-- Feedback Card 3 -->
+            <div class="feedback-card" data-category="positive">
+                <img src="feedback (3).jpg" alt="Feedback screenshot" class="feedback-img">
+                <div class="feedback-content">
+                    <div class="feedback-user">
+                        <img src="pfp (3).jpg" alt="User avatar" class="user-avatar">
+                        <div class="user-info">
+                            <h3>Suraj Kumar</h3>
+                            <span>New User</span>
+                        </div>
+                    </div>
+                    <p class="feedback-text">"The customer support team was incredibly helpful when I had questions about setting up my account. The product itself is also very user-friendly!"</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="feedback-date">Posted on: July 21, 2023</p>
+                </div>
+            </div>
+            
+            <!-- Feedback Card 4 -->
+            <div class="feedback-card" data-category="critical">
+                <img src="feedback (4).jpg" alt="Feedback screenshot" class="feedback-img">
+                <div class="feedback-content">
+                    <div class="feedback-user">
+                        <img src="pfp (4).jpg" alt="User avatar" class="user-avatar">
+                        <div class="user-info">
+                            <h3>Daddy Toxic</h3>
+                            <span>Free Tier User</span>
+                        </div>
+                    </div>
+                    <p class="feedback-text">"I experienced some performance issues when working with larger files. Hopefully this can be optimized in future versions as it's otherwise a good product."</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p class="feedback-date">Posted on: April 8, 2023</p>
+                </div>
+            </div>
+            
+            <!-- Feedback Card 5
+            <div class="feedback-card" data-category="suggestions">
+                <img src="https://placehold.co/600x400/a777e3/ffffff?text=Feedback+Screenshot" alt="Feedback screenshot" class="feedback-img">
+                <div class="feedback-content">
+                    <div class="feedback-user">
+                        <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="User avatar" class="user-avatar">
+                        <div class="user-info">
+                            <h3>Jessica Williams</h3>
+                            <span>Power User</span>
+                        </div>
+                    </div>
+                    <p class="feedback-text">"Love the recent update! It would be great if you could add integration with more third-party apps though. That would make this already excellent product even better."</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="feedback-date">Posted on: August 12, 2023</p>
+                </div>
+            </div> -->
+            
+            <!-- Feedback Card 6
+            <div class="feedback-card" data-category="positive">
+                <img src="https://placehold.co/600x400/6e8efb/ffffff?text=Feedback+Screenshot" alt="Feedback screenshot" class="feedback-img">
+                <div class="feedback-content">
+                    <div class="feedback-user">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="User avatar" class="user-avatar">
+                        <div class="user-info">
+                            <h3>James Wilson</h3>
+                            <span>Enterprise User</span>
+                        </div>
+                    </div>
+                    <p class="feedback-text">"We've been using this across our entire organization and it has significantly improved our workflow. The collaboration features are exceptional!"</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="feedback-date">Posted on: May 30, 2023</p>
+                </div>
+            </div>
+        </div>
+         -->
+        <!-- <div class="cta-section">
+            <h2 class="cta-title">Share Your Experience</h2>
+            <p>Have you used our products or services? We'd love to hear about your experience!</p>
+            <a href="#" class="cta-button">Submit Your Feedback</a>
+        </div> -->
+    </div>
+    
+    <div class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <div class="lightbox-content">
+            <img src="" alt="Feedback screenshot" class="lightbox-img">
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 zotactyson. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const feedbackCards = document.querySelectorAll('.feedback-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    const filter = button.getAttribute('data-filter');
+                    
+                    feedbackCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Lightbox functionality
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImg = document.querySelector('.lightbox-img');
+            const closeLightbox = document.querySelector('.close-lightbox');
+            const feedbackImgs = document.querySelectorAll('.feedback-img');
+            
+            feedbackImgs.forEach(img => {
+                img.addEventListener('click', () => {
+                    lightbox.style.display = 'flex';
+                    lightboxImg.src = img.src;
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+                });
+            });
+            
+            closeLightbox.addEventListener('click', () => {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
+            });
+            
+            // Close lightbox when clicking outside the image
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    lightbox.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
