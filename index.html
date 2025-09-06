@@ -760,6 +760,216 @@ body {
   filter: blur(5px);
   pointer-events: none;
 }
+        /* Unique namespace for all styles */
+        .cs-container * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .cs-container {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .cs-content {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .cs-header {
+            background: #4a6cf7;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .cs-header h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .cs-header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .cs-main {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .cs-info {
+            flex: 1;
+            min-width: 300px;
+            background: #f9fafc;
+            padding: 30px;
+        }
+        
+        .cs-info h2 {
+            color: #4a6cf7;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        
+        .cs-contact-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .cs-icon {
+            width: 50px;
+            height: 50px;
+            background: #4a6cf7;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 20px;
+        }
+        
+        .cs-contact-details h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .cs-contact-details p {
+            color: #666;
+            font-size: 15px;
+        }
+        
+        .cs-form-container {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+        }
+        
+        .cs-form-group {
+            margin-bottom: 20px;
+        }
+        
+        .cs-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .cs-input, .cs-textarea, .cs-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .cs-input:focus, .cs-textarea:focus, .cs-select:focus {
+            outline: none;
+            border-color: #4a6cf7;
+            box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+        }
+        
+        .cs-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .cs-button {
+            background: #4a6cf7;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .cs-button i {
+            margin-right: 8px;
+        }
+        
+        .cs-button:hover {
+            background: #3a5cd8;
+        }
+        
+        .cs-status-message {
+            text-align: center;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .cs-success {
+            background: #d4edda;
+            color: #155724;
+            display: block;
+        }
+        
+        .cs-error {
+            background: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+        
+        .cs-required {
+            color: #e74c3c;
+        }
+        
+        .cs-footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .cs-main {
+                flex-direction: column;
+            }
+            
+            .cs-content {
+                border-radius: 8px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .cs-header h1 {
+                font-size: 24px;
+            }
+            
+            .cs-header p {
+                font-size: 14px;
+            }
+            
+            .cs-info, .cs-form-container {
+                padding: 20px;
+            }
+        }
+
   </style>
 </head>
 
@@ -985,6 +1195,156 @@ body {
         </div>
       </div>
     </section>
+    <div class="cs-container">
+        <div class="cs-content">
+            <div class="cs-header">
+                <h1>Contact Support</h1>
+                <p>We're here to help and answer any questions you might have</p>
+            </div>
+            
+            <div class="cs-main">
+                <div class="cs-info">
+                    <h2>Get in Touch</h2>
+                    
+                    <div class="cs-contact-method">
+                        <div class="cs-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="cs-contact-details">
+                            <h3>Email Us</h3>
+                            <p>We'll respond quickly to your inquiry</p>
+                        </div>
+                    </div>
+                    
+                    <div class="cs-contact-method">
+                        <div class="cs-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="cs-contact-details">
+                            <h3>Response Time</h3>
+                            <p>Typically within 24 hours</p>
+                        </div>
+                    </div>
+                    
+                    <div class="cs-contact-method">
+                        <div class="cs-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="cs-contact-details">
+                            <h3>Help Center</h3>
+                            <p>Browse our FAQ section for quick answers</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cs-form-container">
+                    <form id="cs-contactForm" action="https://formsubmit.co/zotactyson@gmail.com" method="POST">
+                        <!-- FormSubmit configuration -->
+                        <input type="hidden" name="_subject" value="New support message from your website">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="#">
+                        
+                        <div class="cs-form-group">
+                            <label for="cs-name" class="cs-label">Your Name</label>
+                            <input type="text" id="cs-name" name="name" class="cs-input" placeholder="Enter your name">
+                        </div>
+                        
+                        <div class="cs-form-group">
+                            <label for="cs-email" class="cs-label">Your Email <span class="cs-required">*</span></label>
+                            <input type="email" id="cs-email" name="email" class="cs-input" required placeholder="Enter your email">
+                        </div>
+                        
+                        <div class="cs-form-group">
+                            <label for="cs-urgency" class="cs-label">Urgency</label>
+                            <select id="cs-urgency" name="urgency" class="cs-select">
+                                <option value="low">Low - General question</option>
+                                <option value="medium" selected>Medium - Need help</option>
+                                <option value="high">High - Urgent issue</option>
+                            </select>
+                        </div>
+                        
+                        <div class="cs-form-group">
+                            <label for="cs-message" class="cs-label">Message <span class="cs-required">*</span></label>
+                            <textarea id="cs-message" name="message" class="cs-textarea" required placeholder="Please describe your issue or question in detail"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="cs-button"><i class="fas fa-paper-plane"></i> Send Message</button>
+                    </form>
+                    
+                    <div id="cs-statusMessage" class="cs-status-message"></div>
+                </div>
+            </div>
+            
+            <div class="cs-footer">
+                <p>© 2023 Support Center | We value your feedback</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('cs-contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            const statusMessage = document.getElementById('cs-statusMessage');
+            
+            // Simple validation
+            const email = document.getElementById('cs-email').value;
+            const message = document.getElementById('cs-message').value;
+            
+            if (!email || !message) {
+                statusMessage.textContent = 'Please fill in all required fields.';
+                statusMessage.className = 'cs-status-message cs-error';
+                return;
+            }
+            
+            // Email format validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                statusMessage.textContent = 'Please enter a valid email address.';
+                statusMessage.className = 'cs-status-message cs-error';
+                return;
+            }
+            
+            // Change button to show loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            // Create a form data object
+            const formData = new FormData(this);
+            
+            // Send the form using fetch
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    statusMessage.textContent = 'Message sent successfully! We will get back to you soon.';
+                    statusMessage.className = 'cs-status-message cs-success';
+                    this.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                statusMessage.textContent = 'There was an error sending your message. Please try again.';
+                statusMessage.className = 'cs-status-message cs-error';
+            })
+            .finally(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Scroll to status message
+                statusMessage.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
 
     <footer style="background-color: #f8f9fa; color: #333; padding: 40px 20px 20px; font-family: Arial, sans-serif;">
     <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between;">
