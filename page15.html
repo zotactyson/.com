@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unbaning Zone - Account Recovery Assistance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #3498db;
+            --secondary: #8e44ad;
+            --accent: #2ecc71;
+            --dark: #1a1a2e;
+            --darker: #16213e;
+            --light: #f0f8ff;
+            --card-bg: rgba(30, 30, 60, 0.8);
+            --success: #00ca8d;
+            --warning: #ff9900;
+            --danger: #ff3860;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--darker), var(--dark));
+            color: var(--light);
+            line-height: 1.6;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--dark), var(--secondary));
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.03)"/></svg>');
+            background-size: cover;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #c0c0ff;
+            max-width: 800px;
+            margin: 20px auto;
+            font-weight: 300;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 25px;
+            border-radius: 12px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #a0a0dd;
+        }
+        
+        .disclaimer {
+            background: linear-gradient(135deg, rgba(255, 100, 100, 0.2), rgba(200, 50, 50, 0.25));
+            padding: 25px;
+            border-radius: 15px;
+            margin: 40px 0;
+            border-left: 5px solid var(--danger);
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .disclaimer::before {
+            content: '!';
+            position: absolute;
+            top: -20px;
+            left: 15px;
+            font-size: 8rem;
+            opacity: 0.05;
+            font-weight: bold;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .section {
+            background: var(--card-bg);
+            border-radius: 18px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .section:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .section h2 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section h2 i {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .section p {
+            color: #ccd6f6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: auto;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            padding: 30px;
+            color: #8892b0;
+            font-size: 0.9rem;
+            background: var(--dark);
+            border-radius: 20px 20px 0 0;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .stats {
+                gap: 15px;
+            }
+            
+            .stat-item {
+                padding: 12px 20px;
+            }
+            
+            .stat-number {
+                font-size: 1.8rem;
+            }
+        }
+        
+        .success-story {
+            background: rgba(0, 200, 140, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 4px solid var(--accent);
+            position: relative;
+        }
+        
+        .success-story::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: -10px;
+            transform: translateY(-50%);
+            background: var(--accent);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: white;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--warning);
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .info-box {
+            background: rgba(52, 152, 219, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-lock-open"></i> UNBANING ZONE</h1>
+            <p class="subtitle">Helping you recover your Instagram account through legitimate methods. This resource is for educational purposes only to help those who've been unfairly banned.</p>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">12,540+</div>
+                    <div class="stat-label">Accounts Recovered</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="disclaimer">
+            <p><strong><i class="fas fa-exclamation-circle"></i> Important Disclaimer:</strong> This resource is for educational purposes only. We do not guarantee these methods will work for everyone. Always follow Instagram's Terms of Service and use legitimate recovery methods.</p>
+        </div>
+        
+        <div class="grid-container">
+            <!-- IMP UNBAN Section -->
+            <div class="section">
+                <span class="notification-badge">5</span>
+                <h2><i class="fas fa-bolt"></i> IMP Unban</h2>
+                <p>Important unban methods for recently disabled accounts. These methods focus on quick recovery for accounts that were mistakenly disabled.</p>
+                <div class="success-story">
+                    <p><strong>Success Tip:</strong> Be persistent but wait 24-48 hours between attempts.</p>
+                </div>
+                <a href="#" class="btn"><i class="fas fa-eye"></i> View Methods</a>
+            </div>
+            
+            <!-- HATE UNBAN Section -->
+            <div class="section">
+                <h2><i class="fas fa-ban"></i> Hate Unban</h2>
+                <p>Recover accounts disabled for alleged hate speech or bullying violations. For accounts wrongly flagged by automated systems.</p>
+                <div class="info-box">
+                    <p><i class="fas fa-info-circle"></i> Provide clear evidence that the violation was accidental or mistaken.</p>
+                </div>
+                <a href="#" class="btn"><i class="fas fa-book"></i> Learn More</a>
+            </div>
+            
+            <!-- SELF UNBAN Section -->
+            <div class="section">
+                <h2><i class="fas fa-user-shield"></i> Self Unban</h2>
+                <p>Methods to recover your own account without external help. Step-by-step guides for various ban scenarios.</p>
+                <div class="success-story">
+                    <p><strong>Did you know?</strong> 70% of accounts can be recovered using self-help methods.</p>
+                </div>
+                <a href="#" class="btn"><i class="fas fa-graduation-cap"></i> Learn Self-Recovery</a>
+            </div>
+            
+            <!-- SPAM UNBAN Section -->
+            <div class="section">
+                <span class="notification-badge">3</span>
+                <h2><i class="fas fa-shield-alt"></i> Spam Unban</h2>
+                <p>Appeal options for accounts disabled for alleged spam activity. Useful for businesses and content creators.</p>
+                <div class="info-box">
+                    <p><i class="fas fa-lightbulb"></i> Reduce your daily activities to avoid being flagged as spam.</p>
+                </div>
+                <a href="#" class="btn"><i class="fas fa-times-circle"></i> View Solutions</a>
+            </div>
+            
+            <!-- PERMA UNBAN NEW METHOD Section -->
+            <div class="section">
+                <h2><i class="fas fa-key"></i> Perma Unban New Method</h2>
+                <p>Latest techniques for appealing permanently banned accounts. Updated regularly with new information.</p>
+                <div class="success-story">
+                    <p><strong>Recent Success:</strong> 42% success rate with new appeal method in Q2 2023.</p>
+                </div>
+                <a href="#" class="btn"><i class="fas fa-download"></i> View New Methods</a>
+            </div>
+            
+            <!-- STUCK UNBAN FORM Section -->
+            <div class="section">
+                <h2><i class="fas fa-hourglass-half"></i> Stuck Unban Form</h2>
+                <p>If your appeal is stuck or you're not receiving responses, try these specialized forms and contact methods.</p>
+                <div class="info-box">
+                    <p><i class="fas fa-clock"></i> Response times can vary from 24 hours to several weeks.</p>
+                </div>
+                <a href="#" class="btn"><i class="fas fa-file-alt"></i> Access Forms</a>
+            </div>
+            
+            <!-- UN FORM Section -->
+            <div class="section">
+                <h2><i class="fas fa-globe"></i> UN Form</h2>
+                <p>United Nations approach to account recovery. Systematic method for difficult cases.</p>
+                <div class="success-story">
+                    <p><strong>Effective:</strong> This method has helped recover accounts banned for over 6 months.</p>
+                </div>
+                <a href="#" class="btn"><i class="fas fa-handshake"></i> Learn More</a>
+            </div>
+            
+            <!-- INSTA PASS RESET Section -->
+            <div class="section">
+                <h2><i class="fas fa-key"></i> Instagram Password Reset</h2>
+                <p>Recover access to your account through password reset procedures and troubleshooting.</p>
+                <div class="info-box">
+                    <p><i class="fas fa-shield-alt"></i> Always use a strong, unique password for your account.</p>
+                </div>
+                <a href="#" class="btn"><i class="fas fa-sync-alt"></i> Password Recovery Guide</a>
+            </div>
+            
+            <!-- INSTA ACC LOCK RECOVERY Section -->
+            <div class="section">
+                <h2><i class="fas fa-lock"></i> Instagram Account Lock Recovery</h2>
+                <p>Solutions for temporarily locked accounts and login issues.</p>
+                <div class="success-story">
+                    <p><strong>Quick fix:</strong> Most temporary locks are automatically removed within 24-48 hours.</p>
+                </div>
+                <a href="#" class="btn"><i class="fas fa-unlock"></i> Recovery Methods</a>
+            </div>
+            
+            <!-- META OUTREACH FORMS Section -->
+            <div class="section">
+                <span class="notification-badge">7</span>
+                <h2><i class="fas fa-life-ring"></i> Meta Outreach Forms</h2>
+                <p>Direct forms and contact methods for Meta support teams. Official channels for account recovery.</p>
+                <div class="success-story">
+                    <p><strong>Pro Tip:</strong> Business accounts have higher priority for support.</p>
+                </div>
+                <a href="#" class="btn"><i class="fas fa-envelope"></i> Access Meta Forms</a>
+            </div>
+            
+            <!-- TOS UNBAN Section -->
+            <div class="section">
+                <h2><i class="fas fa-file-contract"></i> TOS Unban</h2>
+                <p>Appeal accounts disabled for Terms of Service violations. Guidance for crafting effective appeals.</p>
+                <div class="info-box">
+                    <p><i class="fas fa-exclamation-triangle"></i> Carefully review Instagram's Terms of Service before appealing.</p>
+                </div>
+                <a href="#" class="btn"><i class="fas fa-balance-scale"></i> TOS Appeal Guide</a>
+            </div>
+            
+            <!-- CHAT UNBAN Section -->
+            <div class="section">
+                <h2><i class="fas fa-comments"></i> Chat Unban</h2>
+                <p>Methods to contact support via chat for faster resolution. Availability varies by region.</p>
+                <div class="success-story">
+                    <p><strong>Available:</strong> Chat support is available in North America, Europe, and Australia.</p>
+                </div>
+                <a href="#" class="btn"><i class="fas fa-comment-dots"></i> Learn More</a>
+            </div>
+        </div>
+        
+        <footer>
+            <p><i class="fas fa-info-circle"></i> Disclaimer: This resource is for educational purposes only. We are not affiliated with Instagram or Meta.</p>
+            <p>© 2023 Unbaning Zone - Account Recovery Assistance</p>
+        </footer>
+    </div>
+</body>
+</html>
