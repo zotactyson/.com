@@ -313,6 +313,44 @@
             border-radius: 8px;
             margin-top: 15px;
         }
+
+        /* Navigation */
+        .main-nav {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 0;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .main-nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .main-nav a {
+            color: #ccd6f6;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .main-nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .main-nav a.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -339,6 +377,16 @@
     </header>
     
     <div class="container">
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="unban-imp.html"><i class="fas fa-bolt"></i> IMP Unban</a></li>
+                <li><a href="unban-hate.html"><i class="fas fa-ban"></i> Hate Unban</a></li>
+                <li><a href="unban-self.html"><i class="fas fa-user-shield"></i> Self Unban</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+        
         <div class="disclaimer">
             <p><strong><i class="fas fa-exclamation-circle"></i> Important Disclaimer:</strong> This resource is for educational purposes only. We do not guarantee these methods will work for everyone. Always follow Instagram's Terms of Service and use legitimate recovery methods.</p>
         </div>
@@ -383,7 +431,7 @@
                 <div class="info-box">
                     <p><i class="fas fa-lightbulb"></i> Reduce your daily activities to avoid being flagged as spam.</p>
                 </div>
-                <a href="#" class="btn"><i class="fas fa-times-circle"></i> View Solutions</a>
+                <a href="unban-spam.html" class="btn"><i class="fas fa-times-circle"></i> View Solutions</a>
             </div>
             
             <!-- PERMA UNBAN NEW METHOD Section -->
@@ -393,7 +441,7 @@
                 <div class="success-story">
                     <p><strong>Recent Success:</strong> 42% success rate with new appeal method in Q2 2023.</p>
                 </div>
-                <a href="#" class="btn"><i class="fas fa-download"></i> View New Methods</a>
+                <a href="unban-perma.html" class="btn"><i class="fas fa-download"></i> View New Methods</a>
             </div>
             
             <!-- STUCK UNBAN FORM Section -->
@@ -403,7 +451,7 @@
                 <div class="info-box">
                     <p><i class="fas fa-clock"></i> Response times can vary from 24 hours to several weeks.</p>
                 </div>
-                <a href="#" class="btn"><i class="fas fa-file-alt"></i> Access Forms</a>
+                <a href="unban-stuck.html" class="btn"><i class="fas fa-file-alt"></i> Access Forms</a>
             </div>
             
             <!-- UN FORM Section -->
@@ -413,7 +461,7 @@
                 <div class="success-story">
                     <p><strong>Effective:</strong> This method has helped recover accounts banned for over 6 months.</p>
                 </div>
-                <a href="#" class="btn"><i class="fas fa-handshake"></i> Learn More</a>
+                <a href="unban-unform.html" class="btn"><i class="fas fa-handshake"></i> Learn More</a>
             </div>
             
             <!-- INSTA PASS RESET Section -->
@@ -423,7 +471,7 @@
                 <div class="info-box">
                     <p><i class="fas fa-shield-alt"></i> Always use a strong, unique password for your account.</p>
                 </div>
-                <a href="#" class="btn"><i class="fas fa-sync-alt"></i> Password Recovery Guide</a>
+                <a href="password-reset.html" class="btn"><i class="fas fa-sync-alt"></i> Password Recovery Guide</a>
             </div>
             
             <!-- INSTA ACC LOCK RECOVERY Section -->
@@ -433,7 +481,7 @@
                 <div class="success-story">
                     <p><strong>Quick fix:</strong> Most temporary locks are automatically removed within 24-48 hours.</p>
                 </div>
-                <a href="#" class="btn"><i class="fas fa-unlock"></i> Recovery Methods</a>
+                <a href="lock-recovery.html" class="btn"><i class="fas fa-unlock"></i> Recovery Methods</a>
             </div>
             
             <!-- META OUTREACH FORMS Section -->
@@ -444,7 +492,7 @@
                 <div class="success-story">
                     <p><strong>Pro Tip:</strong> Business accounts have higher priority for support.</p>
                 </div>
-                <a href="#" class="btn"><i class="fas fa-envelope"></i> Access Meta Forms</a>
+                <a href="meta-forms.html" class="btn"><i class="fas fa-envelope"></i> Access Meta Forms</a>
             </div>
             
             <!-- TOS UNBAN Section -->
@@ -454,7 +502,7 @@
                 <div class="info-box">
                     <p><i class="fas fa-exclamation-triangle"></i> Carefully review Instagram's Terms of Service before appealing.</p>
                 </div>
-                <a href="#" class="btn"><i class="fas fa-balance-scale"></i> TOS Appeal Guide</a>
+                <a href="tos-unban.html" class="btn"><i class="fas fa-balance-scale"></i> TOS Appeal Guide</a>
             </div>
             
             <!-- CHAT UNBAN Section -->
@@ -464,7 +512,7 @@
                 <div class="success-story">
                     <p><strong>Available:</strong> Chat support is available in North America, Europe, and Australia.</p>
                 </div>
-                <a href="#" class="btn"><i class="fas fa-comment-dots"></i> Learn More</a>
+                <a href="chat-unban.html" class="btn"><i class="fas fa-comment-dots"></i> Learn More</a>
             </div>
         </div>
         
@@ -473,5 +521,22 @@
             <p>© 2023 Unbaning Zone - Account Recovery Assistance</p>
         </footer>
     </div>
+
+    <script>
+        // Simple JavaScript to handle navigation active state
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.main-nav a');
+            
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (currentPage === linkPage || (currentPage === '' && linkPage === 'index.html')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
