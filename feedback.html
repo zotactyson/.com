@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Feedback Gallery</title>
+    <title>Vouches & Feedback Gallery</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -13,448 +13,559 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
+        :root {
+            --primary: #3498db;
+            --secondary: #8e44ad;
+            --accent: #2ecc71;
+            --dark: #1a1a2e;
+            --darker: #16213e;
+            --light: #f0f8ff;
+            --card-bg: rgba(30, 30, 60, 0.8);
+            --success: #00ca8d;
+            --warning: #ff9900;
+            --danger: #ff3860;
+        }
+        
         body {
-            background-color: #f8f9fa;
-            color: #333;
+            background: linear-gradient(135deg, var(--darker), var(--dark));
+            color: var(--light);
             line-height: 1.6;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
+            padding: 0;
+            min-height: 100vh;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 20px;
         }
         
-        .controls {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .filter-btn {
-            background: white;
-            border: 2px solid #6e8efb;
-            color: #6e8efb;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .filter-btn:hover, .filter-btn.active {
-            background: #6e8efb;
-            color: white;
-        }
-        
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-        
-        .feedback-card {
-            background: white;
-            border-radius: 10px;
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--dark), var(--secondary));
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .feedback-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-        
-        .feedback-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            cursor: pointer;
-        }
-        
-        .feedback-content {
-            padding: 1.5rem;
-        }
-        
-        .feedback-user {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .user-avatar {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 1rem;
-            border: 2px solid #6e8efb;
-        }
-        
-        .user-info h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.2rem;
-        }
-        
-        .user-info span {
-            color: #777;
-            font-size: 0.9rem;
-        }
-        
-        .feedback-text {
-            color: #555;
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-        
-        .feedback-date {
-            color: #888;
-            font-size: 0.85rem;
-        }
-        
-        .rating {
-            color: #ffc107;
-            margin-top: 0.5rem;
-        }
-        
-        .lightbox {
-            display: none;
-            position: fixed;
+        header::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.03)"/></svg>');
+            background-size: cover;
         }
         
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 80%;
-            margin: 0 auto;
-        }
-        
-        .lightbox-img {
-            max-width: 100%;
-            max-height: 80vh;
-            border-radius: 5px;
-        }
-        
-        .close-lightbox {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        
-        .close-lightbox:hover {
-            color: #6e8efb;
-        }
-        
-        .cta-section {
-            text-align: center;
-            padding: 3rem 1rem;
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
-            color: white;
-            border-radius: 10px;
-            margin-bottom: 3rem;
-        }
-        
-        .cta-title {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .cta-button {
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
             display: inline-block;
-            background: white;
-            color: #6e8efb;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
         }
         
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #c0c0ff;
+            max-width: 800px;
+            margin: 20px auto;
+            font-weight: 300;
+        }
+        
+        /* Slideshow container */
+        .slideshow-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 40px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .slide {
+            display: none;
+            width: 100%;
+            transition: opacity 0.5s ease;
+        }
+        
+        .slide img {
+            width: 100%;
+            border-radius: 15px;
+            display: block;
+        }
+        
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            width: 100%;
+            text-align: center;
+            padding: 15px;
+            color: white;
+        }
+        
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            font-weight: bold;
+            padding: 16px;
+            color: white;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+            user-select: none;
+        }
+        
+        .next {
+            right: 0;
+            border-radius: 50%;
+        }
+        
+        .prev:hover, .next:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        /* Gallery grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            aspect-ratio: 4/3;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            color: white;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            transform: translateY(10px);
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Section styling */
+        .section {
+            background: var(--card-bg);
+            border-radius: 18px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            margin: 40px 0;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .section h2 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section h2 i {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
         footer {
             text-align: center;
-            padding: 2rem;
-            color: #777;
+            margin-top: 80px;
+            padding: 30px;
+            color: #8892b0;
             font-size: 0.9rem;
+            background: var(--dark);
+            border-radius: 20px 20px 0 0;
         }
         
         @media (max-width: 768px) {
-            .gallery {
+            .gallery-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 15px;
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
-            
-            .subtitle {
-                font-size: 1rem;
-            }
+        }
+        
+        /* Dots for slideshow */
+        .dots {
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 0 5px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .active-dot, .dot:hover {
+            background-color: var(--primary);
+        }
+        
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 25px;
+            border-radius: 12px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #a0a0dd;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>User Feedback Gallery</h1>
-        <p class="subtitle">See what our users are saying about our products and services through their feedback and reviews.</p>
+        <div class="container">
+            <h1><i class="fas fa-images"></i> Vouches & Feedback Gallery</h1>
+            <p class="subtitle">Showcasing the positive feedback and vouches from satisfied clients</p>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Positive Vouches</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfaction Rate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support</div>
+                </div>
+            </div>
+        </div>
     </header>
     
     <div class="container">
-        <div class="controls">
-            <button class="filter-btn active" data-filter="all">All Feedback</button>
-            <button class="filter-btn" data-filter="positive">Positive</button>
-            <button class="filter-btn" data-filter="critical">Critical</button>
-            <button class="filter-btn" data-filter="suggestions">Suggestions</button>
+        <div class="section">
+            <h2><i class="fas fa-star"></i> Featured Feedback</h2>
+            <p>Here are some of our most recent and notable vouches from satisfied customers.</p>
+            
+            <!-- Slideshow container -->
+            <div class="slideshow-container">
+                <!-- Slide 1 -->
+                <div class="slide fade">
+                    <img src="vouch (1).jpg" alt="Vouch from John D.">
+                    <div class="slide-caption">"Amazing service! Recovered my account in just 2 days." - John D.</div>
+                </div>
+                
+                <!-- Slide 2 -->
+                <div class="slide fade">
+                    <img src="vouch (2).jpg" alt="Vouch from Sarah M.">
+                    <div class="slide-caption">"Professional and quick response. Highly recommend!" - Sarah M.</div>
+                </div>
+                
+                <!-- Slide 3 -->
+                <div class="slide fade">
+                    <img src="vouch (3).jpg" alt="Vouch from Mike R.">
+                    <div class="slide-caption">"Was skeptical at first, but they delivered as promised." - Mike R.</div>
+                </div>
+                
+                <!-- Navigation buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            
+            <!-- Dots -->
+            <div class="dots">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
         </div>
         
-        <div class="gallery">
-            <!-- Feedback Card 1 -->
-            <div class="feedback-card" data-category="positive">
-                <img src="feedback (1).jpg" alt="Feedback screenshot" class="feedback-img">
-                <div class="feedback-content">
-                    <div class="feedback-user">
-                        <img src="pfp (1).jpg" alt="User avatar" class="user-avatar">
-                        <div class="user-info">
-                            <h3>Rishav Gupta</h3>
-                            <span>Premium User</span>
-                        </div>
-                    </div>
-                    <p class="feedback-text">"This service has completely transformed how I manage my projects. The interface is intuitive and the features are incredibly powerful!"</p>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="feedback-date">Posted on: September 15, 2025</p>
-                </div>
-            </div>
+        <div class="section">
+            <h2><i class="fas fa-th"></i> Vouches Gallery</h2>
+            <p>Browse through our collection of positive feedback and vouches from our satisfied customers.</p>
             
-            <!-- Feedback Card 2 -->
-            <div class="feedback-card" data-category="suggestions">
-                <img src="feedback (2).jpg" alt="Feedback screenshot" class="feedback-img">
-                <div class="feedback-content">
-                    <div class="feedback-user">
-                        <img src="pfp (2).jpg" alt="User avatar" class="user-avatar">
-                        <div class="user-info">
-                            <h3>Zypher</h3>
-                            <span>Business User</span>
-                        </div>
-                    </div>
-                    <p class="feedback-text">"Overall a great product, but I think the reporting feature could be improved with more customization options. Would love to see this in future updates."</p>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <p class="feedback-date">Posted on: August 3, 2025</p>
+            <div class="gallery-grid">
+                <!-- Gallery item 1 -->
+                <div class="gallery-item">
+                    <img src="vouch (1).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">Instagram Recovery - @user123</div>
                 </div>
-            </div>
-            
-            <!-- Feedback Card 3 -->
-            <div class="feedback-card" data-category="positive">
-                <img src="feedback (3).jpg" alt="Feedback screenshot" class="feedback-img">
-                <div class="feedback-content">
-                    <div class="feedback-user">
-                        <img src="pfp (3).jpg" alt="User avatar" class="user-avatar">
-                        <div class="user-info">
-                            <h3>Suraj Kumar</h3>
-                            <span>New User</span>
-                        </div>
-                    </div>
-                    <p class="feedback-text">"The customer support team was incredibly helpful when I had questions about setting up my account. The product itself is also very user-friendly!"</p>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p class="feedback-date">Posted on: July 21, 2025</p>
+                
+                <!-- Gallery item 2 -->
+                <div class="gallery-item">
+                    <img src="vouch (2).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">Facebook Unban - @social_user</div>
                 </div>
-            </div>
-            
-            <!-- Feedback Card 4 -->
-            <div class="feedback-card" data-category="critical">
-                <img src="feedback (4).jpg" alt="Feedback screenshot" class="feedback-img">
-                <div class="feedback-content">
-                    <div class="feedback-user">
-                        <img src="pfp (4).jpg" alt="User avatar" class="user-avatar">
-                        <div class="user-info">
-                            <h3>Daddy Toxic</h3>
-                            <span>Free Tier User</span>
-                        </div>
-                    </div>
-                    <p class="feedback-text">"I experienced some performance issues when working with larger files. Hopefully this can be optimized in future versions as it's otherwise a good product."</p>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <p class="feedback-date">Posted on: April 8, 2025</p>
+                
+                <!-- Gallery item 3 -->
+                <div class="gallery-item">
+                    <img src="vouch (3).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">Account Restoration - @business_account</div>
                 </div>
-            </div>
-            
-            <!-- Feedback Card 5
-            <div class="feedback-card" data-category="suggestions">
-                <img src="https://placehold.co/600x400/a777e3/ffffff?text=Feedback+Screenshot" alt="Feedback screenshot" class="feedback-img">
-                <div class="feedback-content">
-                    <div class="feedback-user">
-                        <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="User avatar" class="user-avatar">
-                        <div class="user-info">
-                            <h3>Jessica Williams</h3>
-                            <span>Power User</span>
-                        </div>
-                    </div>
-                    <p class="feedback-text">"Love the recent update! It would be great if you could add integration with more third-party apps though. That would make this already excellent product even better."</p>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="feedback-date">Posted on: August 12, 2023</p>
+                
+                <!-- Gallery item 4 -->
+                <div class="gallery-item">
+                    <img src="vouch (4).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">Quick Response - @influencer_123</div>
                 </div>
-            </div> -->
-            
-            <!-- Feedback Card 6
-            <div class="feedback-card" data-category="positive">
-                <img src="https://placehold.co/600x400/6e8efb/ffffff?text=Feedback+Screenshot" alt="Feedback screenshot" class="feedback-img">
-                <div class="feedback-content">
-                    <div class="feedback-user">
-                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="User avatar" class="user-avatar">
-                        <div class="user-info">
-                            <h3>James Wilson</h3>
-                            <span>Enterprise User</span>
-                        </div>
-                    </div>
-                    <p class="feedback-text">"We've been using this across our entire organization and it has significantly improved our workflow. The collaboration features are exceptional!"</p>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="feedback-date">Posted on: May 30, 2023</p>
+                
+                <!-- Gallery item 5 -->
+                <div class="gallery-item">
+                    <img src="vouch (5).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">Permanent Ban Appeal - @gamer_tag</div>
                 </div>
+                
+                <!-- Gallery item 6 -->
+                <div class="gallery-item">
+                    <img src="vouch (6).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">Business Account Help - @company_name</div>
+                </div>
+                
+                <!-- Gallery item 7 -->
+                <div class="gallery-item">
+                    <img src="vouch (7).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">24/7 Support - @night_owl</div>
+                </div>
+                
+                <!-- Gallery item 8 -->
+                <div class="gallery-item">
+                    <img src="vouch (8).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">Multiple Accounts - @agency_owner</div>
+                </div>
+                
+                <!-- Gallery item 9 -->
+                <div class="gallery-item">
+                    <img src="vouch (9).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">Hate Speech Ban - @content_creator</div>
+                </div>
+                <!-- Gallery item 9 -->
+                <div class="gallery-item">
+                    <img src="vouch (10).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">Hate Speech Ban - @content_creator</div>
+                </div>
+                <!-- Gallery item 9 -->
+                <div class="gallery-item">
+                    <img src="vouch (11).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">Hate Speech Ban - @content_creator</div>
+                </div>
+                <!-- Gallery item 9 -->
+                <div class="gallery-item">
+                    <img src="vouch (12).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">Hate Speech Ban - @content_creator</div>
+                </div>
+                <!-- Gallery item 9 -->
+                <div class="gallery-item">
+                    <img src="vouch (13).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">Hate Speech Ban - @content_creator</div>
+                </div>
+                <!-- Gallery item 9 -->
+                <div class="gallery-item">
+                    <img src="vouch (14).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">Hate Speech Ban - @content_creator</div>
+                </div>
+                <!-- Gallery item 9 -->
+                <div class="gallery-item">
+                    <img src="vouch (15).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">Hate Speech Ban - @content_creator</div>
+                </div>
+                <!-- Gallery item 9 -->
+                <div class="gallery-item">
+                    <img src="vouch (16).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">Hate Speech Ban - @content_creator</div>
+                </div>
+                <!-- Gallery item 9 -->
+                <div class="gallery-item">
+                    <img src="vouch (17).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">Hate Speech Ban - @content_creator</div>
+                </div>
+                <!-- Gallery item 9 -->
+                <div class="gallery-item">
+                    <img src="vouch (18).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">Hate Speech Ban - @content_creator</div>
+                </div>
+                <!-- Gallery item 9 -->
+                <div class="gallery-item">
+                    <img src="vouch (19).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">Hate Speech Ban - @content_creator</div>
+                </div>
+                <!-- Gallery item 9 -->
+                <div class="gallery-item">
+                    <img src="vouch (20).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">Hate Speech Ban - @content_creator</div>
+                </div>
+                <!-- Gallery item 9 -->
+                <div class="gallery-item">
+                    <img src="vouch (21).jpg" alt="Customer vouch">
+                    <div class="gallery-caption">Hate Speech Ban - @content_creator</div>
+                </div>
+
             </div>
         </div>
-         -->
-        <!-- <div class="cta-section">
-            <h2 class="cta-title">Share Your Experience</h2>
-            <p>Have you used our products or services? We'd love to hear about your experience!</p>
-            <a href="#" class="cta-button">Submit Your Feedback</a>
-        </div> -->
+        
+        <footer>
+            <p><i class="fas fa-info-circle"></i> Note: These are sample vouches. Replace with your actual feedback screenshots.</p>
+            <p>© 2023 Unbaning Zone - Account Recovery Assistance</p>
+        </footer>
     </div>
-    
-    <div class="lightbox">
-        <span class="close-lightbox">&times;</span>
-        <div class="lightbox-content">
-            <img src="" alt="Feedback screenshot" class="lightbox-img">
-        </div>
-    </div>
-    
-    <footer>
-        <p>&copy; 2023 zotactyson. All rights reserved.</p>
-    </footer>
 
     <script>
-        // Filter functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const feedbackCards = document.querySelectorAll('.feedback-card');
+        // Slideshow functionality
+        let slideIndex = 1;
+        showSlides(slideIndex);
+        
+        // Next/previous controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+        
+        // Thumbnail image controls
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+        
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
             
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Remove active class from all buttons
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    
-                    // Add active class to clicked button
-                    button.classList.add('active');
-                    
-                    const filter = button.getAttribute('data-filter');
-                    
-                    feedbackCards.forEach(card => {
-                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                });
-            });
+            if (n > slides.length) { slideIndex = 1; }
+            if (n < 1) { slideIndex = slides.length; }
             
-            // Lightbox functionality
-            const lightbox = document.querySelector('.lightbox');
-            const lightboxImg = document.querySelector('.lightbox-img');
-            const closeLightbox = document.querySelector('.close-lightbox');
-            const feedbackImgs = document.querySelectorAll('.feedback-img');
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
             
-            feedbackImgs.forEach(img => {
-                img.addEventListener('click', () => {
-                    lightbox.style.display = 'flex';
-                    lightboxImg.src = img.src;
-                    document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
-                });
-            });
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active-dot", "");
+            }
             
-            closeLightbox.addEventListener('click', () => {
-                lightbox.style.display = 'none';
-                document.body.style.overflow = 'auto'; // Re-enable scrolling
-            });
-            
-            // Close lightbox when clicking outside the image
-            lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) {
-                    lightbox.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active-dot";
+        }
+        
+        // Auto-advance slideshow
+        setInterval(function() {
+            plusSlides(1);
+        }, 5000);
+        
+        // Gallery item click to view larger
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // In a real implementation, this would open a modal with the larger image
+                alert('In a real implementation, this would open a larger view of the image.');
             });
         });
     </script>
