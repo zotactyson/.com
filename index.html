@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>My Business - Home</title>
-
-  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   
   <style>
@@ -17,9 +15,46 @@
     }
     
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
       overflow-x: hidden;
+      color: #fff;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      min-height: 100vh;
+    }
+    
+    /* Particles container */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    
+    /* Glass theme styles */
+    .glass-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .glass-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      border-color: rgba(255, 255, 255, 0.3);
     }
     
     /* Navbar Styles */
@@ -28,9 +63,15 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      background-color: #111;
+      background: rgba(17, 17, 17, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       color: white;
-      position: relative;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .navbar-brand {
@@ -59,6 +100,7 @@
       position: relative;
       padding-right: 24px;
     }
+    
     .navbar-menu .has-dropdown > a::after {
       content: "\f078";
       font-family: "Font Awesome 6 Free";
@@ -67,12 +109,14 @@
       right: 8px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 极.9em;
+      font-size: 0.9em;
       transition: transform 0.3s;
     }
+    
     .navbar-menu .has-dropdown.open > a::after {
       transform: translateY(-50%) rotate(-180deg);
     }
+    
     .dropdown {
       transition: max-height 0.3s, opacity 0.3s;
       max-height: 0;
@@ -82,12 +126,16 @@
       position: absolute;
       top: 100%;
       left: 0;
-      background-color: #111;
+      background: rgba(17, 17, 17, 0.9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       width: 200px;
       z-index: 100;
       list-style: none;
       padding: 0.5rem 0;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .dropdown li {
@@ -98,13 +146,14 @@
       max-height: 600px;
       opacity: 1;
     }
+    
     .navbar-menu > li.open > .dropdown {
       max-height: 600px;
       opacity: 1;
       display: block;
       position: static;
       box-shadow: none;
-      background: #222;
+      background: rgba(34, 34, 34, 0.9);
       padding-left: 1rem;
     }
     
@@ -129,22 +178,24 @@
       color: #fff;
       padding: 0 1rem;
       position: relative;
-      background: transparent;
       overflow: hidden;
     }
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: url('hero-bg.jpg') no-repeat center center/cover;
-      filter: blur(8px) brightness(0.6);
-      z-index: -1;
+    
+    .hero-content {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 3rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      max-width: 900px;
+      margin: 0 auto;
     }
     
     .hero h1 {
       font-size: 2.5rem;
       margin-bottom: 1.5rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
     
     .hero p {
@@ -163,23 +214,26 @@
     .hero button {
       padding: 15px 35px;
       border: none;
-      background: #ff5e5e;
+      background: rgba(255, 94, 94, 0.8);
       color: #fff;
       font-size: 1rem;
       cursor: pointer;
       transition: 0.3s;
       border-radius: 6px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
     
     .hero button:hover {
-      background: #ff3030;
+      background: rgba(255, 48, 48, 0.9);
+      transform: translateY(-3px);
     }
     
     /* NEW: Feedback Button Styles */
     .feedback-btn {
-      padding: 15极 35px;
+      padding: 15px 35px;
       border: none;
-      background: #6e48aa;
+      background: rgba(110, 72, 170, 0.8);
       color: #fff;
       font-size: 1rem;
       cursor: pointer;
@@ -190,10 +244,12 @@
       justify-content: center;
       gap: 8px;
       box-shadow: 0 4px 15px rgba(110, 72, 170, 0.3);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
     
     .feedback-btn:hover {
-      background: #9d50bb;
+      background: rgba(157, 80, 187, 0.9);
       transform: translateY(-3px);
       box-shadow: 0 6px 20px rgba(110, 72, 170, 0.4);
     }
@@ -205,8 +261,6 @@
     /* About Section */
     .about-section {
       padding: 5rem 1rem;
-      background: #0f0f0f;
-      color: #fff;
       text-align: center;
     }
     
@@ -226,14 +280,13 @@
     /* Card Section */
     .cards-section {
       padding: 5rem 1rem;
-      background: #f9f9f9;
       text-align: center;
     }
     
     .cards-section h2 {
       font-size: 2.2rem;
       margin-bottom: 2.5rem;
-     color: #ff5f5f;
+      color: #ff5f5f;
     }
     
     .cards-container {
@@ -245,10 +298,8 @@
     }
     
     .card {
-      background: #fff;
       border-radius: 12px;
       padding: 1.5rem;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -261,40 +312,482 @@
     
     .card h3 {
       font-size: 1.5rem;
-      margin-bottom: 1极m;
-      color: #111;
+      margin-bottom: 1rem;
+      color: #fff;
     }
     
     .card p {
       font-size: 1rem;
-      color: #444;
+      color: rgba(255, 255, 255, 0.8);
       flex-grow: 1;
       margin-bottom: 1rem;
     }
     
-    .card button {
-      margin-top: 1rem;
-      padding: 12px;
-      border: none;
-      background: #ff5f5f;
-      color: #fff;
-      font-size: 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    
-    .card button:hover {
-      background: #ff3030;
-      transform: scale(1.05);
-    }
-    
+    /* NEON BUTTON STYLES */
+        .neon-button {
+            position: relative;
+            display: inline-block;
+            padding: 15px 30px;
+            color: #0ef;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            overflow: hidden;
+            transition: 0.5s;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            width: 100%;
+        }
+        
+        .neon-button:hover {
+            background: #0ef;
+            color: #000;
+            box-shadow: 0 0 5px #0ef,
+                        0 0 25px #0ef,
+                        0 0 50px #0ef,
+                        0 0 100px #0ef;
+        }
+        
+        .neon-button span {
+            position: absolute;
+            display: block;
+        }
+        
+        .neon-button span:nth-child(1) {
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #0ef);
+            animation: btn-anim1 2s linear infinite;
+        }
+        
+        @keyframes btn-anim1 {
+            0% { left: -100%; }
+            50%,100% { left: 100%; }
+        }
+        
+        .neon-button span:nth-child(2) {
+            top: -100%;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, #0ef);
+            animation: btn-anim2 2s linear infinite;
+            animation-delay: 0.5s;
+        }
+        
+        @keyframes btn-anim2 {
+            0% { top: -100%; }
+            50%,100% { top: 100%; }
+        }
+        
+        .neon-button span:nth-child(3) {
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(270deg, transparent, #0ef);
+            animation: btn-anim3 2s linear infinite;
+            animation-delay: 1s;
+        }
+        
+        @keyframes btn-anim3 {
+            0% { right: -100%; }
+            50%,100% { right: 100%; }
+        }
+        
+        .neon-button span:nth-child(4) {
+            bottom: -100%;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(360deg, transparent, #0ef);
+            animation: btn-anim4 2s linear infinite;
+            animation-delay: 1.5s;
+        }
+        
+        @keyframes btn-anim4 {
+            0% { bottom: -100%; }
+            50%,100% { bottom: 100%; }
+        }
+        
+        /* Different neon colors */
+        .neon-purple {
+            color: #f0f;
+        }
+        
+        .neon-purple:hover {
+            background: #f0f;
+            color: #000;
+            box-shadow: 0 0 5px #f0f,
+                        0 0 25px #f0f,
+                        0 0 50px #f0f,
+                        0 0 100px #f0f;
+        }
+        
+        .neon-purple span:nth-child(1) {
+            background: linear-gradient(90deg, transparent, #f0f);
+        }
+        
+        .neon-purple span:nth-child(2) {
+            background: linear-gradient(180deg, transparent, #f0f);
+        }
+        
+        .neon-purple span:nth-child(3) {
+            background: linear-gradient(270deg, transparent, #f0f);
+        }
+        
+        .neon-purple span:nth-child(4) {
+            background: linear-gradient(360deg, transparent, #f0f);
+        }
+        
+        .neon-green {
+            color: #0f0;
+        }
+        
+        .neon-green:hover {
+            background: #0f0;
+            color: #000;
+            box-shadow: 0 0 5px #0f0,
+                        0 0 25px #0f0,
+                        0 0 50px #0f0,
+                        0 0 100px #0f0;
+        }
+        
+        .neon-green span:nth-child(1) {
+            background: linear-gradient(90deg, transparent, #0f0);
+        }
+        
+        .neon-green span:nth-child(2) {
+            background: linear-gradient(180deg, transparent, #0f0);
+        }
+        
+        .neon-green span:nth-child(3) {
+            background: linear-gradient(270deg, transparent, #0f0);
+        }
+        
+        .neon-green span:nth-child(4) {
+            background: linear-gradient(360deg, transparent, #0f0);
+        }
+        
+        .neon-red {
+            color: #f00;
+        }
+        
+        .neon-red:hover {
+            background: #f00;
+            color: #000;
+            box-shadow: 0 0 5px #f00,
+                        0 0 25px #f00,
+                        0 0 50px #f00,
+                        0 0 100px #f00;
+        }
+        
+        .neon-red span:nth-child(1) {
+            background: linear-gradient(90deg, transparent, #f00);
+        }
+        
+        .neon-red span:nth-child(2) {
+            background: linear-gradient(180deg, transparent, #f00);
+        }
+        
+        .neon-red span:nth-child(3) {
+            background: linear-gradient(270deg, transparent, #f00);
+        }
+        
+        .neon-red span:nth-child(4) {
+            background: linear-gradient(360deg, transparent, #f00);
+        }
+        
+        .neon-orange {
+            color: #ff8c00;
+        }
+        
+        .neon-orange:hover {
+            background: #ff8c00;
+            color: #000;
+            box-shadow: 0 0 5px #ff8c00,
+                        0 0 25px #ff8c00,
+                        0 0 50px #ff8c00,
+                        0 0 100px #ff8c00;
+        }
+        
+        .neon-orange span:nth-child(1) {
+            background: linear-gradient(90deg, transparent, #ff8c00);
+        }
+        
+        .neon-orange span:nth-child(2) {
+            background: linear-gradient(180deg, transparent, #ff8c00);
+        }
+        
+        .neon-orange span:nth-child(3) {
+            background: linear-gradient(270deg, transparent, #ff8c00);
+        }
+        
+        .neon-orange span:nth-child(4) {
+            background: linear-gradient(360deg, transparent, #ff8c00);
+        }
+        
+        .neon-yellow {
+            color: #ff0;
+        }
+        
+        .neon-yellow:hover {
+            background: #ff0;
+            color: #000;
+            box-shadow: 0 0 5px #ff0,
+                        0 0 25px #ff0,
+                        0 0 50px #ff0,
+                        0 0 100px #ff0;
+        }
+        
+        .neon-yellow span:nth-child(1) {
+            background: linear-gradient(90deg, transparent, #ff0);
+        }
+        
+        .neon-yellow span:nth-child(2) {
+            background: linear-gradient(180deg, transparent, #ff0);
+        }
+        
+        .neon-yellow span:nth-child(3) {
+            background: linear-gradient(270deg, transparent, #ff0);
+        }
+        
+        .neon-yellow span:nth-child(4) {
+            background: linear-gradient(360deg, transparent, #ff0);
+        }
+        
+        .neon-pink {
+            color: #ff69b4;
+        }
+        
+        .neon-pink:hover {
+            background: #ff69b4;
+            color: #000;
+            box-shadow: 0 0 5px #ff69b4,
+                        0 0 25px #ff69b4,
+                        0 0 50px #ff69b4,
+                        0 0 100px #ff69b4;
+        }
+        
+        .neon-pink span:nth-child(1) {
+            background: linear-gradient(90deg, transparent, #ff69b4);
+        }
+        
+        .neon-pink span:nth-child(2) {
+            background: linear-gradient(180deg, transparent, #ff69b4);
+        }
+        
+        .neon-pink span:nth-child(3) {
+            background: linear-gradient(270deg, transparent, #ff69b4);
+        }
+        
+        .neon-pink span:nth-child(4) {
+            background: linear-gradient(360deg, transparent, #ff69b4);
+        }
+        
+        .neon-white {
+            color: #fff;
+        }
+        
+        .neon-white:hover {
+            background: #fff;
+            color: #000;
+            box-shadow: 0 0 5px #fff,
+                        0 0 25px #fff,
+                        0 0 50px #fff,
+                        0 0 100px #fff;
+        }
+        
+        .neon-white span:nth-child(1) {
+            background: linear-gradient(90deg, transparent, #fff);
+        }
+        
+        .neon-white span:nth-child(2) {
+            background: linear-gradient(180deg, transparent, #fff);
+        }
+        
+        .neon-white span:nth-child(3) {
+            background: linear-gradient(270deg, transparent, #fff);
+        }
+        
+        .neon-white span:nth-child(4) {
+            background: linear-gradient(360deg, transparent, #fff);
+        }
+        
+        .neon-gold {
+            color: #ffd700;
+        }
+        
+        .neon-gold:hover {
+            background: #ffd700;
+            color: #000;
+            box-shadow: 0 0 5px #ffd700,
+                        0 0 25px #ffd700,
+                        0 0 50px #ffd700,
+                        0 0 100px #ffd700;
+        }
+        
+        .neon-gold span:nth-child(1) {
+            background: linear-gradient(90deg, transparent, #ffd700);
+        }
+        
+        .neon-gold span:nth-child(2) {
+            background: linear-gradient(180deg, transparent, #ffd700);
+        }
+        
+        .neon-gold span:nth-child(3) {
+            background: linear-gradient(270deg, transparent, #ffd700);
+        }
+        
+        .neon-gold span:nth-child(4) {
+            background: linear-gradient(360deg, transparent, #ffd700);
+        }
+        
+        .neon-silver {
+            color: #c0c0c0;
+        }
+        
+        .neon-silver:hover {
+            background: #c0c0c0;
+            color: #000;
+            box-shadow: 0 0 5px #c0c0c0,
+                        0 0 25px #c0c0c0,
+                        0 0 50px #c0c0c0,
+                        0 0 100px #c0c0c0;
+        }
+        
+        .neon-silver span:nth-child(1) {
+            background: linear-gradient(90deg, transparent, #c0c0c0);
+        }
+        
+        .neon-silver span:nth-child(2) {
+            background: linear-gradient(180deg, transparent, #c0c0c0);
+        }
+        
+        .neon-silver span:nth-child(3) {
+            background: linear-gradient(270deg, transparent, #c0c0c0);
+        }
+        
+        .neon-silver span:nth-child(4) {
+            background: linear-gradient(360deg, transparent, #c0c0c0);
+        }
+        
+        .neon-aqua {
+            color: #00ffff;
+        }
+        
+        .neon-aqua:hover {
+            background: #00ffff;
+            color: #000;
+            box-shadow: 0 0 5px #00ffff,
+                        0 0 25px #00ffff,
+                        0 0 50px #00ffff,
+                        0 0 100px #00ffff;
+        }
+        
+        .neon-aqua span:nth-child(1) {
+            background: linear-gradient(90deg, transparent, #00ffff);
+        }
+        
+        .neon-aqua span:nth-child(2) {
+            background: linear-gradient(180deg, transparent, #00ffff);
+        }
+        
+        .neon-aqua span:nth-child(3) {
+            background: linear-gradient(270deg, transparent, #00ffff);
+        }
+        
+        .neon-aqua span:nth-child(4) {
+            background: linear-gradient(360deg, transparent, #00ffff);
+        }
+        
+        .neon-lime {
+            color: #32cd32;
+        }
+        
+        .neon-lime:hover {
+            background: #32cd32;
+            color: #000;
+            box-shadow: 0 0 5px #32cd32,
+                        0 0 25px #32cd32,
+                        0 0 50px #32cd32,
+                        0 0 100px #32cd32;
+        }
+        
+        .neon-lime span:nth-child(1) {
+            background: linear-gradient(90deg, transparent, #32cd32);
+        }
+        
+        .neon-lime span:nth-child(2) {
+            background: linear-gradient(180deg, transparent, #32cd32);
+        }
+        
+        .neon-lime span:nth-child(3) {
+            background: linear-gradient(270deg, transparent, #32cd32);
+        }
+        
+        .neon-lime span:nth-child(4) {
+            background: linear-gradient(360deg, transparent, #32cd32);
+        }
+        
+        .button-title {
+            color: white;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .instructions {
+            color: white;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .instructions h2 {
+            margin-bottom: 15px;
+            color: #0ef;
+        }
+        
+        .instructions p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .instructions code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
     /* Premium Section */
     .premium-section {
-      background: linear-gradient(90deg, #f3f6fa 60%, #e9e4f0 100%);
+      background: linear-gradient(90deg, rgba(243, 246, 250, 0.2) 60%, rgba(233, 228, 240, 0.2) 100%);
       padding: 5rem 1rem;
       text-align: center;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
+    
     .premium-cards-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -302,8 +795,8 @@
       max-width: 1100px;
       margin: 0 auto;
     }
+    
     .premium-card {
-      background: #fff;
       border-radius: 16px;
       box-shadow: 0 8px 24px rgba(110,72,170,0.10);
       padding: 2rem 1.2rem 2.2rem 1.2rem;
@@ -311,26 +804,30 @@
       flex-direction: column;
       align-items: center;
       transition: transform 0.3s;
-      border: 2px solid #ff5e5e18;
+      border: 2px solid rgba(255, 94, 94, 0.1);
     }
+    
     .premium-card:hover {
       transform: translateY(-10px) scale(1.03);
-      border-color: #ff5e5e;
+      border-color: rgba(255, 94, 94, 0.5);
     }
+    
     .premium-card h3 {
       font-size: 1.3rem;
       margin-bottom: 0.7rem;
       color: #6e48aa;
       font-weight: 700;
     }
+    
     .premium-card p {
       font-size: 1rem;
-      color: #444;
+      color: rgba(255, 255, 255, 0.8);
       margin-bottom: 1.2rem;
     }
+    
     .premium-btn {
       padding: 12px 28px;
-      background: #ff5e5e;
+      background: rgba(255, 94, 94, 0.8);
       color: #fff;
       border: none;
       border-radius: 8px;
@@ -338,17 +835,20 @@
       font-weight: 600;
       cursor: pointer;
       transition: background 0.2s, transform 0.2s;
-      box-shadow: 0 4极 12px rgba(110,72,170,0.10);
+      box-shadow: 0 4px 12px rgba(110,72,170,0.10);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
-    .premium-btn极over {
-      background: #6e48aa;
+    
+    .premium-btn:hover {
+      background: rgba(110, 72, 170, 0.9);
       transform: scale(1.07);
     }
     
     /* Birthday Button Styles */
     .birthday-popup-btn {
       display: inline-block;
-      background: linear-gradient(90deg, #ff5e5e 60%, #ffb347 100%);
+      background: linear-gradient(90deg, rgba(255, 94, 94, 0.8) 60%, rgba(255, 179, 71, 0.8) 100%);
       color: #fff;
       font-size: 1.2rem;
       padding: 16px 38px;
@@ -358,36 +858,508 @@
       font-weight: 700;
       box-shadow: 0 6px 24px rgba(255,94,94,0.18), 0 1.5px 8px rgba(255,179,71,0.12);
       cursor: pointer;
-      transition: background 0.2极, transform 0.2s, box-shadow 0.2s;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
       margin: 2rem auto;
       animation: popBtn 1.2s infinite alternate;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
+    
     .birthday-popup-btn i {
       margin-right: 10px;
       font-size: 1.3em;
       vertical-align: middle;
     }
+    
     .birthday-popup-btn:hover {
-      background: linear-gradient(90deg, #ffb347 60%, #ff5e5e 100%);
+      background: linear-gradient(90deg, rgba(255, 179, 71, 0.9) 60%, rgba(255, 94, 94, 0.9) 100%);
       transform: scale(1.08) rotate(-2deg);
       box-shadow: 0 12px 32px rgba(255,94,94,0.22);
     }
+    
     @keyframes popBtn {
       0% { transform: scale(1);}
       60% { transform: scale(1.08);}
       100% { transform: scale(1);}
     }
+    
     .daily-unc-btn {
-      background: linear-gradient(90deg, #6e48aa 60%, #ff5e5e 100%) !important;
+      background: linear-gradient(90deg, rgba(110, 72, 170, 0.8) 60%, rgba(255, 94, 94, 0.8) 100%) !important;
       color: #fff !important;
       box-shadow: 0 8px 32px rgba(110,72,170,0.18), 0 2px 12px rgba(255,94,94,0.15);
-      border: 2px solid #6648aa;
+      border: 2px solid rgba(102, 72, 170, 0.5);
     }
+    
     .daily-unc-btn:hover {
-      background: linear-gradient(90deg, #ff5e5e 60%, #6e48aa 100%) !important;
+      background: linear-gradient(90deg, rgba(255, 94, 94, 0.9) 60%, rgba(110, 72, 170, 0.9) 100%) !important;
       color: #fff !important;
-      border-color: #ff5e5e;
+      border-color: rgba(255, 94, 94, 0.7);
       transform: scale(1.10) rotate(-2deg);
+    }
+    
+    /* ZAIS AI Section */
+    .zais-ai-section {
+      background: linear-gradient(90deg, rgba(243, 246, 250, 0.2) 60%, rgba(233, 228, 240, 0.2) 100%);
+      padding: 2.5rem 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeInZais 1s;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    @keyframes fadeInZais {
+      from { opacity: 0; transform: translateY(-30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    
+    .zais-ai-content {
+      text-align: center;
+      max-width: 500px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .zais-ai-robot {
+      margin-bottom: 1.2rem;
+      animation: floatRobot 2s infinite ease-in-out;
+    }
+    
+    @keyframes floatRobot {
+      0%,100% { transform: translateY(0);}
+      50% { transform: translateY(-12px);}
+    }
+    
+    .zais-ai-content h2 {
+      color: #6e48aa;
+      font-size: 2rem;
+      margin-bottom: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    
+    .zais-ai-content p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+    
+    .zais-ai-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, rgba(110, 72, 170, 0.8) 60%, rgba(157, 80, 187, 0.8) 100%);
+      color: #fff;
+      font-size: 1.1rem;
+      padding: 14px 32px;
+      border-radius: 32px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(110,72,170,0.12);
+      transition: background 0.2s, transform 0.2s;
+      border: none;
+      outline: none;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .zais-ai-btn:hover {
+      background: linear-gradient(90deg, rgba(157, 80, 187, 0.9) 60%, rgba(110, 72, 170, 0.9) 100%);
+      transform: scale(1.05);
+    }
+    
+    .zais-ai-btn i {
+      margin-right: 8px;
+      font-size: 1.2em;
+      vertical-align: middle;
+    }
+    
+    .maintenance-notice {
+      background: rgba(255, 243, 205, 0.2);
+      color: #ffdd00;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin: 15px 0;
+      border-left: 4px solid rgba(255, 193, 7, 0.5);
+      font-size: 0.95rem;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .maintenance-notice i {
+      margin-right: 8px;
+      color: #ffc107;
+    }
+    
+    /* Birthday Button Wrapper */
+    .birthday-btn-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin-top: 2rem;
+      margin-bottom: 0;
+      flex-wrap: wrap;
+    }
+    
+    /* Telegram Popup Styles - Mandatory Version */
+    .telegram-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .telegram-popup-content {
+      background: linear-gradient(135deg, rgba(0, 136, 204, 0.9) 0%, rgba(0, 85, 128, 0.9) 100%);
+      border-radius: 16px;
+      padding: 30px;
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 3px solid rgba(255, 255, 255, 0.2);
+      animation: pulse 2s infinite;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 20px rgba(0, 136, 204, 0.7); }
+      50% { box-shadow: 0 0 30px rgba(0, 136, 204, 0.9); }
+      100% { box-shadow: 0 0 20px rgba(0, 136, 204, 0.7); }
+    }
+    
+    .telegram-icon {
+      font-size: 70px;
+      color: white;
+      margin-bottom: 20px;
+      animation: bounce 1s infinite alternate;
+    }
+    
+    @keyframes bounce {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px); }
+    }
+    
+    .telegram-popup h2 {
+      color: white;
+      margin-bottom: 15px;
+      font-size: 28px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .telegram-popup p {
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 25px;
+      line-height: 1.5;
+      font-size: 18px;
+    }
+    
+    .telegram-popup strong {
+      color: #ffdd00;
+      font-weight: bold;
+    }
+    
+    .telegram-join-btn {
+      display: inline-block;
+      background: white;
+      color: #0088cc;
+      text-decoration: none;
+      padding: 15px 40px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 18px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      border: 2px solid #0088cc;
+    }
+    
+    .telegram-join-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      background: #f0f0f0;
+    }
+    
+    .telegram-join-btn i {
+      margin-right: 10px;
+    }
+    
+    .mandatory-notice {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffdd00;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+      border: 1px solid rgba(255, 221, 0, 0.3);
+      font-weight: bold;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    /* Contact Support Styles */
+    .cs-container * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .cs-container {
+      background: linear-gradient(135deg, rgba(245, 247, 250, 0.2) 0%, rgba(195, 207, 226, 0.2) 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .cs-content {
+      width: 100%;
+      max-width: 800px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .cs-header {
+      background: rgba(74, 108, 247, 0.8);
+      color: white;
+      padding: 25px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .cs-header h1 {
+      font-size: 28px;
+      margin-bottom: 5px;
+    }
+    
+    .cs-header p {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+    
+    .cs-main {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+    .cs-info {
+      flex: 1;
+      min-width: 300px;
+      background: rgba(249, 250, 252, 0.1);
+      padding: 30px;
+    }
+    
+    .cs-info h2 {
+      color: #4a6cf7;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+    
+    .cs-contact-method {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .cs-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(74, 108, 247, 0.8);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 15px;
+      color: white;
+      font-size: 20px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .cs-contact-details h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+      color: #fff;
+    }
+    
+    .cs-contact-details p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 15px;
+    }
+    
+    .cs-form-container {
+      flex: 1;
+      min-width: 300px;
+      padding: 30px;
+    }
+    
+    .cs-form-group {
+      margin-bottom: 20px;
+    }
+    
+    .cs-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #fff;
+    }
+    
+    .cs-input, .cs-textarea, .cs-select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid rgba(221, 221, 221, 0.3);
+      border-radius: 6px;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .cs-input:focus, .cs-textarea:focus, .cs-select:focus {
+      outline: none;
+      border-color: #4a6cf7;
+      box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+    }
+    
+    .cs-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .cs-button {
+      background: rgba(74, 108, 247, 0.8);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      width: 100%;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .cs-button i {
+      margin-right: 8px;
+    }
+    
+    .cs-button:hover {
+      background: rgba(58, 92, 216, 0.9);
+    }
+    
+    .cs-status-message {
+      text-align: center;
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 20px;
+      display: none;
+    }
+    
+    .cs-success {
+      background: rgba(212, 237, 218, 0.2);
+      color: #155724;
+      display: block;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .cs-error {
+      background: rgba(248, 215, 218, 0.2);
+      color: #721c24;
+      display: block;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .cs-required {
+      color: #e74c3c;
+    }
+    
+    .cs-footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(248, 249, 250, 0.1);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    /* Footer Styles */
+    footer {
+      background: rgba(248, 249, 250, 0.1) !important;
+      color: #fff !important;
+      padding: 40px 20px 20px !important;
+      font-family: Arial, sans-serif !important;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    footer > div {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    
+    footer h3, footer h4 {
+      color: #fff !important;
+    }
+    
+    footer a {
+      color: rgba(255, 255, 255, 0.8) !important;
+    }
+    
+    footer a:hover {
+      color: #fff !important;
+    }
+    
+    footer input {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    footer button {
+      background: rgba(44, 62, 80, 0.8);
+      color: white;
+      border: none;
+    }
+    
+    footer button:hover {
+      background: rgba(44, 62, 80, 1);
     }
     
     /* Responsive Styles */
@@ -399,73 +1371,110 @@
         right: -300px;
         width: 300px;
         height: 100vh;
-        background: #111;
+        background: rgba(17, 17, 17, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         padding: 2rem;
         transition: right 0.3s ease;
         z-index: 1000;
         overflow-y: auto;
       }
+      
       .navbar-menu.active {
         right: 0;
       }
+      
       .navbar-menu > li {
         margin: 1rem 0;
         width: 100%;
       }
+      
       .navbar-menu > li > a {
         width: 100%;
       }
+      
       .dropdown {
         position: static;
         width: 100%;
         box-shadow: none;
-        background: #222;
+        background: rgba(34, 34, 34, 0.9);
         padding-left: 1rem;
         max-height: 0;
         opacity: 0;
         transition: max-height 0.3s, opacity 0.3s;
       }
+      
       .navbar-menu > li.open > .dropdown {
         max-height: 600px;
         opacity: 1;
         display: block;
         margin-top: 0.5rem;
       }
+      
       .dropdown li {
         padding: 0.5rem 0.5rem;
       }
+      
       .nav-toggle {
         display: block;
         z-index: 1001;
       }
+      
       .navbar {
         flex-wrap: wrap;
       }
     }
+    
     @media (max-width: 768px) {
       .cards-container,
       .premium-cards-container {
         grid-template-columns: 1fr;
         gap: 1rem;
       }
+      
       .hero h1 {
         font-size: 1.5rem;
       }
+      
       .hero p {
         font-size: 1rem;
       }
+      
       .about-section h2,
       .cards-section h2 {
         font-size: 1.3rem;
       }
+      
       .about-section p {
         font-size: 1rem;
       }
+      
       .hero-buttons {
         flex-direction: column;
         align-items: center;
       }
+      
+      .cs-main {
+        flex-direction: column;
+      }
     }
+    
+    @media (max-width: 600px) {
+      .zais-ai-content h2 { font-size: 1.3rem; }
+      .zais-ai-content p { font-size: 1rem; }
+      .zais-ai-btn { font-size: 1rem; padding: 12px 18px; }
+      .zais-ai-robot svg { width: 60px; height: 60px; }
+      .maintenance-notice { font-size: 0.85rem; padding: 10px; }
+      .birthday-popup-btn {
+        font-size: 1rem;
+        padding: 12px 18px;
+        margin: 8px;
+      }
+      .birthday-btn-wrapper {
+        margin-top: 1.2rem;
+      }
+    }
+    
     @media (max-width: 576px) {
       .navbar {
         padding: 1rem;
@@ -503,477 +1512,38 @@
         grid-template-columns: 1fr;
         gap: 0.7rem;
       }
+      
+      .cs-header h1 {
+        font-size: 24px;
+      }
+      
+      .cs-header p {
+        font-size: 14px;
+      }
+      
+      .cs-info, .cs-form-container {
+        padding: 20px;
+      }
     }
-    .zais-ai-section {
-    background: linear-gradient(90deg, #f3f6fa 60%, #e9e4f0 100%);
-  padding: 2.5rem 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: fadeInZais 1s;
-  }
-  @keyframes fadeInZais {
-    from { opacity: 0; transform: translateY(-30px);}
-    to { opacity: 1; transform: translateY(0);}
-  }
-  .zais-ai-content {
-    text-align: center;
-    max-width: 500px;
-    margin: 0 auto;
-    position: relative;
-  }
-  .zais-ai-robot {
-    margin-bottom: 1.2rem;
-    animation: floatRobot 2s infinite ease-in-out;
-  }
-  @keyframes floatRobot {
-    0%,100% { transform: translateY(0);}
-    50% { transform: translateY(-12px);}
-  }
-  .zais-ai-content h2 {
-    color: #6e48aa;
-    font-size: 2rem;
-    margin-bottom: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-  }
-  .zais-ai-content p {
-    color: #333;
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.7;
-  }
-  .zais-ai-btn {
-    display: inline-block;
-    background: linear-gradient(90deg, #6e48aa 60%, #9d50bb 100%);
-    color: #fff;
-    font-size: 1.1rem;
-    padding: 14px 32px;
-    border-radius: 32px;
-    text-decoration: none;
-    font-weight: 600;
-    box-shadow: 0 4px 12px rgba(110,72,170,0.12);
-    transition: background 0.2s, transform 0.2s;
-    border: none;
-      outline: none;
-  }
-  .zais-ai-btn:hover {
-  background: linear-gradient(90deg, #9d50bb 60%, #6e48aa 100%);
-  transform: scale(1.05);
-}
-  .zais-ai-btn i {
-    margin-right: 8px;
-    font-size: 1.2em;
-    vertical-align: middle;
-  }
-  .maintenance-notice {
-    background: #fff3cd;
-    color: #856404;
-    padding: 12px 16px;
-    border-radius: 8px;
-    margin: 15px 0;
-    border-left: 4px solid #ffc107;
-    font-size: 0.95rem;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-  .maintenance-notice i {
-    margin-right: 8px;
-    color: #ffc107;
-  }
-  @media (max-width: 600px) {
-    .zais-ai-content h2 { font-size: 1.3rem; }
-    .zais-ai-content p { font-size: 1rem; }
-    .zais-ai-btn { font-size: 1rem; padding: 12px 18px; }
-    .zais-ai-robot svg { width: 60px; height: 60px; }
-    .maintenance-notice { font-size: 0.85rem; padding: 10px; }
-  }
-  @media (max-width: 700px) {
-  footer > div {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-  }
-  footer > div > div {
-    min-width: 100% !important;
-    margin-bottom: 20px !important;
-  }
-}
-
-.birthday-btn-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 2rem;
-  margin-bottom: 0;
-  flex-wrap: wrap;
-}
-.birthday-popup-btn {
-  display: inline-block;
-  background: linear-gradient(90deg, #ff5e5e 60%, #ffb347 100%);
-  color: #fff;
-  font-size: 1.2rem;
-  padding: 16px 38px;
-  border-radius: 32px;
-  border: none;
-  outline: none;
-  font-weight: 700;
-  box-shadow: 0 6px 24px rgba(255,94,94,0.18), 0 1.5px 8px rgba(255,179,71,0.12);
-  cursor: pointer;
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-  animation: popBtn 1.2s infinite alternate;
-  margin: 10px;
-}
-.birthday-popup-btn i {
-  margin-right: 10px;
-  font-size: 1.3em;
-  vertical-align: middle;
-}
-.birthday-popup-btn:hover {
-  background: linear-gradient(90deg, #ffb347 60%, #ff5e5e 100%);
-  transform: scale(1.08) rotate(-2deg);
-  box-shadow: 0 12px 32px rgba(255,94,94,0.22);
-}
-@keyframes popBtn {
-  0% { transform: scale(1);}
-  60% { transform: scale(1.08);}
-  100% { transform: scale(1);}
-}
-@media (max-width: 600px) {
-  .birthday-popup-btn {
-    font-size: 1rem;
-    padding: 12px 18px;
-    margin: 8px;
-  }
-  .birthday-btn-wrapper {
-    margin-top: 1.2rem;
-  }
-}
-
-/* Telegram Popup Styles - Mandatory Version */
-.telegram-popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.95);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  opacity: 1;
-  visibility: visible;
-}
-
-.telegram-popup-content {
-  background: linear-gradient(135deg, #0088cc 0%, #005580 100%);
-  border-radius: 16px;
-  padding: 30px;
-  width: 90%;
-  max-width: 500px;
-  text-align: center;
-  position: relative;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  border: 3px solid #fff;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% { box-shadow: 0 0 20px rgba(0, 136, 204, 0.7); }
-  50% { box-shadow: 0 0 30px rgba(0, 136, 204, 0.9); }
-  100% { box-shadow: 0 0 20px rgba(0, 136, 204, 0.7); }
-}
-
-.telegram-icon {
-  font-size: 70px;
-  color: white;
-  margin-bottom: 20px;
-  animation: bounce 1s infinite alternate;
-}
-
-@keyframes bounce {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-10px); }
-}
-
-.telegram-popup h2 {
-  color: white;
-  margin-bottom: 15px;
-  font-size: 28px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.telegram-popup p {
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 25px;
-  line-height: 1.5;
-  font-size: 18px;
-}
-
-.telegram-popup strong {
-  color: #ffdd00;
-  font-weight: bold;
-}
-
-.telegram-join-btn {
-  display: inline-block;
-  background: white;
-  color: #0088cc;
-  text-decoration: none;
-  padding: 15px 40px;
-  border-radius: 50px;
-  font-weight: bold;
-  font-size: 18px;
-  transition: all 0.3s;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  border: 2px solid #0088cc;
-}
-
-.telegram-join-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-  background: #f0f0f0;
-}
-
-.telegram-join-btn i {
-  margin-right: 10px;
-}
-
-.mandatory-notice {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffdd00;
-  padding: 15px;
-  border-radius: 8px;
-  margin: 20px 0;
-  border: 1px solid #ffdd00;
-  font-weight: bold;
-}
-
-/* Prevent body scrolling */
-body {
-  overflow: hidden;
-}
-
-/* Blur the background content */
-.blur-background {
-  filter: blur(5px);
-  pointer-events: none;
-}
-        /* Unique namespace for all styles */
-        .cs-container * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        .cs-container {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .cs-content {
-            width: 100%;
-            max-width: 800px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .cs-header {
-            background: #4a6cf7;
-            color: white;
-            padding: 25px;
-            text-align: center;
-        }
-        
-        .cs-header h1 {
-            font-size: 28px;
-            margin-bottom: 5px;
-        }
-        
-        .cs-header p {
-            font-size: 16px;
-            opacity: 0.9;
-        }
-        
-        .cs-main {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        
-        .cs-info {
-            flex: 1;
-            min-width: 300px;
-            background: #f9fafc;
-            padding: 30px;
-        }
-        
-        .cs-info h2 {
-            color: #4a6cf7;
-            margin-bottom: 20px;
-            font-size: 22px;
-        }
-        
-        .cs-contact-method {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .cs-icon {
-            width: 50px;
-            height: 50px;
-            background: #4a6cf7;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 15px;
-            color: white;
-            font-size: 20px;
-        }
-        
-        .cs-contact-details h3 {
-            font-size: 18px;
-            margin-bottom: 5px;
-            color: #333;
-        }
-        
-        .cs-contact-details p {
-            color: #666;
-            font-size: 15px;
-        }
-        
-        .cs-form-container {
-            flex: 1;
-            min-width: 300px;
-            padding: 30px;
-        }
-        
-        .cs-form-group {
-            margin-bottom: 20px;
-        }
-        
-        .cs-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #333;
-        }
-        
-        .cs-input, .cs-textarea, .cs-select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 15px;
-            transition: all 0.3s ease;
-        }
-        
-        .cs-input:focus, .cs-textarea:focus, .cs-select:focus {
-            outline: none;
-            border-color: #4a6cf7;
-            box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
-        }
-        
-        .cs-textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        
-        .cs-button {
-            background: #4a6cf7;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 6px;
-            width: 100%;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .cs-button i {
-            margin-right: 8px;
-        }
-        
-        .cs-button:hover {
-            background: #3a5cd8;
-        }
-        
-        .cs-status-message {
-            text-align: center;
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 20px;
-            display: none;
-        }
-        
-        .cs-success {
-            background: #d4edda;
-            color: #155724;
-            display: block;
-        }
-        
-        .cs-error {
-            background: #f8d7da;
-            color: #721c24;
-            display: block;
-        }
-        
-        .cs-required {
-            color: #e74c3c;
-        }
-        
-        .cs-footer {
-            text-align: center;
-            padding: 20px;
-            background: #f8f9fa;
-            color: #666;
-            font-size: 14px;
-        }
-        
-        @media (max-width: 768px) {
-            .cs-main {
-                flex-direction: column;
-            }
-            
-            .cs-content {
-                border-radius: 8px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .cs-header h1 {
-                font-size: 24px;
-            }
-            
-            .cs-header p {
-                font-size: 14px;
-            }
-            
-            .cs-info, .cs-form-container {
-                padding: 20px;
-            }
-        }
-
+    
+    @media (max-width: 700px) {
+      footer > div {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+      }
+      
+      footer > div > div {
+        min-width: 100% !important;
+        margin-bottom: 20px !important;
+      }
+    }
   </style>
 </head>
 
 <body>
+  <!-- Particles Background -->
+  <div id="particles-js"></div>
+  
   <!-- Telegram Channel Popup - Mandatory -->
   <div class="telegram-popup" id="telegramPopup">
     <div class="telegram-popup-content">
@@ -996,11 +1566,12 @@ body {
       </p>
     </div>
   </div>
+  
 
   <!-- Website Content (initially hidden) -->
   <div id="websiteContent" class="blur-background" style="display: none;">
     <!-- Navbar -->
-    <nav class="navbar">
+    <nav class="navbar glass-container">
       <div class="navbar-brand">𝐙𝐎𝐓𝐀𝐂𝐓𝐘𝐒𝐎𝐍- सम्राज्य 🧃</div>
       <button class="nav-toggle" id="navToggle">
         <i class="fas fa-bars"></i>
@@ -1036,24 +1607,21 @@ body {
 
     <!-- Welcome Hero Section -->
     <section class="hero">
-      <h1>Welcome to 𝐙𝐎𝐓𝐀𝐂𝐓𝐘𝐒𝐎𝐍 - सम्राज्य 🧃</h1>
-      <p>Welcome to our platform — a comprehensive hub for advanced digital tools and resources. Our offerings include Telegram automation bots, SMS verification and virtual number services,free follower growth solutions, SMM panels for streamlined social media management,ban prevention and account safety guides, and a library of Alight Motion XML files for creative editing. Designed for both personal and professional use, our platform empowers you to enhance, protect, and optimize your digital presence
-      </p>
-      
-      <!-- Buttons Container -->
-      <div class="hero-buttons">
-        <button onclick="document.querySelector('.cards-section').scrollIntoView({behavior: 'smooth'})">Explore More</button>
+      <div class="hero-content glass-container">
+        <h1>Welcome to 𝐙𝐎𝐓𝐀𝐂𝐓𝐘𝐒𝐎𝐍 - सम्राज्य 🧃</h1>
+        <p>Welcome to our platform — a comprehensive hub for advanced digital tools and resources. Our offerings include Telegram automation bots, SMS verification and virtual number services,free follower growth solutions, SMM panels for streamlined social media management,ban prevention and account safety guides, and a library of Alight Motion XML files for creative editing. Designed for both personal and professional use, our platform empowers you to enhance, protect, and optimize your digital presence
+        </p>
         
-        <!-- NEW: Feedback Button -->
-        <button class="feedback-btn" onclick="window.location.href='feedback.html'">
-          <i class="fas fa-comment-dots"></i> See Feedback
-        </button>
+        <!-- Buttons Container -->
+        <div class="hero-buttons">
+          <button onclick="document.querySelector('.cards-section').scrollIntoView({behavior: 'smooth'})">Explore More</button>
+          
+          <!-- NEW: Feedback Button -->
+          <button class="feedback-btn" onclick="window.location.href='feedback.html'">
+            <i class="fas fa-comment-dots"></i> See Feedback
+          </button>
+        </div>
       </div>
-      
-      <div class="flex items-center justify-center h-screen bg-gray-900">
-    
-    </div>
-
     </section>
 
     <!-- Birthday Special Button centered and responsive, placed after hero and before ZAIS section -->
@@ -1066,10 +1634,9 @@ body {
       </button>
     </div>
 
-     <div class="container">
     <!-- Fixed ZAIS AI Section -->
     <div class="zais-ai-section">
-      <div class="zais-ai-content">
+      <div class="zais-ai-content glass-container" style="padding: 2rem;">
         <div class="zais-ai-robot">
           <i class="fas fa-robot" style="font-size: 4rem; color: #6e48aa;"></i>
         </div>
@@ -1089,117 +1656,208 @@ body {
         </a>
       </div>
     </div>
-  </div>
 
     <!-- Cards Section -->
     <section class="cards-section">
       <h2>Our Services & Features</h2>
       <div class="cards-container">
-         <div class="card">
+         <div class="card glass-card">
           <h3>PAID SOCIAL SERVICE </h3>
           <p>Buying Verified Id[custom],likes, Followers, Views and So on Directly From zotactyson </p>
-          <a href="page12.html"><button>Open</button></a>
+          <a href="page12.html">
+                    <button class="neon-button neon-green">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Open Now
+                    </button>
+                </a>
         </div>
-       <div class="card">
+       <div class="card glass-card">
           <h3>BROADCAST ENABLE</h3>
           <p>Broadcast Enable Method by Zotactyson</p>
-          <a href="page13.html"><button>Open</button></a>
+          <a href="page13.html">
+                    <button class="neon-button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Open Now
+                    </button>
+                </a>
         </div> 
-        <div class="card">
-          <h3>Waitlist Bypass</h3>
+        <div class="card glass-card">
+          <h3>WAITLIST BYPASS</h3>
           <p>Waitlist Bypass Method by Zotactyson</p>
-          <a href="page14.html"><button>Open</button></a>
+           <a href="page14.html">
+                    <button class="neon-button neon-red">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Open Now
+                    </button>
+                </a>
         </div> 
-     
-
-        
-        
-        
-        
-        
-        <div class="card">
-          <h3>SMM Panels</h3>
+        <div class="card glass-card">
+          <h3>SMM PANELS</h3>
           <p>Access some trusted SMM panels </p>
-          <a href="page1.html"><button>Explore</button></a>
+          <a href="page1.html">
+                    <button class="neon-button neon-orange">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Open Now
+                    </button>
+                </a>
         </div>
-        <div class="card">
-          <h3>Free Followers</h3>
+        <div class="card glass-card">
+          <h3>FREE FOLLOWER'S</h3>
           <p>Zotactyson provide you 59 site to add free follower on instagram </p>
-          <a href="page2.html"><button>Open</button></a>
+          <a href="page2.html">
+                    <button class="neon-button neon-yellow">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Open Now
+                    </button>
+                </a>
         </div>
-        <div class="card">
-          <h3>Get Virtual Number</h3>
+        <div class="card glass-card">
+          <h3>GET VIRTUAL NUMBER'S</h3>
           <p>You can get a free virtual number from the following sites</p>
-          <a href="page3.html"><button>Open</button></a>
+           <a href="page3.html">
+                    <button class="neon-button neon-purple">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Open Now
+                    </button>
+                </a>
         </div>
-        <div class="card">
-          <h3>SMS Verification</h3>
+        <div class="card glass-card">
+          <h3>SMS VERIFICATION</h3>
           <p>Free phone numbers for SMS verification provided by Zotactyson~</p>
-          <a href="page4.html"><button>Open</button></a>
+          <a href="page4.html">
+                    <button class="neon-button neon-pink">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Open Now
+                    </button>
+                </a>
         </div>
-        <div class="card">
-          <h3>Telegrams Bot</h3>
+        <div class="card glass-card">
+          <h3>TELEGRAM BOTS</h3>
           <p>Some Usefull telegram bots are provided by Zotactyson.</p>
-          <a href="page5.html"><button>Open</button></a>
+          <a href="page5.html">
+                    <button class="neon-button neon-white">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Open Now
+                    </button>
+                </a>
         </div>
-        <div class="card">
+        <div class="card glass-card">
           <h3>Bombing</h3>
           <p>Here is some sites for call bomber and SMS bomber for fun with friends </p>
-          <a href="page6.html"><button>Open</button></a>
+            <a href="page6.html">
+                    <button class="neon-button neon-gold">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Open Now
+                    </button>
+                </a>
         </div>
-        <div class="card">
+        <div class="card glass-card">
           <h3>Unc</h3>
           <p>Here is some UNC of 2k10-2k11 by zotactyson</p>
-          <a href="page7.html"><button>Open</button></a>
+         <a href="page7.html">
+                    <button class="neon-button neon-silver">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Open Now
+                    </button>
+                </a>
         </div>
-        <!-- <div class="card">
-          <h3>Unc</h3>
-          <p>Here is some UNC of 2k14-2k19 by zotactyson</p>
-          <a href="page8.html"><button>Open</button></a>
-        </div> -->
-        <div class="card">
+        <div class="card glass-card">
           <h3>Unlimited Gmail</h3>
           <p>How to Create Unlimited Gmail Accounts Without Phone Number</p>
-          <a href="page9.html"><button>Open</button></a>
+          <a href="page9.html">
+                    <button class="neon-button neon-aqua">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Open Now
+                    </button>
+                </a>
         </div>
-        <div class="card">
+        <div class="card glass-card">
           <h3>Forms</h3>
           <p>Some Instagram Reporting Forms by zotactyson</p>
-          <a href="page10.html"><button>Open</button></a>
+          <a href="page10.html">
+                    <button class="neon-button neon-lime">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Open Now
+                    </button>
+                </a>
         </div>
-        <div class="card">
+        <div class="card glass-card">
           <h3>CB PATCH METHOD</h3>
           <p>CB Patch method by zotactyson & Piyush</p>
-          <a href="page11.html"><button>Open</button></a>
+          <a href="page11.html">
+                    <button class="neon-button neon-red">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Open Now
+                    </button>
+                </a>
         </div>
-        
       </div>
     </section>
+    
     <!-- Premium User Features Section -->
     <section class="premium-section">
       <h2 style="color:#6e48aa; font-size:2.1rem; margin-bottom:2rem; text-align:center;">
         <i class="fas fa-crown" style="color:#ff5e5e; margin-right:10px;"></i>Premium User Features
       </h2>
       <div class="premium-cards-container">
-        <div class="premium-card">
+        <div class="premium-card glass-card">
           <i class="fas fa-star" style="color:#ff5e5e; font-size:2rem; margin-bottom:10px;"></i>
           <h3>Exclusive XML Packs</h3>
           <p>Unlock advanced Alight Motion XMLs and editing resources only for premium members.</p>
           <a href="page8.html"><button class="premium-btn">Access</button></a>
         </div>
-        <div class="premium-card">
+        <div class="premium-card glass-card">
           <i class="fas fa-robot" style="color:#6e48aa; font-size:2rem; margin-bottom:10px;"></i>
           <h3>Premium Telegram Bots</h3>
           <p>Get access to paid Telegram bots for automation, analytics, and more.</p>
           <a href="premium-bots.html"><button class="premium-btn">Explore</button></a>
         </div>
-        <div class="premium-card">
+        <div class="premium-card glass-card">
           <i class="fas fa-shield-alt" style="color:#ff5e5e; font-size:2rem; margin-bottom:10px;"></i>
           <h3>Account Protection Tools</h3>
           <p>Advanced security guides and tools for keeping your accounts safe.</p>
           <a href="premium-security.html"><button class="premium-btn">View</button></a>
         </div>
-        <div class="premium-card">
+        <div class="premium-card glass-card">
           <i class="fas fa-gem" style="color:#6e48aa; font-size:2rem; margin-bottom:10px;"></i>
           <h3>Priority Support</h3>
           <p>Get priority customer support and direct help from our experts.</p>
@@ -1207,6 +1865,8 @@ body {
         </div>
       </div>
     </section>
+    
+    <!-- Contact Support Section -->
     <div class="cs-container">
         <div class="cs-content">
             <div class="cs-header">
@@ -1294,85 +1954,22 @@ body {
         </div>
     </div>
 
-    <script>
-        document.getElementById('cs-contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            const statusMessage = document.getElementById('cs-statusMessage');
-            
-            // Simple validation
-            const email = document.getElementById('cs-email').value;
-            const message = document.getElementById('cs-message').value;
-            
-            if (!email || !message) {
-                statusMessage.textContent = 'Please fill in all required fields.';
-                statusMessage.className = 'cs-status-message cs-error';
-                return;
-            }
-            
-            // Email format validation
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailPattern.test(email)) {
-                statusMessage.textContent = 'Please enter a valid email address.';
-                statusMessage.className = 'cs-status-message cs-error';
-                return;
-            }
-            
-            // Change button to show loading state
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
-            
-            // Create a form data object
-            const formData = new FormData(this);
-            
-            // Send the form using fetch
-            fetch(this.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    statusMessage.textContent = 'Message sent successfully! We will get back to you soon.';
-                    statusMessage.className = 'cs-status-message cs-success';
-                    this.reset();
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            })
-            .catch(error => {
-                statusMessage.textContent = 'There was an error sending your message. Please try again.';
-                statusMessage.className = 'cs-status-message cs-error';
-            })
-            .finally(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                
-                // Scroll to status message
-                statusMessage.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-    </script>
-
-    <footer style="background-color: #f8f9fa; color: #333; padding: 40px 20px 20px; font-family: Arial, sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between;">
-        <div style="flex: 1; min-width: 250px; margin-bottom: 30px;">
-            <h3 style="color: #2c3e50;">
-              <i class="fas fa-rocket" style="color:#ff5e5e; margin-right:8px;"></i>Zotactyson
-            </h3>
-            <p style="line-height: 1.6; max-width: 300px;">
-              <i class="fas fa-lightbulb" style="color:#ff5e5e; margin-right:6px;"></i>
-              Delivering innovative solutions and expert services to drive your success forward. Let's build the future together.
-            </p>
-        </div>
-        <div style="flex: 1; min-width: 150px; margin-bottom: 30px;">
-  <h4 style="color: #2c3e50;">
-    <i class="fas fa-link" style="color:#ff5e5e; margin-right:6px;"></i>Quick Links
-  </h4>
+    <!-- Footer -->
+    <footer>
+      <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between;">
+          <div style="flex: 1; min-width: 250px; margin-bottom: 30px;">
+              <h3 style="color: #2c3e50;">
+                <i class="fas fa-rocket" style="color:#ff5e5e; margin-right:8px;"></i>Zotactyson
+              </h3>
+              <p style="line-height: 1.6; max-width: 300px;">
+                <i class="fas fa-lightbulb" style="color:#ff5e5e; margin-right:6px;"></i>
+                Delivering innovative solutions and expert services to drive your success forward. Let's build the future together.
+              </p>
+          </div>
+          <div style="flex: 1; min-width: 150px; margin-bottom: 30px;">
+            <h4 style="color: #2c3e50;">
+              <i class="fas fa-link" style="color:#ff5e5e; margin-right:6px;"></i>Quick Links
+            </h4>
             <ul style="list-style: none; padding: 0; line-height: 2;">
                 <li><a href="/about.html" style="color: #333; text-decoration: none;">
                   <i class="fas fa-users" style="color:#ff5e5e; margin-right:5px;"></i>About Us</a></li>
@@ -1383,49 +1980,144 @@ body {
                 <li><a href="/signup.html" style="color: #333; text-decoration: none;">
                   <i class="fas fa-user-plus" style="color:#ff5e5e; margin-right:5px;"></i>Sign Up</a></li>
             </ul>
-        </div>
-        <div style="flex: 1; min-width: 200px; margin-bottom: 30px;">
-            <h4 style="color: #2c3e50;">
-              <i class="fas fa-address-book" style="color:#ff5e5e; margin-right:6px;"></i>Get In Touch
-            </h4>
-            <p style="line-height: 1.8;">
-                <strong><i class="fas fa-envelope" style="color:#ff5e5e; margin-right:5px;"></i>Email:</strong><br>
-                <a href="mailto:zotactyson@gmail.com" style="color: #333; text-decoration: none;">zotactyson@gmail.com</a>
-            </p>
-            <p style="line-height: 1.8;">
-                <strong><i class="fas fa-phone" style="color:#ff5e5e; margin-right:5px;"></i>Phone:</strong><br>
-                +1 (555) 123-4567
-            </p>
-        </div>
-        <div style="flex: 1; min-width: 250px; margin-bottom: 30px;">
-            <h4 style="color: #2c3e50;">
-              <i class="fas fa-share-alt" style="color:#ff5e5e; margin-right:6px;"></i>Follow Us
-            </h4>
-            <p style="margin-top: 20px;"><strong><i class="fas fa-bell" style="color:#ff5e5e; margin-right:5px;"></i>Stay Updated:</strong></p>
-            <form>
-                <input type="email" placeholder="Your Email Address" style="padding: 10px; width: 70%; border: 1px solid #ccc; border-radius: 4px;">
-                <button type="submit" style="padding: 10px; background-color: #2c3e50; color: white; border: none; border-radius: 4px; margin-top: 10px; cursor: pointer;">
-                  <i class="fas fa-paper-plane" style="margin-right:5px;"></i>Subscribe
-                </button>
-            </form>
-        </div>
-    </div>
-    <div style="max-width: 1200px; margin: 30px auto 0; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; font-size: 0.9em;">
-        <p>
-          <i class="far fa-copyright" style="color:#ff5e5e; margin-right:5px;"></i>
-          2025 Zotactyson. All rights reserved.
-        </p>
-        <p style="font-size: 0.85em;">
-            <a href="/privacy-policy" style="color: #666; text-decoration: none; margin: 0 10px;">
-              <i class="fas fa-user-secret" style="color:#ff5e5e; margin-right:5px;"></i>Privacy Policy</a> |
-            <a href="/terms-of-service" style="color: #666; text-decoration: none; margin: 0 10px;">
-              <i class="fas fa-file-contract" style="color:#ff5e5e; margin-right:5px;"></i>Terms of Service</a>
-        </p>
-    </div>
-  </footer>
+          </div>
+          <div style="flex: 1; min-width: 200px; margin-bottom: 30px;">
+              <h4 style="color: #2c3e50;">
+                <i class="fas fa-address-book" style="color:#ff5e5e; margin-right:6px;"></i>Get In Touch
+              </h4>
+              <p style="line-height: 1.8;">
+                  <strong><i class="fas fa-envelope" style="color:#ff5e5e; margin-right:5px;"></i>Email:</strong><br>
+                  <a href="mailto:zotactyson@gmail.com" style="color: #333; text-decoration: none;">zotactyson@gmail.com</a>
+              </p>
+              <p style="line-height: 1.8;">
+                  <strong><i class="fas fa-phone" style="color:#ff5e5e; margin-right:5px;"></i>Phone:</strong><br>
+                  +1 (555) 123-4567
+              </p>
+          </div>
+          <div style="flex: 1; min-width: 250px; margin-bottom: 30px;">
+              <h4 style="color: #2c3e50;">
+                <i class="fas fa-share-alt" style="color:#ff5e5e; margin-right:6px;"></i>Follow Us
+              </h4>
+              <p style="margin-top: 20px;"><strong><i class="fas fa-bell" style="color:#ff5e5e; margin-right:5px;"></i>Stay Updated:</strong></p>
+              <form>
+                  <input type="email" placeholder="Your Email Address" style="padding: 10px; width: 70%; border: 1px solid #ccc; border-radius: 4px;">
+                  <button type="submit" style="padding: 10px; background-color: #2c3e50; color: white; border: none; border-radius: 4px; margin-top: 10px; cursor: pointer;">
+                    <i class="fas fa-paper-plane" style="margin-right:5px;"></i>Subscribe
+                  </button>
+              </form>
+          </div>
+      </div>
+      <div style="max-width: 1200px; margin: 30px auto 0; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; font-size: 0.9em;">
+          <p>
+            <i class="far fa-copyright" style="color:#ff5e5e; margin-right:5px;"></i>
+            2025 Zotactyson. All rights reserved.
+          </p>
+          <p style="font-size: 0.85em;">
+              <a href="/privacy-policy" style="color: #666; text-decoration: none; margin: 0 10px;">
+                <i class="fas fa-user-secret" style="color:#ff5e5e; margin-right:5px;"></i>Privacy Policy</a> |
+              <a href="/terms-of-service" style="color: #666; text-decoration: none; margin: 0 10px;">
+                <i class="fas fa-file-contract" style="color:#ff5e5e; margin-right:5px;"></i>Terms of Service</a>
+          </p>
+      </div>
+    </footer>
   </div>
 
+  <!-- Particles.js Library -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  
   <script>
+    // Initialize particles.js
+    document.addEventListener('DOMContentLoaded', function() {
+      particlesJS('particles-js', {
+        particles: {
+          number: {
+            value: 80,
+            density: {
+              enable: true,
+              value_area: 800
+            }
+          },
+          color: {
+            value: "#ffffff"
+          },
+          shape: {
+            type: "circle",
+            stroke: {
+              width: 0,
+              color: "#000000"
+            }
+          },
+          opacity: {
+            value: 0.5,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 1,
+              opacity_min: 0.1,
+              sync: false
+            }
+          },
+          size: {
+            value: 3,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 2,
+              size_min: 0.1,
+              sync: false
+            }
+          },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#ffffff",
+            opacity: 0.4,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            random: true,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+            attract: {
+              enable: false,
+              rotateX: 600,
+              rotateY: 1200
+            }
+          }
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "grab"
+            },
+            onclick: {
+              enable: true,
+              mode: "push"
+            },
+            resize: true
+          },
+          modes: {
+            grab: {
+              distance: 140,
+              line_linked: {
+                opacity: 1
+              }
+            },
+            push: {
+              particles_nb: 4
+            }
+          }
+        },
+        retina_detect: true
+      });
+    });
+
     // Navbar menu toggle for mobile
     const navToggle = document.getElementById('navToggle');
     const navbarMenu = document.getElementById('navbarMenu');
@@ -1502,5 +2194,4 @@ body {
     });
   </script>
 </body>
-
 </html>
