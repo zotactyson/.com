@@ -168,96 +168,119 @@
     }
     
     /* Hero Section */
-    .hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: #fff;
-      padding: 0 1rem;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .hero-content {
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      padding: -1rem;
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    }
-    
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      max-width: 800px;
-    }
-    
-    .hero-buttons {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    
-    .hero button {
-      padding: 15px 35px;
-      border: none;
-      background: rgba(255, 94, 94, 0.8);
-      color: #fff;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
-      border-radius: 6px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .hero button:hover {
-      background: rgba(255, 48, 48, 0.9);
-      transform: translateY(-3px);
-    }
-    
-    /* NEW: Feedback Button Styles */
-    .feedback-btn {
-      padding: 15px 35px;
-      border: none;
-      background: rgba(110, 72, 170, 0.8);
-      color: #fff;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      box-shadow: 0 4px 15px rgba(110, 72, 170, 0.3);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .feedback-btn:hover {
-      background: rgba(157, 80, 187, 0.9);
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(110, 72, 170, 0.4);
-    }
-    
-    .feedback-btn:active {
-      transform: translateY(0);
-    }
-    
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  padding: 0 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 2rem; /* fixed padding */
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem); /* responsive */
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero p {
+  font-size: clamp(1rem, 2.5vw, 1.2rem); /* responsive */
+  margin-bottom: 2rem;
+  max-width: 800px;
+}
+
+/* Buttons */
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero button {
+  padding: 12px 28px; /* balanced padding */
+  border: none;
+  background: rgba(255, 94, 94, 0.8);
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.hero button:hover {
+  background: rgba(255, 48, 48, 0.9);
+  transform: translateY(-3px);
+}
+
+/* Feedback Button */
+.feedback-btn {
+  padding: 12px 28px;
+  border: none;
+  background: rgba(110, 72, 170, 0.8);
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(110, 72, 170, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.feedback-btn:hover {
+  background: rgba(157, 80, 187, 0.9);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(110, 72, 170, 0.4);
+}
+
+.feedback-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .hero {
+    padding: 0 1rem;
+  }
+
+  .hero-content {
+    padding: 1.5rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hero button,
+  .feedback-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
     /* About Section */
     .about-section {
       padding: 5rem 1rem;
@@ -846,267 +869,73 @@
     }
     
     /* Birthday Button Styles */
-    .birthday-popup-btn {
-      display: inline-block;
-      background: linear-gradient(90deg, rgba(255, 94, 94, 0.8) 60%, rgba(255, 179, 71, 0.8) 100%);
-      color: #fff;
-      font-size: 1.2rem;
-      padding: 16px 38px;
-      border-radius: 32px;
-      border: none;
-      outline: none;
-      font-weight: 700;
-      box-shadow: 0 6px 24px rgba(255,94,94,0.18), 0 1.5px 8px rgba(255,179,71,0.12);
-      cursor: pointer;
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-      margin: 2rem auto;
-      animation: popBtn 1.2s infinite alternate;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
+.birthday-popup-btn {
+  display: inline-flex; /* better icon+text alignment */
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, rgba(255, 94, 94, 0.8) 60%, rgba(255, 179, 71, 0.8) 100%);
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 14px 32px; /* balanced padding */
+  border-radius: 32px;
+  border: none;
+  outline: none;
+  font-weight: 700;
+  box-shadow: 0 6px 24px rgba(255,94,94,0.18), 0 1.5px 8px rgba(255,179,71,0.12);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  animation: popBtn 1.2s infinite alternate;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.birthday-popup-btn i {
+  margin-right: 8px; /* balanced icon spacing */
+  font-size: 1.2em;
+}
+
+/* Hover */
+.birthday-popup-btn:hover {
+  background: linear-gradient(90deg, rgba(255, 179, 71, 0.9) 60%, rgba(255, 94, 94, 0.9) 100%);
+  transform: scale(1.08) rotate(-2deg);
+  box-shadow: 0 12px 32px rgba(255,94,94,0.22);
+}
+
+/* Pop animation */
+@keyframes popBtn {
+  0% { transform: scale(1);}
+  60% { transform: scale(1.08);}
+  100% { transform: scale(1);}
+}
+
+/* Variant button */
+.daily-unc-btn {
+  background: linear-gradient(90deg, rgba(110, 72, 170, 0.8) 60%, rgba(255, 94, 94, 0.8) 100%) !important;
+  color: #fff !important;
+  box-shadow: 0 8px 32px rgba(110,72,170,0.18), 0 2px 12px rgba(255,94,94,0.15);
+  border: 2px solid rgba(102, 72, 170, 0.5);
+}
+
+.daily-unc-btn:hover {
+  background: linear-gradient(90deg, rgba(255, 94, 94, 0.9) 60%, rgba(110, 72, 170, 0.9) 100%) !important;
+  color: #fff !important;
+  border-color: rgba(255, 94, 94, 0.7);
+  transform: scale(1.10) rotate(-2deg);
+}
+
+/* Wrapper */
+.birthday-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem; /* spacing between buttons */
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 2rem auto 0 auto;
+}
+
     
-    .birthday-popup-btn i {
-      margin-right: 10px;
-      font-size: 1.3em;
-      vertical-align: middle;
-    }
-    
-    .birthday-popup-btn:hover {
-      background: linear-gradient(90deg, rgba(255, 179, 71, 0.9) 60%, rgba(255, 94, 94, 0.9) 100%);
-      transform: scale(1.08) rotate(-2deg);
-      box-shadow: 0 12px 32px rgba(255,94,94,0.22);
-    }
-    
-    @keyframes popBtn {
-      0% { transform: scale(1);}
-      60% { transform: scale(1.08);}
-      100% { transform: scale(1);}
-    }
-    
-    .daily-unc-btn {
-      background: linear-gradient(90deg, rgba(110, 72, 170, 0.8) 60%, rgba(255, 94, 94, 0.8) 100%) !important;
-      color: #fff !important;
-      box-shadow: 0 8px 32px rgba(110,72,170,0.18), 0 2px 12px rgba(255,94,94,0.15);
-      border: 2px solid rgba(102, 72, 170, 0.5);
-    }
-    
-    .daily-unc-btn:hover {
-      background: linear-gradient(90deg, rgba(255, 94, 94, 0.9) 60%, rgba(110, 72, 170, 0.9) 100%) !important;
-      color: #fff !important;
-      border-color: rgba(255, 94, 94, 0.7);
-      transform: scale(1.10) rotate(-2deg);
-    }
-    
-    /* ZAIS AI Section */
-    .zais-ai-section {
-      background: linear-gradient(90deg, rgba(243, 246, 250, 0.2) 60%, rgba(233, 228, 240, 0.2) 100%);
-      padding: 2.5rem 1rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: fadeInZais 1s;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    @keyframes fadeInZais {
-      from { opacity: 0; transform: translateY(-30px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
-    
-    .zais-ai-content {
-      text-align: center;
-      max-width: 500px;
-      margin: 0 auto;
-      position: relative;
-    }
-    
-    .zais-ai-robot {
-      margin-bottom: 1.2rem;
-      animation: floatRobot 2s infinite ease-in-out;
-    }
-    
-    @keyframes floatRobot {
-      0%,100% { transform: translateY(0);}
-      50% { transform: translateY(-12px);}
-    }
-    
-    .zais-ai-content h2 {
-      color: #6e48aa;
-      font-size: 2rem;
-      margin-bottom: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-    
-    .zais-ai-content p {
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.7;
-    }
-    
-    .zais-ai-btn {
-      display: inline-block;
-      background: linear-gradient(90deg, rgba(110, 72, 170, 0.8) 60%, rgba(157, 80, 187, 0.8) 100%);
-      color: #fff;
-      font-size: 1.1rem;
-      padding: 14px 32px;
-      border-radius: 32px;
-      text-decoration: none;
-      font-weight: 600;
-      box-shadow: 0 4px 12px rgba(110,72,170,0.12);
-      transition: background 0.2s, transform 0.2s;
-      border: none;
-      outline: none;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .zais-ai-btn:hover {
-      background: linear-gradient(90deg, rgba(157, 80, 187, 0.9) 60%, rgba(110, 72, 170, 0.9) 100%);
-      transform: scale(1.05);
-    }
-    
-    .zais-ai-btn i {
-      margin-right: 8px;
-      font-size: 1.2em;
-      vertical-align: middle;
-    }
-    
-    .maintenance-notice {
-      background: rgba(255, 243, 205, 0.2);
-      color: #ffdd00;
-      padding: 12px 16px;
-      border-radius: 8px;
-      margin: 15px 0;
-      border-left: 4px solid rgba(255, 193, 7, 0.5);
-      font-size: 0.95rem;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .maintenance-notice i {
-      margin-right: 8px;
-      color: #ffc107;
-    }
-    
-    /* Birthday Button Wrapper */
-    .birthday-btn-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      margin-top: 2rem;
-      margin-bottom: 0;
-      flex-wrap: wrap;
-    }
-    
-    /* Telegram Popup Styles - Mandatory Version */
-    .telegram-popup {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.95);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      opacity: 1;
-      visibility: visible;
-    }
-    
-    .telegram-popup-content {
-      background: linear-gradient(135deg, rgba(0, 136, 204, 0.9) 0%, rgba(0, 85, 128, 0.9) 100%);
-      border-radius: 16px;
-      padding: 30px;
-      width: 90%;
-      max-width: 500px;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      border: 3px solid rgba(255, 255, 255, 0.2);
-      animation: pulse 2s infinite;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    @keyframes pulse {
-      0% { box-shadow: 0 0 20px rgba(0, 136, 204, 0.7); }
-      50% { box-shadow: 0 0 30px rgba(0, 136, 204, 0.9); }
-      100% { box-shadow: 0 0 20px rgba(0, 136, 204, 0.7); }
-    }
-    
-    .telegram-icon {
-      font-size: 70px;
-      color: white;
-      margin-bottom: 20px;
-      animation: bounce 1s infinite alternate;
-    }
-    
-    @keyframes bounce {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-10px); }
-    }
-    
-    .telegram-popup h2 {
-      color: white;
-      margin-bottom: 15px;
-      font-size: 28px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    }
-    
-    .telegram-popup p {
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 25px;
-      line-height: 1.5;
-      font-size: 18px;
-    }
-    
-    .telegram-popup strong {
-      color: #ffdd00;
-      font-weight: bold;
-    }
-    
-    .telegram-join-btn {
-      display: inline-block;
-      background: white;
-      color: #0088cc;
-      text-decoration: none;
-      padding: 15px 40px;
-      border-radius: 50px;
-      font-weight: bold;
-      font-size: 18px;
-      transition: all 0.3s;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      border: 2px solid #0088cc;
-    }
-    
-    .telegram-join-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-      background: #f0f0f0;
-    }
-    
-    .telegram-join-btn i {
-      margin-right: 10px;
-    }
-    
-    .mandatory-notice {
-      background: rgba(255, 255, 255, 0.1);
-      color: #ffdd00;
-      padding: 15px;
-      border-radius: 8px;
-      margin: 20px 0;
-      border: 1px solid rgba(255, 221, 0, 0.3);
-      font-weight: bold;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
+   
     
     /* Contact Support Styles */
     .cs-container * {
@@ -1544,34 +1373,9 @@
   <!-- Particles Background -->
   <div id="particles-js"></div>
   
-  <!-- Telegram Channel Popup - Mandatory -->
-  <div class="telegram-popup" id="telegramPopup">
-    <div class="telegram-popup-content">
-      <div class="telegram-icon">
-        <i class="fab fa-telegram"></i>
-      </div>
-      <h2>Join Our Telegram Channel!</h2>
-      <p><strong>Mandatory:</strong> You must join our Telegram channel to access this website.</p>
-      
-      <div class="mandatory-notice">
-        <i class="fas fa-exclamation-circle"></i> This step is required to continue
-      </div>
-      
-      <a href="https://t.me/zotactysonnn" target="_blank" class="telegram-join-btn">
-        <i class="fab fa-telegram"></i> Join Now
-      </a>
-      
-      <p style="margin-top: 20px; font-size: 14px; color: #ccc;">
-        After joining, refresh this page to access the content
-      </p>
-    </div>
-  </div>
-  
 
-  <!-- Website Content (initially hidden) -->
-  <div id="websiteContent" class="blur-background" style="display: none;">
-    <!-- Navbar -->
-    <nav class="navbar glass-container">
+
+  <nav class="navbar glass-container">
       <div class="navbar-brand">𝐙𝐎𝐓𝐀𝐂𝐓𝐘𝐒𝐎𝐍- सम्राज्य 🧃</div>
       <button class="nav-toggle" id="navToggle">
         <i class="fas fa-bars"></i>
@@ -1637,7 +1441,7 @@
       </button>
     </div>
 
-    <!-- Fixed ZAIS AI Section -->
+    <!-- Fixed ZAIS AI Section
     <div class="zais-ai-section">
       <div class="zais-ai-content glass-container" style="padding: 2rem;">
         <div class="zais-ai-robot">
@@ -1647,9 +1451,9 @@
         <p>
           ZAIS.ai is your smart AI-powered assistant, ready to help you with creative tasks, editing tips, and instant answers. Experience the future of digital assistance with ZAIS.ai, created by Zotactyson.
         </p>
-        
+         -->
         <!-- Maintenance Notice -->
-        <div class="maintenance-notice">
+        <!-- <div class="maintenance-notice">
           <i class="fas fa-exclamation-triangle"></i>
           <strong>Notice:</strong> This bot is not working at this time due to technical errors.
         </div>
@@ -1658,7 +1462,7 @@
           <i class="fas fa-robot"></i> Open ZAIS.ai 
         </a>
       </div>
-    </div>
+    </div> -->
 
     <!-- Cards Section -->
     <section class="cards-section">
