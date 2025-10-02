@@ -938,212 +938,228 @@
     
    
     
-    /* Contact Support Styles - UPDATED */
-    .cs-container * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
-    .cs-container {
-      background: transparent; /* Removed background */
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      backdrop-filter: none; /* Removed blur effect */
-      -webkit-backdrop-filter: none;
-    }
-    
-    .cs-content {
-      width: 100%;
-      max-width: 800px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    
-    .cs-header {
-      background: rgba(74, 108, 247, 0.8);
-      color: white;
-      padding: 25px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .cs-header h1 {
-      font-size: 28px;
-      margin-bottom: 5px;
-    }
-    
-    .cs-header p {
-      font-size: 16px;
-      opacity: 0.9;
-    }
-    
-    .cs-main {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    
-    .cs-info {
-      flex: 1;
-      min-width: 300px;
-      background: rgba(249, 250, 252, 0.1);
-      padding: 30px;
-    }
-    
-    .cs-info h2 {
-      color: #4a6cf7;
-      margin-bottom: 20px;
-      font-size: 22px;
-    }
-    
-    .cs-contact-method {
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-    
-    .cs-icon {
-      width: 50px;
-      height: 50px;
-      background: rgba(74, 108, 247, 0.8);
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-right: 15px;
-      color: white;
-      font-size: 20px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .cs-contact-details h3 {
-      font-size: 18px;
-      margin-bottom: 5px;
-      color: #fff;
-    }
-    
-    .cs-contact-details p {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 15px;
-    }
-    
-    .cs-form-container {
-      flex: 1;
-      min-width: 300px;
-      padding: 30px;
-    }
-    
-    .cs-form-group {
-      margin-bottom: 20px;
-    }
-    
-    .cs-label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 500;
-      color: #fff;
-    }
-    
-    .cs-input, .cs-textarea, .cs-select {
-      width: 100%;
-      padding: 12px 15px;
-      border: 1px solid rgba(221, 221, 221, 0.3);
-      border-radius: 6px;
-      font-size: 15px;
-      transition: all 0.3s ease;
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .cs-input:focus, .cs-textarea:focus, .cs-select:focus {
-      outline: none;
-      border-color: #4a6cf7;
-      box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
-    }
-    
-    .cs-textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-    
-    .cs-button {
-      background: rgba(74, 108, 247, 0.8);
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 6px;
-      width: 100%;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .cs-button i {
-      margin-right: 8px;
-    }
-    
-    .cs-button:hover {
-      background: rgba(58, 92, 216, 0.9);
-    }
-    
-    .cs-status-message {
-      text-align: center;
-      padding: 15px;
-      border-radius: 6px;
-      margin-top: 20px;
-      display: none;
-    }
-    
-    .cs-success {
-      background: rgba(212, 237, 218, 0.2);
-      color: #155724;
-      display: block;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .cs-error {
-      background: rgba(248, 215, 218, 0.2);
-      color: #721c24;
-      display: block;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .cs-required {
-      color: #e74c3c;
-    }
-    
-    .cs-footer {
-      text-align: center;
-      padding: 20px;
-      background: rgba(248, 249, 250, 0.1);
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 14px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
+     /* Contact Support Styles - FIXED */
+        .cs-container * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .cs-container {
+          
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .cs-content {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(30, 30, 46, 0.85);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .cs-header {
+            background: rgba(74, 108, 247, 0.9);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .cs-header h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .cs-header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .cs-main {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .cs-info {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(40, 40, 60, 0.7);
+            padding: 30px;
+        }
+        
+        .cs-info h2 {
+            color: #4a6cf7;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        
+        .cs-contact-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .cs-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(74, 108, 247, 0.9);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 20px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .cs-contact-details h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+        
+        .cs-contact-details p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 15px;
+        }
+        
+        .cs-form-container {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+        }
+        
+        .cs-form-group {
+            margin-bottom: 20px;
+        }
+        
+        .cs-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #ffffff;
+        }
+        
+        .cs-input, .cs-textarea, .cs-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid rgba(221, 221, 221, 0.3);
+            border-radius: 6px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .cs-input::placeholder, .cs-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .cs-input:focus, .cs-textarea:focus, .cs-select:focus {
+            outline: none;
+            border-color: #4a6cf7;
+            box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .cs-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .cs-button {
+            background: rgba(74, 108, 247, 0.9);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .cs-button i {
+            margin-right: 8px;
+        }
+        
+        .cs-button:hover {
+            background: rgba(58, 92, 216, 0.95);
+        }
+        
+        .cs-status-message {
+            text-align: center;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .cs-success {
+            background: rgba(76, 175, 80, 0.2);
+            color: #a5d6a7;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            display: block;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .cs-error {
+            background: rgba(244, 67, 54, 0.2);
+            color: #ef9a9a;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+            display: block;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .cs-required {
+            color: #ff6b6b;
+        }
+        
+        .cs-footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(30, 30, 46, 0.9);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 650px) {
+            .cs-main {
+                flex-direction: column;
+            }
+            
+            .cs-info, .cs-form-container {
+                min-width: 100%;
+            }
+        }
     
     /* Footer Styles */
     footer {
@@ -1967,6 +1983,58 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('cs-contactForm');
+            const statusMessage = document.getElementById('cs-statusMessage');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                const submitButton = form.querySelector('button[type="submit"]');
+                const originalText = submitButton.innerHTML;
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitButton.disabled = true;
+                
+                // Simple form validation
+                const email = document.getElementById('cs-email').value;
+                const message = document.getElementById('cs-message').value;
+                
+                if (!email || !message) {
+                    showStatus('Please fill in all required fields.', 'error');
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                    return;
+                }
+                
+                // In a real implementation, you would send the form data to your server
+                // For demo purposes, we'll simulate a successful submission
+                setTimeout(function() {
+                    showStatus('Your message has been sent successfully! We will get back to you soon.', 'success');
+                    form.reset();
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                    
+                    // In a real implementation, you would submit the form here
+                    // form.submit();
+                }, 1500);
+            });
+            
+            function showStatus(message, type) {
+                statusMessage.textContent = message;
+                statusMessage.className = 'cs-status-message';
+                statusMessage.classList.add(type === 'success' ? 'cs-success' : 'cs-error');
+                statusMessage.style.display = 'block';
+                
+                // Hide status message after 5 seconds
+                setTimeout(function() {
+                    statusMessage.style.display = 'none';
+                }, 5000);
+            }
+        });
+    </script>
       <!-- Social Media Bubble Popup -->
   <div class="social-bubble">
     <div class="social-bubble-toggle" id="socialBubbleToggle">
